@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>JS Bin</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <!-- Vue -->   
+        <script src="https://unpkg.com/vue"></script>
+        <!-- firebase -->
+        <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase-app.js"></script>
+        <!-- firestore -->
+        <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase-firestore.js"></script>
+        <!-- vue-firestore -->   
+        <script src="https://unpkg.com/vue-firestore"></script>
+    </head>
+    <body>
+        <div class = "container" id="app">
+        <ul class="list-group">
+            <li class="list-group-item" v-for= "p in persons">
+            {{p.name}} <button @click="remove(p)" class="badge">x</button>
+            </li>
+        </ul>
+        
+        <input class="form-control" type="text" v-model="person.name" v-on:keyup.enter="add()">
+        <br>
+        <button class="btn btn-primary" @click="add()">Add new</button>
+        </div>
+
+
+        <!-- app -->
+        <script src="app.js"></script>
+    </body>
+</html>
