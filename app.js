@@ -11,7 +11,6 @@ var config = {
 // Initialize Firebase.
 firebase.initializeApp(config);
 
-var storage = firebase.storage();
 const firestore = firebase.firestore();
 const settings = {/* your settings... */ timestampsInSnapshots: true};
 firestore.settings(settings);
@@ -72,20 +71,19 @@ new Vue({
             );
         },
         newScreenGrab() {
-            console.log("pushed new screengrab")
-            this.item.screenGrabs.push(
-                ""
-            );
+            //console.log("pushed new screengrab")
         },
         handleUpload(e) {
             console.log("..........handling upload for " + this.item.title);
 
+            var parentObj = this;
+
             var file = e.target.files[0];
 
-            console.log("path: " + this.item.title + "/" + file.name);
+            var imgPath = this.item.title + "/" + file.name;
 
             //create a storage ref
-            var storageRef = storage.ref(this.item.title + "/" + file.name);
+            var storageRef = firebase.storage().ref(this.item.title + "/" + file.name);
 
             //upload file
             var task = storageRef.put(file);
@@ -98,10 +96,21 @@ new Vue({
                     uploader.value = percentage;
                 },
                 function error(err) {
-
+                    
                 },
                 function complete() {
+                    //console.log(storageRef.child(imgPath).getDownloadURL().getResults());
 
+                    task.snapshot.ref.getDownloadURL().then(
+                        function(downloadURL) {
+                            console.log('File available at: ' + downloadURL)
+                            parentObj.item.screenGrabs.push(
+                                downloadURL + ""
+                            );
+                        }
+                    )
+
+                    console.log(parentObj.item.screenGrabs);
                 }
             
             )
