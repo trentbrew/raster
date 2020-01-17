@@ -17,12 +17,33 @@
     <body>
         <div class = "container" id="app">
         <ul class="list-group">
-            <li class="list-group-item" v-for= "p in persons">
-            {{p.name}} <button @click="remove(p)" class="badge">x</button>
+            <li class="list-group-item" v-for="(i, index) in items">
+                <h1>{{i.title}}<button @click="remove(i)" class="badge">x</button></h1>
+                <p style="opacity:0.5">{{i.genre}}</p>
+                <p>{{i.summary}}</p>
+                <p v-for="(c, index) in i.credits"><strong>{{c.role}}</strong> {{c.name}}</p>
             </li>
         </ul>
         
-        <input class="form-control" type="text" v-model="person.name" v-on:keyup.enter="add()">
+        <label>Title</label>
+        <input class="form-control" type="text" v-model="item.title" v-on:keyup.enter="add()">
+        <br>
+        <label>Genre</label>
+        <input class="form-control" type="text" v-model="item.genre" v-on:keyup.enter="add()">
+        <br>
+        <label>Summary</label>
+        <input class="form-control" type="text" v-model="item.summary" v-on:keyup.enter="add()">
+        <br>
+        <label>Credits</label>
+        <ul>
+            <li v-for="(c, index) in item.credits">
+                <label>Role</label>
+                <input class="form-control" type="text" v-model="item.credits[index].role" v-on:keyup.enter="add()">
+                <label>Name</label>
+                <input class="form-control" type="text" v-model="item.credits[index].name" v-on:keyup.enter="add()">
+            </li>
+            <button class="btn btn-primary" @click="newCredit()">Add another credit</button>
+        </ul>
         <br>
         <button class="btn btn-primary" @click="add()">Add new</button>
         </div>

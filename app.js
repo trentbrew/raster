@@ -11,29 +11,58 @@ var config = {
 // Initialize Firebase.
 firebase.initializeApp(config);
 
+const firestore = firebase.firestore();
+const settings = {/* your settings... */ timestampsInSnapshots: true};
+firestore.settings(settings);
+
 new Vue({
     el: "#app",
     firestore() {
         return {
-            persons: firebase.firestore().collection("persons")
+            items: firebase.firestore().collection("portfolioItems")
         }
     },
     data(){
-    return {
-        person: {
-            name: ""
+        var creditNum = 1
+        return {
+            item: {
+                title: "",
+                genre: "",
+                summary: "",
+                credits: [
+                    {
+                        role: "",
+                        name: ""
+                    }
+                ]
+            }
         }
-    }
     },
     methods: {
         add() {
             console.log('clicked')
-            this.$firestore.persons.add(this.person).then(()=>{
-                this.person.name = ""
+            this.$firestore.items.add(this.item).then(()=>{
+                this.item.title = "",
+                this.item.genre = "",
+                this.item.summary = ""
+                this.item.credits = [
+                    {
+                        role: "",
+                        name: ""
+                    }
+                ]
             })
         },
         remove(e) {
-            this.$firestore.persons.doc(e['.key']).delete()
+            this.$firestore.items.doc(e['.key']).delete()
+        },
+        newCredit() {
+            this.item.credits.push(
+                {
+                    role: "",
+                    name: ""
+                }
+            );
         }
     }
 })
