@@ -1,0 +1,26 @@
+$colorText: #555;
+$colorMain: #353e49;
+$colorDark: #272f38;
+$colorLight: #48515c;
+$colorLink: #ff7065;
+$colorWhite: #e0e0e0;
+
+body {
+    margin: 0px;
+}
+
+.container {
+    display: inline-flex;
+}
+
+.section {
+    width: 100%;
+}
+
+.section-left {
+    background: $colorMain;
+}
+
+.section-right {
+    background: $colorWhite;
+}

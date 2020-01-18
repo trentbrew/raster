@@ -1,0 +1,22 @@
+body {
+  margin: 0px;
+}
+
+.container {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+.section {
+  width: 100%;
+}
+
+.section-left {
+  background: #353e49;
+}
+
+.section-right {
+  background: #e0e0e0;
+}
+/*# sourceMappingURL=styles.css.map */
