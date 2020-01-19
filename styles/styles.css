@@ -11,6 +11,11 @@ body {
   width: 100%;
 }
 
+.container ul {
+  list-style: none;
+  padding: 0px;
+}
+
 .section {
   width: 100%;
 }
@@ -22,29 +27,24 @@ body {
 
 .section-left {
   background: #353e49;
-  color: #e0e0e0;
-  width: 75%;
+  color: #eee;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   height: 100vh;
 }
 
 .section-right {
-  background: #e0e0e0;
+  background: #eee;
   width: 100%;
+  padding: 60px;
+  margin-left: 720px;
 }
 
 input[type="text"] {
   background: #48515c;
   border: none;
-  padding: 12px 12px 12px 24px;
+  padding: 6px 12px 6px 12px;
   border-radius: 12px;
   margin-bottom: 12px;
   color: white;
@@ -52,16 +52,11 @@ input[type="text"] {
   transition: 200ms;
 }
 
-.credits-section {
+.general-section, .credits-section, .final-film-section, .screengrabs-section {
   background: #272f38;
-  border-radius: 24px;
+  border-radius: 12px;
   margin: 24px 0px 24px 0px;
   padding: 24px 36px 0px 36px;
-}
-
-.credits-section ul {
-  list-style: none;
-  padding: 0px;
 }
 
 label {
@@ -70,27 +65,119 @@ label {
 }
 
 button {
-  background: green;
-  border: NONE;
+  background: #272f38;
+  color: #66BB6A;
+  border: 2px #66BB6A solid;
   padding: 12px 24px 12px 24px;
   border-radius: 12px;
   cursor: pointer;
   -webkit-transition: 200ms;
   transition: 200ms;
-  margin-top: 36px;
+  margin-top: 24px;
 }
 
 button:hover {
-  -webkit-filter: brightness(0.6);
-          filter: brightness(0.6);
+  color: white;
+  background: #66BB6A;
 }
 
 .badge {
-  background: red;
   margin-top: 0px;
+  background: white;
+  border: 2px #ff7065 solid;
+  color: #ff7065;
+  font-weight: bold;
+}
+
+.badge:hover {
+  color: white;
+  background: #ff7065;
 }
 
 h2 {
   margin-bottom: 36px;
+  color: white;
+  font-size: 18px;
+  font-weight: normal;
+  margin-bottom: 0px;
+}
+
+.upload-section {
+  padding-top: 12px;
+}
+
+.upload-section input {
+  display: block;
+}
+
+.btn-primary {
+  width: 100%;
+  background: #353e49;
+}
+
+input[type="file"] {
+  font-size: 16px;
+  padding-top: 12px;
+}
+
+.left-label {
+  margin-left: 0px;
+}
+
+progress {
+  width: 100%;
+  height: 24px;
+}
+
+.general-section {
+  padding: 24px;
+}
+
+.general-section label {
+  margin-bottom: 12px;
+}
+
+.general-section input {
+  width: 92%;
+  margin-top: 12px;
+}
+
+.project-item {
+  background: white;
+  padding: 60px;
+  margin: 60px;
+  border-radius: 12px;
+}
+
+.project-item .item-header {
+  background: #353e49;
+  height: 48px;
+  width: 100%;
+}
+
+.project-item h1 {
+  margin-bottom: 16px;
+}
+
+.project-item .vid-section {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+.project-item video {
+  margin-right: 60px;
+}
+
+.project-item img {
+  margin: 24px 18px 12px 0px;
+}
+
+.project-item .images {
+  margin-left: -12px;
+}
+
+.project-item span {
+  opacity: 0.6;
 }
 /*# sourceMappingURL=styles.css.map */

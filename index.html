@@ -27,50 +27,62 @@
 
             <div class="section-left">
                 <div class="section-fixed">
-                    <label>Project Title</label>
-                    <input class="form-control" type="text" v-model="item.title" v-on:keyup.enter="add()">
-                    <br>
-        
-                    <label>Genre</label>
-                    <input class="form-control" type="text" v-model="item.genre" v-on:keyup.enter="add()">
-                    <br>
-        
-                    <label>Summary</label>
-                    <input class="form-control" type="text" v-model="item.summary" v-on:keyup.enter="add()">
-                    <br>
+
+                    <h2>New project</h2>
+                    <div class="general-section">
+                        <label>Project Title</label>
+                        <input class="form-control" type="text" v-model="item.title" v-on:keyup.enter="add()">
+                        <br>
+            
+                        <label>Genre</label>
+                        <input class="form-control" type="text" v-model="item.genre" v-on:keyup.enter="add()">
+                        <br>
+            
+                        <label>Summary</label>
+                        <input class="form-control" type="text" v-model="item.summary" v-on:keyup.enter="add()">
+                        <br>
+                    </div>
+
+                    <h2>Credits</h2>
 
                     <div class="credits-section">
-                        <h2>Credits</h2>
                         <ul>
                             <li v-for="(c, index) in item.credits">
-                                <label>Role</label>
+                                <label class="left-label">Role</label>
                                 <input class="form-control" type="text" v-model="item.credits[index].role" v-on:keyup.enter="add()">
                                 <label>Name</label>
                                 <input class="form-control" type="text" v-model="item.credits[index].name" v-on:keyup.enter="add()">
                             </li>
-                            <button class="btn btn-primary" @click="newCredit()">Add another credit</button>
+                            <button class="btn" @click="newCredit()">Add another credit</button>
                         </ul>
                         <br>
                     </div>
+
+                    <h2>Upload screengrabs (PNG, GIF, JPG, JPEG)</h2>
+
+
+                    <div class="upload-section screengrabs-section">
+                        <ul>
+                            <li v-for="(s, index) in item.screenGrabs">
+                                <!--progress value="0" max="100" id="uploader">0%</progress-->
+                                <input @change="handleUpload" type="file" value="upload" id="fileButton" />
+                            </li>
+                            <!--button class="btn btn-primary" @click="newScreenGrab()">Add another screengrab</button-->
+                        </ul>
+                        <br>
+                    </div>
+
+                    <h2>Upload final film (mp4)</h2>
+
+                    <div class="upload-section final-film-section">
         
-                    <label>Upload screengrabs (PNG, GIF, JPG, JPEG)</label>
-        
-                    <ul>
-                        <li v-for="(s, index) in item.screenGrabs">
-                            <!--progress value="0" max="100" id="uploader">0%</progress-->
-                            <input @change="handleUpload" type="file" value="upload" id="fileButton" />
-                        </li>
-                        <!--button class="btn btn-primary" @click="newScreenGrab()">Add another screengrab</button-->
-                    </ul>
-                    <br>
-        
-                    <label>Upload final film (mp4)</label>
-        
-                    <ul>
-                        <progress style="transition: 200ms" value="0" max="100" id="uploader">0%</progress>
-                        <input @change="handleFilmUpload" type="file" value="upload" id="fileButtonFilm" />
-                    </ul>
-                    <br>
+                        <ul>
+                            <progress style="transition: 200ms" value="0" max="100" id="uploader">0%
+                            </progress>
+                            <input @change="handleFilmUpload" type="file" value="upload" id="fileButtonFilm" />
+                        </ul>
+                        <br>
+                    </div>
         
                     <button class="btn btn-primary" @click="add()">Add to portfolio</button>
                 </div>
@@ -78,21 +90,27 @@
 
             <div class="section-right">
                 <ul class="list-group">
-                    <li class="list-group-item" v-for="(i, index) in items">
-                        <h1>{{i.title}}<button style="float: right" @click="remove(i)" class="badge">Remove from portfolio</button></h1>
-                        <p style="opacity:0.5">{{i.genre}}</p>
-                        <p>{{i.summary}}</p>
-                        <p style="display: inline-flex" v-for="(c, index) in i.credits"><strong>{{c.role}}</strong>:{{c.name}}/</p>
-                        <br>
-                        <video width="250" controls>
-                            <source :src="i.finalFilm" type="video/mp4" />
-                        </video>
+                    <li class="list-group-item project-item" v-for="(i, index) in items">
+                        <button style="float: right" @click="remove(i)" class="badge">Remove from portfolio</button>
+                        <div class="vid-section">
+                            
+                            <video controls autoplay muted width="480">
+                                <source :src="i.finalFilm" type="video/mp4" />
+                            </video>
+                            <div class="vid-text">
+                                <h1>{{i.title}}</h1>
+                                <p style="opacity:0.5">{{i.genre}}</p>
+                                <p>{{i.summary}}</p>
+                            </div>
+                        </div>
                         <br>
                         <ul style="display: inline-flex; list-style: none; padding: 0px" class="images">
                             <li v-for="(p, index) in i.screenGrabs">
-                                <img style="width: 150px" :src="p" />
+                                <img style="width: 240px" :src="p" />
                             </li>
                         </ul>
+                        <br>
+                        <p style="display: inline-flex" v-for="(c, index) in i.credits"><span>{{c.role}}</span>&nbsp;<strong>{{c.name}}</strong>&nbsp;</p>
                     </li>
                 </ul>
             </div>

@@ -167,7 +167,7 @@ new Vue({
                     uploader.value = percentage;
 
                     if(percentage == 100) {
-                        uploader.style.background = "green";
+                        uploader.style.background = "#66BB6A";
                     }
                 },
                 function error(err) {

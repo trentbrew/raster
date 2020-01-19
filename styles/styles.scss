@@ -3,7 +3,9 @@ $colorMain: #353e49;
 $colorDark: #272f38;
 $colorLight: #48515c;
 $colorLink: #ff7065;
-$colorWhite: #e0e0e0;
+$colorWhite: #eee;
+$colorGreen: #66BB6A;
+$colorYellow: #FBC02D;
 
 body {
     margin: 0px;
@@ -14,6 +16,11 @@ body {
 .container {
     display: inline-flex;
     width: 100%;
+    
+    ul {
+        list-style: none;
+        padding: 0px;
+    }
 }
 
 .section {
@@ -28,38 +35,40 @@ body {
 .section-left {
     background: $colorMain;
     color: $colorWhite;
-    width: 75%;
+    //width: 75%;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    //justify-content: center;
+    //align-items: center;
     height: 100vh;
 }
 
 .section-right {
     background: $colorWhite;
     width: 100%;
+    padding: 60px;
+    margin-left: 720px;
 }
 
 input[type="text"] {
     background: $colorLight;
     border: none;
-    padding: 12px 12px 12px 24px;
+    padding: 6px 12px 6px 12px;
     border-radius: 12px;
     margin-bottom: 12px;
     color: white;
     transition: 200ms;
 }
 
-.credits-section {
+.general-section, .credits-section, .final-film-section, .screengrabs-section {
     background: $colorDark;
-    border-radius: 24px;
+    border-radius: 12px;
     margin: 24px 0px 24px 0px;
     padding: 24px 36px 0px 36px;
+}
 
-    ul {
-        list-style: none;
-        padding: 0px;
-    }
+.final-film-section {
+    //padding: 0px;
+    //margin: 0px;
 }
 
 label {
@@ -68,24 +77,130 @@ label {
 }
 
 button {
-    background: green;
-    border: NONE;
+    background: $colorDark;
+    color: $colorGreen;
+    border: 2px $colorGreen solid;
     padding: 12px 24px 12px 24px;
     border-radius: 12px;
     cursor: pointer;
     transition: 200ms;
-    margin-top: 36px;
+    margin-top: 24px;
 
     &:hover {
-        filter: brightness(0.6);
+        color: white;
+        background: $colorGreen;
     }
 }
 
 .badge {
-    background: red;
     margin-top: 0px;
+    background: white;
+    border: 2px $colorLink solid;
+    color: $colorLink;
+    font-weight: bold;
+
+    &:hover {
+        color: white;
+        background: $colorLink;
+    }
 }
 
 h2 {
     margin-bottom: 36px;
+    color: white;
+    //opacity: 0.5;
+    font-size: 18px;
+    font-weight: normal;
+    margin-bottom: 0px;
+}
+
+.upload-section {
+    padding-top: 12px;
+
+    input {
+        display: block;
+    }
+}
+
+.btn-primary {
+    width: 100%;
+    background: $colorMain;
+}
+
+input[type="file"] {
+    font-size: 16px;
+    padding-top: 12px;
+}
+
+.left-label {
+    margin-left: 0px;
+}
+
+#fileButtonFilm {
+    //margin-top: -50px;
+}
+
+progress {
+    //appearance: none;
+    width: 100%;
+    height: 24px;
+    //border-radius: 24px;
+}
+
+progress[value] {
+    //background-color: $colorYellow;
+}
+
+.general-section {
+    //background: $colorDark;
+
+    padding: 24px;
+
+    label {
+        margin-bottom: 12px;
+    }
+
+    input {
+        width: 92%;
+        margin-top: 12px;
+    }
+}
+
+.project-item {
+    background: white;
+    padding: 60px;
+    margin: 60px;
+    border-radius: 12px;
+
+    .item-header {
+        background: $colorMain;
+        height: 48px;
+        width: 100%;
+    }
+
+    h1 {
+        margin-bottom: 16px;
+    }
+
+    .vid-section {
+        display: inline-flex;
+    }
+
+    video {
+        //border-radius: 12px;
+        margin-right: 60px;
+    }
+
+    img {
+        margin: 24px 18px 12px 0px;
+        //border-radius: 12px;
+    }
+
+    .images {
+        margin-left: -12px;
+    }
+
+    span {
+        opacity: 0.6;
+    }
 }
