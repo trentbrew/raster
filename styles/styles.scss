@@ -7,20 +7,85 @@ $colorWhite: #e0e0e0;
 
 body {
     margin: 0px;
+    font-family: 'Nunito', sans-serif;
+    background: $colorMain;
 }
 
 .container {
     display: inline-flex;
+    width: 100%;
 }
 
 .section {
     width: 100%;
 }
 
+.section-fixed {
+    position: fixed;
+    padding: 60px;
+}
+
 .section-left {
     background: $colorMain;
+    color: $colorWhite;
+    width: 75%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 .section-right {
     background: $colorWhite;
+    width: 100%;
+}
+
+input[type="text"] {
+    background: $colorLight;
+    border: none;
+    padding: 12px 12px 12px 24px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    color: white;
+    transition: 200ms;
+}
+
+.credits-section {
+    background: $colorDark;
+    border-radius: 24px;
+    margin: 24px 0px 24px 0px;
+    padding: 24px 36px 0px 36px;
+
+    ul {
+        list-style: none;
+        padding: 0px;
+    }
+}
+
+label {
+    margin-right: 12px;
+    margin-left: 12px;
+}
+
+button {
+    background: green;
+    border: NONE;
+    padding: 12px 24px 12px 24px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 200ms;
+    margin-top: 36px;
+
+    &:hover {
+        filter: brightness(0.6);
+    }
+}
+
+.badge {
+    background: red;
+    margin-top: 0px;
+}
+
+h2 {
+    margin-bottom: 36px;
 }

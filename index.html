@@ -7,6 +7,8 @@
         <!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"-->
 
         <link rel="stylesheet" href="styles/styles.css">
+        <!--font-->
+        <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
 
         <!-- Vue -->   
         <script src="https://unpkg.com/vue"></script>
@@ -22,51 +24,56 @@
     <body>
         <div class = "container" id="app">
 
+
             <div class="section-left">
-                <label>Title</label>
-                <input class="form-control" type="text" v-model="item.title" v-on:keyup.enter="add()">
-                <br>
-    
-                <label>Genre</label>
-                <input class="form-control" type="text" v-model="item.genre" v-on:keyup.enter="add()">
-                <br>
-    
-                <label>Summary</label>
-                <input class="form-control" type="text" v-model="item.summary" v-on:keyup.enter="add()">
-                <br>
-    
-                <label>Credits</label>
-                <ul>
-                    <li v-for="(c, index) in item.credits">
-                        <label>Role</label>
-                        <input class="form-control" type="text" v-model="item.credits[index].role" v-on:keyup.enter="add()">
-                        <label>Name</label>
-                        <input class="form-control" type="text" v-model="item.credits[index].name" v-on:keyup.enter="add()">
-                    </li>
-                    <button class="btn btn-primary" @click="newCredit()">Add another credit</button>
-                </ul>
-                <br>
-    
-                <label>Upload screengrabs (PNG, GIF, JPG, JPEG)</label>
-    
-                <ul>
-                    <li v-for="(s, index) in item.screenGrabs">
-                        <!--progress value="0" max="100" id="uploader">0%</progress-->
-                        <input @change="handleUpload" type="file" value="upload" id="fileButton" />
-                    </li>
-                    <!--button class="btn btn-primary" @click="newScreenGrab()">Add another screengrab</button-->
-                </ul>
-                <br>
-    
-                <label>Upload final film (mp4)</label>
-    
-                <ul>
-                    <progress style="transition: 200ms" value="0" max="100" id="uploader">0%</progress>
-                    <input @change="handleFilmUpload" type="file" value="upload" id="fileButtonFilm" />
-                </ul>
-                <br>
-    
-                <button class="btn btn-primary" @click="add()">Add to portfolio</button>
+                <div class="section-fixed">
+                    <label>Project Title</label>
+                    <input class="form-control" type="text" v-model="item.title" v-on:keyup.enter="add()">
+                    <br>
+        
+                    <label>Genre</label>
+                    <input class="form-control" type="text" v-model="item.genre" v-on:keyup.enter="add()">
+                    <br>
+        
+                    <label>Summary</label>
+                    <input class="form-control" type="text" v-model="item.summary" v-on:keyup.enter="add()">
+                    <br>
+
+                    <div class="credits-section">
+                        <h2>Credits</h2>
+                        <ul>
+                            <li v-for="(c, index) in item.credits">
+                                <label>Role</label>
+                                <input class="form-control" type="text" v-model="item.credits[index].role" v-on:keyup.enter="add()">
+                                <label>Name</label>
+                                <input class="form-control" type="text" v-model="item.credits[index].name" v-on:keyup.enter="add()">
+                            </li>
+                            <button class="btn btn-primary" @click="newCredit()">Add another credit</button>
+                        </ul>
+                        <br>
+                    </div>
+        
+                    <label>Upload screengrabs (PNG, GIF, JPG, JPEG)</label>
+        
+                    <ul>
+                        <li v-for="(s, index) in item.screenGrabs">
+                            <!--progress value="0" max="100" id="uploader">0%</progress-->
+                            <input @change="handleUpload" type="file" value="upload" id="fileButton" />
+                        </li>
+                        <!--button class="btn btn-primary" @click="newScreenGrab()">Add another screengrab</button-->
+                    </ul>
+                    <br>
+        
+                    <label>Upload final film (mp4)</label>
+        
+                    <ul>
+                        <progress style="transition: 200ms" value="0" max="100" id="uploader">0%</progress>
+                        <input @change="handleFilmUpload" type="file" value="upload" id="fileButtonFilm" />
+                    </ul>
+                    <br>
+        
+                    <button class="btn btn-primary" @click="add()">Add to portfolio</button>
+                </div>
             </div>
 
             <div class="section-right">
