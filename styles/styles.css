@@ -1,7 +1,8 @@
 body {
   margin: 0px;
   font-family: 'Nunito', sans-serif;
-  background: #eee;
+  background: #212225;
+  color: white;
 }
 
 body p {
@@ -29,13 +30,13 @@ body .credit {
 }
 
 .section-fixed {
-  background: #353e49;
+  background: #212225;
   border-radius: 12px;
   width: 340px;
 }
 
 .section-left {
-  background: #353e49;
+  background: #212225;
   color: #eee;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -49,12 +50,12 @@ body .credit {
 }
 
 .section-right {
-  background: #eee;
   width: 100%;
+  padding-top: 36px;
 }
 
 input[type="text"] {
-  background: #48515c;
+  background: rgba(255, 255, 255, 0.3);
   border: none;
   padding: 3px 6px 3px 6px;
   margin-bottom: 6px;
@@ -66,20 +67,16 @@ input[type="text"] {
 }
 
 .general-section, .credits-section, .final-film-section, .screengrabs-section {
-  background: #272f38;
+  background: #131417;
   border-radius: 6px;
   margin: 12px 0px 12px 0px;
   padding-left: 24px;
   padding-right: 12px;
 }
 
-.credits-section {
-  padding: 0px 24px 0px;
-}
-
 .credits-section ul {
   margin-bottom: 0px;
-  padding-top: 12px;
+  padding-top: 18px;
 }
 
 .general-section {
@@ -96,7 +93,7 @@ input[type="text"] {
 
 .fileButton::before {
   content: 'Choose file';
-  background: #272f38;
+  background: #131417;
   border: 2px solid white;
   padding: 3px 6px 3px 6px;
   font-size: 12px;
@@ -111,7 +108,7 @@ input[type="text"] {
 }
 
 .fileButton:hover::before {
-  color: #272f38;
+  color: #131417;
   background: white;
 }
 
@@ -123,14 +120,14 @@ label {
 }
 
 button {
-  background: #272f38;
+  background: #131417;
   color: #66BB6A;
   border: 2px #66BB6A solid;
   padding: 3px 6px 3px 6px;
   cursor: pointer;
   -webkit-transition: 200ms;
   transition: 200ms;
-  margin-top: 12px;
+  margin-top: 18px;
   font-size: 12px;
 }
 
@@ -141,7 +138,7 @@ button:hover {
 
 .badge {
   margin-top: 0px;
-  background: white;
+  background: #131417;
   border: 2px #ff7065 solid;
   color: #ff7065;
   font-weight: bold;
@@ -176,22 +173,14 @@ h2 {
 
 .btn-primary {
   width: 100%;
-  background: #66BB6A;
-  margin-top: 0px;
-  border-radius: 0px 0px 6px 6px;
-  color: white;
+  background: #212225;
+  margin-top: 36px;
+  border-radius: 6px;
   height: 48px;
 }
 
-.btn-primary:hover {
-  color: white;
-  background: #66BB6A;
-  -webkit-filter: brightness(0.6);
-          filter: brightness(0.6);
-}
-
 input[type="file"] {
-  padding-top: 18px;
+  padding-top: 20px;
 }
 
 .left-label {
@@ -219,14 +208,14 @@ progress {
     }
 }*/
 .project-item {
-  background: white;
+  background: #131417;
   padding: 30px;
   margin: 30px 30px 30px 0px;
   border-radius: 6px;
 }
 
 .project-item .item-header {
-  background: #353e49;
+  background: #212225;
   height: 24px;
   width: 100%;
 }

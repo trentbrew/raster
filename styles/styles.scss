@@ -1,7 +1,7 @@
 $colorText: #555;
-$colorMain: #353e49;
-$colorDark: #272f38;
-$colorLight: #48515c;
+$colorMain: #212225;
+$colorDark: #131417;
+$colorLight: rgba(white, 0.3);
 $colorLink: #ff7065;
 $colorWhite: #eee;
 $colorGreen: #66BB6A;
@@ -10,7 +10,8 @@ $colorYellow: #FBC02D;
 body {
     margin: 0px;
     font-family: 'Nunito', sans-serif;
-    background: $colorWhite;
+    background: $colorMain;
+    color: white;
 
     p {
         font-size: 16px;
@@ -58,8 +59,9 @@ body {
 }
 
 .section-right {
-    background: $colorWhite;
+    //background: $colorMain;
     width: 100%;
+    padding-top: 36px;
     //padding: 30px;
     //margin-left: 560px;
 }
@@ -85,11 +87,11 @@ input[type="text"] {
 }
 
 .credits-section {
-    padding: 0px 24px 0px;
+    //padding: 0px 24px 0px;
 
     ul {
         margin-bottom: 0px;
-        padding-top: 12px;
+        padding-top: 18px;
     }
 }
 
@@ -152,7 +154,7 @@ button {
     //border-radius: 6px;
     cursor: pointer;
     transition: 200ms;
-    margin-top: 12px;
+    margin-top: 18px;
     font-size: 12px;
 
     &:hover {
@@ -163,7 +165,7 @@ button {
 
 .badge {
     margin-top: 0px;
-    background: white;
+    background: $colorDark;
     border: 2px $colorLink solid;
     color: $colorLink;
     font-weight: bold;
@@ -202,22 +204,22 @@ h2 {
 
 .btn-primary {
     width: 100%;
-    background: $colorGreen;
-    margin-top: 0px;
-    border-radius: 0px 0px 6px 6px;
-    color: white;
+    background: $colorMain;
+    margin-top: 36px;
+    border-radius: 6px;
+    //color: white;
     height: 48px;
 
     &:hover {
-        color: white;
-        background: $colorGreen;
-        filter: brightness(0.6);
+        //color: white;
+        //background: $colorGreen;
+        //filter: brightness(0.6);
     }
 }
 
 input[type="file"] {
     //font-size: 16px;
-    padding-top: 18px;
+    padding-top: 20px;
 }
 
 #fileButton:focus {
@@ -256,7 +258,7 @@ progress[value] {
 }*/
 
 .project-item {
-    background: white;
+    background: $colorDark;
     padding: 30px;
     margin: 30px 30px 30px 0px;
     border-radius: 6px;
