@@ -1,7 +1,15 @@
 body {
   margin: 0px;
   font-family: 'Nunito', sans-serif;
-  background: #353e49;
+  background: #eee;
+}
+
+body p {
+  font-size: 16px;
+}
+
+body .credit {
+  font-size: 14px;
 }
 
 .container {
@@ -21,8 +29,9 @@ body {
 }
 
 .section-fixed {
-  position: fixed;
-  padding: 30px;
+  background: #353e49;
+  border-radius: 12px;
+  width: 340px;
 }
 
 .section-left {
@@ -31,24 +40,29 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  height: 100vh;
+  margin: 30px;
+  padding: 0px;
+  border-radius: 6px;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
 }
 
 .section-right {
   background: #eee;
   width: 100%;
-  margin-left: 560px;
 }
 
 input[type="text"] {
   background: #48515c;
   border: none;
   padding: 3px 6px 3px 6px;
-  border-radius: 6px;
   margin-bottom: 6px;
+  margin-top: 6px;
   color: white;
   -webkit-transition: 200ms;
   transition: 200ms;
+  width: 90px;
 }
 
 .general-section, .credits-section, .final-film-section, .screengrabs-section {
@@ -60,7 +74,12 @@ input[type="text"] {
 }
 
 .credits-section {
-  padding: 12px 24px 0px;
+  padding: 0px 24px 0px;
+}
+
+.credits-section ul {
+  margin-bottom: 0px;
+  padding-top: 12px;
 }
 
 .general-section {
@@ -71,21 +90,48 @@ input[type="text"] {
   width: 95%;
 }
 
+.fileButton::-webkit-file-upload-button {
+  visibility: hidden;
+}
+
+.fileButton::before {
+  content: 'Choose file';
+  background: #272f38;
+  border: 2px solid white;
+  padding: 3px 6px 3px 6px;
+  font-size: 12px;
+  -webkit-transition: 200ms;
+  transition: 200ms;
+  cursor: pointer;
+}
+
+.fileButton {
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.fileButton:hover::before {
+  color: #272f38;
+  background: white;
+}
+
 label {
   margin-right: 6px;
   margin-left: 6px;
+  padding-bottom: 6px;
+  font-size: 12px;
 }
 
 button {
   background: #272f38;
   color: #66BB6A;
   border: 2px #66BB6A solid;
-  padding: 6px 12px 6px 12px;
-  border-radius: 6px;
+  padding: 3px 6px 3px 6px;
   cursor: pointer;
   -webkit-transition: 200ms;
   transition: 200ms;
   margin-top: 12px;
+  font-size: 12px;
 }
 
 button:hover {
@@ -107,29 +153,45 @@ button:hover {
 }
 
 h2 {
-  margin-bottom: 18px;
   color: white;
-  font-size: 18px;
+  font-size: 12px;
   font-weight: normal;
   margin-bottom: 0px;
+  margin-left: 12px;
 }
 
 .upload-section {
-  padding-top: 6px;
+  padding-bottom: 0px;
+  padding-right: 24px;
+  margin-bottom: 0px;
 }
 
 .upload-section input {
   display: block;
 }
 
+.upload-section ul {
+  margin-bottom: 0px;
+}
+
 .btn-primary {
   width: 100%;
-  background: #353e49;
+  background: #66BB6A;
+  margin-top: 0px;
+  border-radius: 0px 0px 6px 6px;
+  color: white;
+  height: 48px;
+}
+
+.btn-primary:hover {
+  color: white;
+  background: #66BB6A;
+  -webkit-filter: brightness(0.6);
+          filter: brightness(0.6);
 }
 
 input[type="file"] {
-  font-size: 16px;
-  padding-top: 6px;
+  padding-top: 18px;
 }
 
 .left-label {
@@ -139,6 +201,7 @@ input[type="file"] {
 progress {
   width: 100%;
   height: 12px;
+  margin-top: 24px;
 }
 
 /*.general-section {
@@ -158,7 +221,7 @@ progress {
 .project-item {
   background: white;
   padding: 30px;
-  margin: 30px;
+  margin: 30px 30px 30px 0px;
   border-radius: 6px;
 }
 
@@ -179,7 +242,8 @@ progress {
 }
 
 .project-item video {
-  margin-right: 30px;
+  border-radius: 6px;
+  margin-right: 24px;
 }
 
 .project-item img {

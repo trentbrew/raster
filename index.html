@@ -65,7 +65,7 @@
                         <ul>
                             <li v-for="(s, index) in item.screenGrabs">
                                 <!--progress value="0" max="100" id="uploader">0%</progress-->
-                                <input @change="handleUpload" type="file" value="upload" id="fileButton" />
+                                <input @change="handleUpload" type="file" value="upload" class="fileButton" id="fileButton" />
                             </li>
                             <!--button class="btn btn-primary" @click="newScreenGrab()">Add another screengrab</button-->
                         </ul>
@@ -79,7 +79,7 @@
                         <ul>
                             <progress style="transition: 200ms" value="0" max="100" id="uploader">0%
                             </progress>
-                            <input @change="handleFilmUpload" type="file" value="upload" id="fileButtonFilm" />
+                            <input @change="handleFilmUpload" type="file" value="upload" class="fileButton" id="fileButtonFilm" />
                         </ul>
                         <br>
                     </div>
@@ -99,8 +99,8 @@
                             </video>
                             <div class="vid-text">
                                 <h1>{{i.title}}</h1>
-                                <p style="opacity:0.5">{{i.genre}}</p>
-                                <p>{{i.summary}}</p>
+                                <strong><p style="opacity:0.5">{{i.genre}}</p></strong>
+                                <p style="width:512px">{{i.summary}}</p>
                             </div>
                         </div>
                         <br>
@@ -110,7 +110,7 @@
                             </li>
                         </ul>
                         <br>
-                        <p style="display: inline-flex" v-for="(c, index) in i.credits"><span>{{c.role}}</span>&nbsp;<strong>{{c.name}}</strong>&nbsp;</p>
+                        <p class="credit" style="display: inline-flex" v-for="(c, index) in i.credits"><span>{{c.role}}</span>&nbsp;<strong>{{c.name}}</strong>&nbsp;</p>
                     </li>
                 </ul>
             </div>
