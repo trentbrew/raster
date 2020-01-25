@@ -7,13 +7,17 @@ var config = {
     storageBucket: "nihal-819a6.appspot.com",
     messagingSenderId: "489064704671"
 }
-    
-// Initialize Firebase.
+
+var beepboop = this.item;
+
 firebase.initializeApp(config);
 
 const firestore = firebase.firestore();
 const settings = {/* your settings... */ timestampsInSnapshots: true};
 firestore.settings(settings);
+
+// Initialize the FirebaseUI Widget using Firebase.
+//var ui = new firebaseui.auth.AuthUI(firebase.auth());
 
 new Vue({
     el: "#app",
@@ -41,6 +45,22 @@ new Vue({
                 ]
             }
         }
+    },
+    beforeCreate: function() {
+        console.log('items: ' + this.beepboop);
+        // Initialize Firebase.
+
+        
+        //login
+
+        
+        /*ui.start('#firebaseui-auth-container', {
+            signInOptions: [
+              firebase.auth.EmailAuthProvider.PROVIDER_ID
+            ],
+            //signInSuccessUrl: 
+            // Other config options...
+        });*/
     },
     methods: {
         add() {
