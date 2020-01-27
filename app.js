@@ -1,12 +1,30 @@
 // Change the configurations.  
-var config = {
-    apiKey: "AIzaSyCHpz4ty7srkDV3AiUDZJLFEOfYGLMpqUM",
-    authDomain: "nihal-819a6.firebaseapp.com",
-    databaseURL: "https://nihal-819a6.firebaseio.com",
-    projectId: "nihal-819a6",
-    storageBucket: "nihal-819a6.appspot.com",
-    messagingSenderId: "489064704671"
+
+//lazy login
+const lazy = '0106';
+
+console.log(document.body.style.opacity = 1);
+
+if(prompt('Enter pin:') == lazy) {
+
+
+    var config = {
+        apiKey: "AIzaSyCHpz4ty7srkDV3AiUDZJLFEOfYGLMpqUM",
+        authDomain: "nihal-819a6.firebaseapp.com",
+        databaseURL: "https://nihal-819a6.firebaseio.com",
+        projectId: "nihal-819a6",
+        storageBucket: "nihal-819a6.appspot.com",
+        messagingSenderId: "489064704671"
+    }
 }
+else {
+
+    var config = {}
+    alert('Incorrect pin')
+    document.location.reload()
+}
+
+
 
 var beepboop = this.item;
 
@@ -27,8 +45,8 @@ new Vue({
         }
     },
     data(){
-        var creditNum = 1
         return {
+            auth: '',
             item: {
                 title: "",
                 genre: "",
@@ -47,7 +65,12 @@ new Vue({
         }
     },
     beforeCreate: function() {
-        console.log('items: ' + this.beepboop);
+        //this.auth = prompt('please enter password');
+
+        //console.log('items: ' + this.beepboop);
+
+        //console.log(this.auth);
+
         // Initialize Firebase.
 
         
@@ -61,6 +84,10 @@ new Vue({
             //signInSuccessUrl: 
             // Other config options...
         });*/
+    },
+
+    created: function() {
+        console.log('after authentication');
     },
     methods: {
         add() {

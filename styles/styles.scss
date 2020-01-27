@@ -8,9 +8,11 @@ $colorGreen: #66BB6A;
 $colorYellow: #FBC02D;
 
 body {
+    opacity: 0;
     margin: 0px;
     font-family: 'Nunito', sans-serif;
     background: $colorMain;
+    //background: blue;
     color: white;
 
     p {
@@ -280,11 +282,13 @@ progress[value] {
     video {
         border-radius: 6px;
         margin-right: 30px;
+        width: 400px;
     }
 
     img {
         margin: 24px 18px 12px 0px;
         border-radius: 6px;
+        width: 160px;
     }
 
     .images {
@@ -296,7 +300,9 @@ progress[value] {
     }
 }
 
-
+.summary {
+    max-width: 512px;
+}
 
 .veil {
     position: fixed;
@@ -322,5 +328,13 @@ progress[value] {
         input::before {
     
         }
+    }
+}
+
+// ---------- smaller devices ----------
+
+@media only screen and (max-width: 1000px) {
+    .images {
+        display: block;
     }
 }

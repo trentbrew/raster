@@ -90,19 +90,19 @@
                         <button style="float: right" @click="remove(i)" class="badge">Remove from portfolio</button>
                         <div class="vid-section">
                             
-                            <video controls autoplay muted width="480">
+                            <video controls autoplay muted>
                                 <source :src="i.finalFilm" type="video/mp4" />
                             </video>
                             <div class="vid-text">
                                 <h1>{{i.title}}</h1>
                                 <strong><p style="opacity:0.5">{{i.genre}}</p></strong>
-                                <p style="width:512px">{{i.summary}}</p>
+                                <p class="summary">{{i.summary}}</p>
                             </div>
                         </div>
                         <br>
                         <ul style="display: inline-flex; list-style: none; padding: 0px" class="images">
                             <li v-for="(p, index) in i.screenGrabs">
-                                <img style="width: 240px" :src="p" />
+                                <img :src="p" />
                             </li>
                         </ul>
                         <br>
