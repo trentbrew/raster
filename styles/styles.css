@@ -14,16 +14,99 @@ body .credit {
   font-size: 14px;
 }
 
-.container {
+.navbar {
+  position: fixed;
+  background: black;
+  z-index: 999;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 60px;
+}
+
+.navbar h3 {
+  font-weight: normal;
+  font-size: 20px;
+}
+
+.navbar li {
+  height: 60px;
+  line-height: 60px;
+  cursor: pointer;
+  -webkit-transition: 200ms;
+  transition: 200ms;
+}
+
+.navbar li:hover {
+  opacity: 0.3;
+}
+
+.navbar span {
+  opacity: 0.6;
+}
+
+.settings-button {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  height: 25px;
+  line-height: 25px;
+  padding-left: 12px;
+  padding-right: 12px;
+  -webkit-transition: 200ms;
+  transition: 200ms;
+}
+
+.nav-active {
+  border-bottom: solid white 3px;
+  padding-bottom: -3px;
+}
+
+.nav-active:hover {
+  opacity: 1 !important;
+}
+
+.nav-logo {
+  position: absolute;
+  left: 0px;
+  margin-left: 24px;
+}
+
+.nav-text {
+  position: absolute;
+  right: 0px;
+  margin-right: 12px;
+}
+
+.nav-text ul {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  text-align: center;
+}
+
+.nav-text ul li {
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+.container {
   width: 100%;
 }
 
 .container ul {
   list-style: none;
   padding: 0px;
+}
+
+.content {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  width: 100%;
 }
 
 .section {
@@ -52,7 +135,11 @@ body .credit {
 
 .section-right {
   width: 100%;
-  padding-top: 36px;
+  padding-top: 48px;
+}
+
+#vid0 {
+  margin-top: 12px;
 }
 
 input[type="text"] {

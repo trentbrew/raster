@@ -37,6 +37,15 @@ firestore.settings(settings);
 // Initialize the FirebaseUI Widget using Firebase.
 //var ui = new firebaseui.auth.AuthUI(firebase.auth());
 
+const routes = [
+    {
+        path: '/test',
+        component: {
+            temaplte: "<div>O BOY</div>"
+        }
+    }
+]
+
 new Vue({
     el: "#app",
     firestore() {
@@ -46,6 +55,7 @@ new Vue({
     },
     data(){
         return {
+            settingsActive: false,
             auth: '',
             item: {
                 title: "",
@@ -116,6 +126,20 @@ new Vue({
 
             //deleting screenGrab directory in storage
 
+            if(confirm("Are you sure you want to delete " + e.title + "?")) {
+                //deleting item from database
+                this.$firestore.items.doc(e['.key']).delete().then(
+                    function() {
+                        alert("Project sucsessfully deleted");
+                        //refresh page
+                        document.location.reload();       
+                    }
+                )
+            }
+            else {
+                //alert("Project was not deleted");
+            }
+
 
             /* ---------- TODO ---------- */
 
@@ -127,14 +151,6 @@ new Vue({
                     console.error("Image not deleted successfully");
                 });
             }*/
-
-            //deleting item from database
-            this.$firestore.items.doc(e['.key']).delete().then(
-                function() {
-                    //refresh page
-                    document.location.reload();       
-                }
-            )
         },
         newCredit() {
             this.item.credits.push(

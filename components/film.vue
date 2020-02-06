@@ -1,40 +1,4 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width">
-        <title>Nihal.tv Site Editor</title>
-        <!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"-->
-
-        <link rel="stylesheet" href="styles/styles.css">
-        <!--font-->
-        <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Hind+Siliguri|Nunito|Roboto+Condensed|Yantramanav&display=swap" rel="stylesheet">
-        <!--firebase auth-->
-        <!--link type="text/css" rel="stylesheet" href="bower_components/firebaseui/dist/firebaseui.css" /-->
-    </head>
-    <body>
-        <!--div class="veil">
-            <div class="login">
-                <div id="firebaseui-auth-container"></div>
-            </div>
-        </div-->
-
-        <div class = "container" id="app">
-
-            <!--div class="navbar">
-                <div class="nav-logo">
-                    <h3>Nihal.tv <span>Editor</span></h3>
-                </div>
-                <div class="nav-text">
-                    <ul>
-                        <li>Film</li>
-                        <li>Contact</li>
-                        <li><div class="settings-button"><p>Settings</p></div></li>
-                    </ul>
-                </div>
-            </div-->
-
+<template>
             <div class="content">
                 <div class="section-left">
                     <div class="section-fixed">
@@ -126,26 +90,4 @@
                     </ul>
                 </div>
             </div>
-        
-        </div>
-
-        <!-- Vue -->   
-        <script src="https://unpkg.com/vue"></script>
-        <!-- firebase -->
-        <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase-app.js"></script>
-        <!-- firestore -->
-        <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase-firestore.js"></script>
-        <!--vue-router-->
-        <script src="https://cdn.jsdelivr.net/npm/vue-router@3.1.5/dist/vue-router.min.js"></script>
-        <!-- vue-firestore -->   
-        <script src="https://unpkg.com/vue-firestore"></script>
-        <!-- storage -->
-        <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase-storage.js"></script>
-        <!--firebase ui-->
-        <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
-        <!--firebase auth-->
-        <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase-auth.js"></script>
-        <!-- app -->
-        <script src="app.js"></script>
-    </body>
-</html>
+</template>
