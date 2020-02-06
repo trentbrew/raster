@@ -22,20 +22,43 @@
 
         <div class = "container" id="app">
 
-            <!--div class="navbar">
-                <div class="nav-logo">
+            <div class="navbar">
+                <div @click="toggleHome()" class="nav-logo">
                     <h3>Nihal.tv <span>Editor</span></h3>
+                </div>
+                <div class="nav-center">
+                    <ul>
+                        <li @click="toggleHome()"><div class="nav-icon" id="nav-icon-home"></div>Dashboard</li>
+                        <li @click="toggleFilm()"><div class="nav-icon" id="nav-icon-film"></div>Add Film</li>
+                        <li @click="togglePhoto()"><div class="nav-icon" id="nav-icon-photos"></div>Add Photos</li>
+                    </ul>
                 </div>
                 <div class="nav-text">
                     <ul>
-                        <li>Film</li>
-                        <li>Contact</li>
-                        <li><div class="settings-button"><p>Settings</p></div></li>
+                        <li @click="toggleSettings()"><div class="settings-button"><p>Settings</p></div></li>
                     </ul>
                 </div>
-            </div-->
+            </div>
 
-            <div class="content">
+            <div id="film-window" v-bind:class="[ filmWindowActive ? 'window-section-active' : 'window-section-inactive' ]">
+                <div class="inner-window">
+                    <h1>Film Upload</h1>
+                </div>
+            </div>
+
+            <div id="photo-window" v-bind:class="[ photoWindowActive ? 'window-section-active' : 'window-section-inactive' ]">
+                <div class="inner-window">
+                    <h1>Photo Upload</h1>
+                </div>
+            </div>
+
+            <div id="settings-window" v-bind:class="[ settingsWindowActive ? 'window-section-active' : 'window-section-inactive' ]">
+                <div class="inner-window">
+                    <h1>Portfolio Settings</h1>
+                </div>
+            </div>
+
+            <div class="content" v-bind:class="[ filmWindowActive || settingsWindowActive || photoWindowActive ? 'content-blur-active' : 'content-blur-inactive' ]">
                 <div class="section-left">
                     <div class="section-fixed">
     

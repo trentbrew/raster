@@ -55,7 +55,9 @@ new Vue({
     },
     data(){
         return {
-            settingsActive: false,
+            filmWindowActive: false,
+            photoWindowActive: false,
+            settingsWindowActive: false,
             auth: '',
             item: {
                 title: "",
@@ -249,6 +251,31 @@ new Vue({
                     console.log("video: " + parentObj.item.screenGrabs);
                 }
             )
+        },
+
+        toggleHome() {
+            //alert('Home');
+            this.filmWindowActive = false;
+            this.photoWindowActive = false;
+            this.settingsWindowActive = false;
+        },
+        toggleFilm() {
+            //alert('Film section');
+            this.filmWindowActive = !this.filmWindowActive;
+            this.settingsWindowActive = false;
+            this.photoWindowActive = false;
+        },
+        togglePhoto() {
+            //alert('Photo section');
+            this.photoWindowActive = !this.photoWindowActive;
+            this.settingsWindowActive = false;
+            this.filmWindowActive = false;
+        },
+        toggleSettings() {
+            //alert('Settings section');
+            this.settingsWindowActive = !this.settingsWindowActive;
+            this.photoWindowActive = false;
+            this.filmWindowActive = false;
         }
     }
 })
