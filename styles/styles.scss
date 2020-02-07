@@ -368,7 +368,7 @@ body {
 
 .content-blur-active {
     transition: 300ms;
-    filter: blur(36px);
+    filter: blur(36px) brightness(0.7);
 }
 
 .content-blur-inactive {

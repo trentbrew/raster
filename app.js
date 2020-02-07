@@ -37,15 +37,6 @@ firestore.settings(settings);
 // Initialize the FirebaseUI Widget using Firebase.
 //var ui = new firebaseui.auth.AuthUI(firebase.auth());
 
-const routes = [
-    {
-        path: '/test',
-        component: {
-            temaplte: "<div>O BOY</div>"
-        }
-    }
-]
-
 new Vue({
     el: "#app",
     firestore() {
@@ -121,6 +112,7 @@ new Vue({
     methods: {
         add() {
             console.log('clicked')
+            console.log(this.items)
             this.$firestore.items.add(this.item).then(()=>{
                 this.item.title = "",
                 this.item.genre = "",
@@ -135,10 +127,12 @@ new Vue({
                 this.item.screenGrabs = [
                     ""
                 ]
-            })
 
-            //refresh page
-            document.location.reload();
+                //refresh page
+                setTimeout(function() {
+                    document.location.reload();
+                });
+            })
         },
         remove(e) {
             console.log(e.screenGrabs);
@@ -226,7 +220,7 @@ new Vue({
             )
 
         },
-        handlePhotoUpload(e) {
+        /*handlePhotoUpload(e) {
             console.log("...handling photo upload");
 
             var parentObj = this;
@@ -269,7 +263,7 @@ new Vue({
             
             )
 
-        },
+        },*/
         handleFilmUpload(e) {
             console.log("...handling film upload for " + this.item.title);
 

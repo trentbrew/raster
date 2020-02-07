@@ -368,8 +368,8 @@ body .credit {
 .content-blur-active {
   -webkit-transition: 300ms;
   transition: 300ms;
-  -webkit-filter: blur(36px);
-          filter: blur(36px);
+  -webkit-filter: blur(36px) brightness(0.7);
+          filter: blur(36px) brightness(0.7);
 }
 
 .content-blur-inactive {

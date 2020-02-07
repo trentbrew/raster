@@ -167,18 +167,6 @@
                             <div class="photo"><img src="" alt=""></div>
                             <div class="photo"><img src="" alt=""></div>
                             <div class="photo"><img src="" alt=""></div>
-                            <div class="photo"><img src="" alt=""></div>
-                            <div class="photo"><img src="" alt=""></div>
-                            <div class="photo"><img src="" alt=""></div>
-                            <div class="photo"><img src="" alt=""></div>
-                            <div class="photo"><img src="" alt=""></div>
-                            <div class="photo"><img src="" alt=""></div>
-                            <div class="photo"><img src="" alt=""></div>
-                            <div class="photo"><img src="" alt=""></div>
-                            <div class="photo"><img src="" alt=""></div>
-                            <div class="photo"><img src="" alt=""></div>
-                            <div class="photo"><img src="" alt=""></div>
-                            <div class="photo"><img src="" alt=""></div>
 
                         </div>
 
@@ -192,7 +180,7 @@
                             <button style="float: right" @click="remove(reel)" class="badge">Remove</button>
                             <div class="vid-section">
                                 <video controls autoplay muted>
-                                    <source :src="items[2].finalFilm" type="video/mp4" />
+                                    <source :src="items[1].finalFilm" type="video/mp4" />
                                 </video>
                                 <div class="vid-text">
                                     <h1>{{ reel.title }}</h1>
@@ -202,7 +190,7 @@
                             </div>
                             <br>
                             <ul style="display: inline-flex; list-style: none; padding: 0px" class="images">
-                                <li v-for="(p, index) in items[2].screenGrabs">
+                                <li v-for="(p, index) in items[1].screenGrabs">
                                     <img :src="p" />
                                 </li>
                             </ul>
