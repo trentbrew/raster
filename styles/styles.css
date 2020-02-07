@@ -74,6 +74,7 @@ body .credit {
 
 .navbar .nav-item {
   font-size: 14px;
+  font-weight: bold;
 }
 
 .settings-button-container {
@@ -254,9 +255,8 @@ body .credit {
 
 .film-upload-container {
   border-radius: 12px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
+  width: 100%;
+  padding-bottom: 70px;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -272,6 +272,8 @@ body .credit {
   margin: 0px;
   border-radius: 0px;
   padding: 0px;
+  margin: 24px;
+  border-radius: 6px;
 }
 
 .film-upload-container .film-upload-section .film-inner {
@@ -285,7 +287,7 @@ body .credit {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: calc(100% - 88px);
+  height: calc(100% - 96px);
 }
 
 .film-upload-container .film-upload-section .film-inner ul {
@@ -294,30 +296,30 @@ body .credit {
 }
 
 .film-upload-container .film-upload-section h2 {
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.1);
   font-size: 12px;
   padding: 6px 12px 6px 12px !important;
 }
 
 .film-upload-container .general-section {
-  background: #1f2024;
+  background: #131417;
   border-radius: 6px 0px 0px 6px;
   padding: 0px;
   width: 300px;
 }
 
 .film-upload-container .credits-section {
-  background: #292a30;
+  background: #131417;
   width: 360px;
 }
 
 .film-upload-container .upload-section {
-  background: #33343a;
+  background: #131417;
   width: 300px;
 }
 
 .film-upload-container .final-film-section {
-  background: #44454b;
+  background: #131417;
 }
 
 .photo-upload-inner h2 {
@@ -398,10 +400,7 @@ body .credit {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  height: -webkit-max-content;
-  height: -moz-max-content;
-  height: max-content;
-  max-height: 800px;
+  max-height: 600px;
   position: absolute;
   margin: auto;
   top: 0px;
@@ -414,9 +413,11 @@ body .credit {
 }
 
 .window-section-active .inner-window-settings {
-  background: #555;
-  width: 80%;
-  height: 700px;
+  background: #212225;
+  width: 75%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   position: absolute;
   margin: auto;
   top: 0px;
@@ -426,6 +427,19 @@ body .credit {
   -webkit-transition: 300ms;
   transition: 300ms;
   border-radius: 6px;
+  padding: 12px;
+}
+
+.submit-area {
+  width: 300px;
+  background: #555;
+}
+
+.submit-area h2 {
+  font-size: 12px;
+  padding: 6px 12px 6px 12px;
+  margin: 0px;
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .window-section-inactive {
@@ -469,9 +483,11 @@ body .credit {
 .window-section-inactive .inner-window-settings {
   -webkit-transform: scale(0.9);
           transform: scale(0.9);
-  background: #555;
-  width: 80%;
-  height: 700px;
+  background: #212225;
+  width: 75%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   position: absolute;
   margin: auto;
   top: 0px;
@@ -481,6 +497,7 @@ body .credit {
   -webkit-transition: 300ms;
   transition: 300ms;
   border-radius: 6px;
+  padding: 12px;
 }
 
 #photo-window .inner-window {
@@ -496,7 +513,7 @@ body .credit {
 }
 
 input[type="text"] {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
   border: none;
   padding: 3px 6px 3px 6px;
   margin-bottom: 6px;
@@ -614,17 +631,24 @@ h2 {
 }
 
 .btn-primary {
-  width: 200px;
+  position: absolute;
+  bottom: 0px;
+  margin: auto;
+  left: 0px;
+  right: 0px;
+  width: 100%;
   background: #66BB6A;
-  margin-top: 0px !important;
   border-radius: 0px 6px 6px 0px;
-  height: inherit;
+  height: 60px;
   color: white;
+  border: solid 2px #66BB6A;
+  border-radius: 0px 0px 6px 6px;
+  font-size: 14px;
 }
 
 .btn-primary:hover {
-  -webkit-filter: brightness(0.6);
-          filter: brightness(0.6);
+  -webkit-filter: brightness(0.8);
+          filter: brightness(0.8);
 }
 
 .left-label {
