@@ -14,6 +14,28 @@ body .credit {
   font-size: 14px;
 }
 
+.live-site-button {
+  background: transparent;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.live-site-button span {
+  line-height: normal;
+  background: transparent;
+  border: #66BB6A 2px solid;
+  -webkit-transition: 200ms;
+  transition: 200ms;
+  padding: 3px 6px 3px 6px;
+  color: #66BB6A;
+  font-weight: bold;
+}
+
+.live-site-button:hover span {
+  background: #66BB6A;
+  color: white;
+}
+
 .nav-solid {
   background: #212225;
 }
@@ -561,7 +583,7 @@ button:hover {
   border: 2px #ff7065 solid;
   color: #ff7065;
   font-weight: bold;
-  font-size: 12px !important;
+  font-size: 14px !important;
 }
 
 .badge:hover {

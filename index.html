@@ -36,6 +36,7 @@
                 <div class="nav-text">
                     <ul>
                         <li @click="toggleSettings()" class="nav-item" id="nav-item-settings" v-bind:class="[ settingsWindowActive ? 'nav-active' : 'nav-inactive' ]"><div class="nav-icon" id="nav-icon-settings"></div>Settings</li>
+                        <a class="live-site-button" href="https://tbrew1023.github.io/Nihal-Public" target="_blank"><li><span>View live site</span></li></a>
                     </ul>
                 </div>
             </div>
@@ -189,7 +190,7 @@
                     <h2>Films</h2>
                     <ul class="list-group">
                         <li class="list-group-item project-item" v-for="(i, index) in items" :id="'vid' + index">
-                            <button style="float: right" @click="remove(i)" class="badge">Remove from portfolio</button>
+                            <button style="float: right" @click="remove(i)" class="badge">Remove</button>
                             <div class="vid-section">
                                 
                                 <video controls autoplay muted>
