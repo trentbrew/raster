@@ -55,6 +55,7 @@ new Vue({
     },
     data(){
         return {
+            homeActive: true,
             filmWindowActive: false,
             photoWindowActive: false,
             settingsWindowActive: false,
@@ -209,6 +210,50 @@ new Vue({
             )
 
         },
+        handlePhotoUpload(e) {
+            console.log("...handling photo upload");
+
+            var parentObj = this;
+
+            var file = e.target.files[0];
+
+            var imgPath = this.item.title + "/" + file.name;
+
+            //create a storage ref
+            var storageRef = firebase.storage().ref(imgPath);
+
+            //upload file
+            var task = storageRef.put(file);
+
+            //update progress bar
+            task.on('state_changed', 
+            
+                function progress(snapshot) {
+                    //var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                   //uploader.value = percentage;
+                },
+                function error(err) {
+                    
+                },
+                function complete() {
+                    //console.log(storageRef.child(imgPath).getDownloadURL().getResults());
+
+                    task.snapshot.ref.getDownloadURL().then(
+                        function(downloadURL) {
+                            console.log('File available at: ' + downloadURL)
+                            parentObj.item.screenGrabs.push(
+                                downloadURL + ""
+                            );
+                            console.log('screenGrabs' + parentObj.item.screenGrabs);
+                        }
+                    )
+
+                    //console.log("screenGrabs: " + parentObj.item.screenGrabs);
+                }
+            
+            )
+
+        },
         handleFilmUpload(e) {
             console.log("...handling film upload for " + this.item.title);
 
@@ -258,21 +303,41 @@ new Vue({
             this.filmWindowActive = false;
             this.photoWindowActive = false;
             this.settingsWindowActive = false;
+            this.homeActive = true;
         },
         toggleFilm() {
             //alert('Film section');
+            if(this.filmWindowActive) {
+                this.homeActive = true;
+                console.log('home? ' + this.homeActive);
+            }
+            else {
+                this.homeActive = false;
+            }
             this.filmWindowActive = !this.filmWindowActive;
             this.settingsWindowActive = false;
             this.photoWindowActive = false;
         },
         togglePhoto() {
             //alert('Photo section');
+            if(this.photoWindowActive) {
+                this.homeActive = true;
+            }
+            else {
+                this.homeActive = false;
+            }
             this.photoWindowActive = !this.photoWindowActive;
             this.settingsWindowActive = false;
             this.filmWindowActive = false;
         },
         toggleSettings() {
             //alert('Settings section');
+            if(this.settingsWindowActive) {
+                this.homeActive = true;
+            }
+            else {
+                this.homeActive = false;
+            }
             this.settingsWindowActive = !this.settingsWindowActive;
             this.photoWindowActive = false;
             this.filmWindowActive = false;

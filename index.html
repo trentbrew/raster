@@ -22,107 +22,171 @@
 
         <div class = "container" id="app">
 
-            <div class="navbar">
+            <div class="navbar" v-bind:class="[ homeActive ? 'nav-solid' : 'nav-trans' ]">
                 <div @click="toggleHome()" class="nav-logo">
                     <h3>Nihal.tv <span>Editor</span></h3>
                 </div>
                 <div class="nav-center">
                     <ul>
-                        <li @click="toggleHome()"><div class="nav-icon" id="nav-icon-home"></div>Dashboard</li>
-                        <li @click="toggleFilm()"><div class="nav-icon" id="nav-icon-film"></div>Add Film</li>
-                        <li @click="togglePhoto()"><div class="nav-icon" id="nav-icon-photos"></div>Add Photos</li>
+                        <li @click="toggleHome()" class="nav-item" v-bind:class="[ homeActive ? 'nav-active' : 'nav-inactive' ]"><div class="nav-icon" id="nav-icon-home"></div><span>Dashboard</span></li>
+                        <li @click="togglePhoto()" class="nav-item" v-bind:class="[ photoWindowActive ? 'nav-active' : 'nav-inactive' ]"><div class="nav-icon" id="nav-icon-photo"></div><span>Add Photos</span></li>
+                        <li @click="toggleFilm()" class="nav-item" v-bind:class="[ filmWindowActive ? 'nav-active' : 'nav-inactive' ]"><div class="nav-icon" id="nav-icon-film"></div><span>Add Film</span></li>
                     </ul>
                 </div>
                 <div class="nav-text">
                     <ul>
-                        <li @click="toggleSettings()"><div class="settings-button"><p>Settings</p></div></li>
+                        <li @click="toggleSettings()" class="nav-item" id="nav-item-settings" v-bind:class="[ settingsWindowActive ? 'nav-active' : 'nav-inactive' ]"><div class="nav-icon" id="nav-icon-settings"></div>Settings</li>
                     </ul>
                 </div>
             </div>
 
             <div id="film-window" v-bind:class="[ filmWindowActive ? 'window-section-active' : 'window-section-inactive' ]">
                 <div class="inner-window">
-                    <h1>Film Upload</h1>
-                </div>
-            </div>
-
-            <div id="photo-window" v-bind:class="[ photoWindowActive ? 'window-section-active' : 'window-section-inactive' ]">
-                <div class="inner-window">
-                    <h1>Photo Upload</h1>
-                </div>
-            </div>
-
-            <div id="settings-window" v-bind:class="[ settingsWindowActive ? 'window-section-active' : 'window-section-inactive' ]">
-                <div class="inner-window">
-                    <h1>Portfolio Settings</h1>
-                </div>
-            </div>
-
-            <div class="content" v-bind:class="[ filmWindowActive || settingsWindowActive || photoWindowActive ? 'content-blur-active' : 'content-blur-inactive' ]">
-                <div class="section-left">
-                    <div class="section-fixed">
-    
-                        <h2>New project</h2>
-                        <div class="general-section">
-                            <label>Project Title</label>
-                            <input class="form-control" type="text" v-model="item.title" v-on:keyup.enter="add()">
-                            <br>
-                
-                            <label>Genre</label>
-                            <input class="form-control" type="text" v-model="item.genre" v-on:keyup.enter="add()">
-                            <br>
-                
-                            <label>Summary</label>
-                            <input class="form-control" type="text" v-model="item.summary" v-on:keyup.enter="add()">
-                            <br>
+                    <div class="film-upload-container">
+                        
+                        <div class="general-section film-upload-section">
+                            <h2>General</h2>
+                            <div class="film-inner">
+                                <div class="inner-inputs">
+                                    <label>Project Title</label>
+                                    <input class="form-control" type="text" v-model="item.title" v-on:keyup.enter="add()">
+                                    <br>
+                        
+                                    <label>Genre</label>
+                                    <input class="form-control" type="text" v-model="item.genre" v-on:keyup.enter="add()">
+                                    <br>
+                        
+                                    <label>Summary</label>
+                                    <input class="form-control" type="text" v-model="item.summary" v-on:keyup.enter="add()">
+                                </div>
+                            </div>
                         </div>
     
-                        <h2>Credits</h2>
+                        
     
-                        <div class="credits-section">
-                            <ul>
-                                <li v-for="(c, index) in item.credits">
-                                    <label class="left-label">Role</label>
-                                    <input class="form-control" type="text" v-model="item.credits[index].role" v-on:keyup.enter="add()">
-                                    <label>Name</label>
-                                    <input class="form-control" type="text" v-model="item.credits[index].name" v-on:keyup.enter="add()">
-                                </li>
-                                <button class="btn" @click="newCredit()">Add another credit</button>
-                            </ul>
-                            <br>
+                        <div class="credits-section film-upload-section">
+                            <h2>Credits</h2>
+                            <div class="film-inner">
+                                <ul>
+                                    <li v-for="(c, index) in item.credits">
+                                        <label class="left-label">Role</label>
+                                        <input class="form-control" type="text" v-model="item.credits[index].role" v-on:keyup.enter="add()">
+                                        <label>Name</label>
+                                        <input class="form-control" type="text" v-model="item.credits[index].name" v-on:keyup.enter="add()">
+                                    </li>
+                                    <button class="btn" @click="newCredit()">Add another credit</button>
+                                </ul>
+                            </div>
                         </div>
     
-                        <h2>Upload screengrabs (PNG, GIF, JPG, JPEG)</h2>
-    
-    
-                        <div class="upload-section screengrabs-section">
-                            <ul>
-                                <li v-for="(s, index) in item.screenGrabs">
-                                    <!--progress value="0" max="100" id="uploader">0%</progress-->
-                                    <input @change="handleUpload" type="file" value="upload" class="fileButton" id="fileButton" />
-                                </li>
-                                <!--button class="btn btn-primary" @click="newScreenGrab()">Add another screengrab</button-->
-                            </ul>
-                            <br>
+                        <div class="upload-section screengrabs-section film-upload-section">
+                            <h2>Upload screengrabs (PNG, GIF, JPG, JPEG)</h2>
+                            <div class="film-inner">
+                                <ul>
+                                    <li v-for="(s, index) in item.screenGrabs">
+                                        <!--progress value="0" max="100" id="uploader">0%</progress-->
+                                        <input @change="handleUpload" type="file" value="upload" class="fileButton" id="fileButton" />
+                                    </li>
+                                    <!--button class="btn btn-primary" @click="newScreenGrab()">Add another screengrab</button-->
+                                </ul>
+                            </div>
                         </div>
     
-                        <h2>Upload final film (mp4)</h2>
-    
-                        <div class="upload-section final-film-section">
-            
-                            <ul>
-                                <progress style="transition: 200ms" value="0" max="100" id="uploader">0%
-                                </progress>
-                                <input @change="handleFilmUpload" type="file" value="upload" class="fileButton" id="fileButtonFilm" />
-                            </ul>
-                            <br>
+                        <div class="upload-section final-film-section film-upload-section">
+                            <h2>Upload final film (mp4)</h2>
+                            <div class="film-inner">
+                                <ul>
+                                    <progress style="transition: 200ms" value="0" max="100" id="uploader">0%
+                                    </progress>
+                                    <input @change="handleFilmUpload" type="file" value="upload" class="fileButton" id="fileButtonFilm" />
+                                </ul>
+                            </div>
                         </div>
             
                         <button class="btn btn-primary" @click="add()">Add to portfolio</button>
                     </div>
                 </div>
-    
+            </div>
+
+            <div id="photo-window" v-bind:class="[ photoWindowActive ? 'window-section-active' : 'window-section-inactive' ]">
+                <div class="inner-window">
+                    <div class="upload-section screengrabs-section film-upload-section">
+                        <h2>Upload photos (PNG, GIF, JPG, JPEG)</h2>
+                        <div class="photo-upload-inner">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="settings-window" v-bind:class="[ settingsWindowActive ? 'window-section-active' : 'window-section-inactive' ]">
+                <div class="inner-window">
+
+                </div>
+            </div>
+
+            <div class="content" v-bind:class="[ filmWindowActive || settingsWindowActive || photoWindowActive ? 'content-blur-active' : 'content-blur-inactive' ]">
+                <div class="section-left">
+                    <h2>Photos</h2>
+                    <div class="photos-container">
+
+                        <div class="grid-container">
+                            <!--img v-for="(i, index) in photos" src="i.src" alt="i.caption"></img-->
+
+                            <div class="photo"><img src="" alt=""></div>
+                            <div class="photo"><img src="" alt=""></div>
+                            <div class="photo"><img src="" alt=""></div>
+                            <div class="photo"><img src="" alt=""></div>
+                            <div class="photo"><img src="" alt=""></div>
+                            <div class="photo"><img src="" alt=""></div>
+                            <div class="photo"><img src="" alt=""></div>
+                            <div class="photo"><img src="" alt=""></div>
+                            <div class="photo"><img src="" alt=""></div>
+                            <div class="photo"><img src="" alt=""></div>
+                            <div class="photo"><img src="" alt=""></div>
+                            <div class="photo"><img src="" alt=""></div>
+                            <div class="photo"><img src="" alt=""></div>
+                            <div class="photo"><img src="" alt=""></div>
+                            <div class="photo"><img src="" alt=""></div>
+                            <div class="photo"><img src="" alt=""></div>
+                            <div class="photo"><img src="" alt=""></div>
+                            <div class="photo"><img src="" alt=""></div>
+                            <div class="photo"><img src="" alt=""></div>
+                            <div class="photo"><img src="" alt=""></div>
+                            <div class="photo"><img src="" alt=""></div>
+                            <div class="photo"><img src="" alt=""></div>
+                            <div class="photo"><img src="" alt=""></div>
+                            <div class="photo"><img src="" alt=""></div>
+                            <div class="photo"><img src="" alt=""></div>
+                            <div class="photo"><img src="" alt=""></div>
+                            <div class="photo"><img src="" alt=""></div>
+                            <div class="photo"><img src="" alt=""></div>
+                            <div class="photo"><img src="" alt=""></div>
+                            <div class="photo"><img src="" alt=""></div>
+                            <div class="photo"><img src="" alt=""></div>
+                            <div class="photo"><img src="" alt=""></div>
+                            <div class="photo"><img src="" alt=""></div>
+                            <div class="photo"><img src="" alt=""></div>
+                            <div class="photo"><img src="" alt=""></div>
+                            <div class="photo"><img src="" alt=""></div>
+                            <div class="photo"><img src="" alt=""></div>
+                            <div class="photo"><img src="" alt=""></div>
+                            <div class="photo"><img src="" alt=""></div>
+                            <div class="photo"><img src="" alt=""></div>
+                            <div class="photo"><img src="" alt=""></div>
+                            <div class="photo"><img src="" alt=""></div>
+                            <div class="photo"><img src="" alt=""></div>
+                            <div class="photo"><img src="" alt=""></div>
+                            <div class="photo"><img src="" alt=""></div>
+                            <div class="photo"><img src="" alt=""></div>
+
+                        </div>
+
+                    </div>
+                </div>
+
                 <div class="section-right">
+                    <h2>Films</h2>
                     <ul class="list-group">
                         <li class="list-group-item project-item" v-for="(i, index) in items" :id="'vid' + index">
                             <button style="float: right" @click="remove(i)" class="badge">Remove from portfolio</button>
