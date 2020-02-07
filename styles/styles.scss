@@ -286,6 +286,14 @@ body {
     
 }
 
+.photo-upload-inner {
+    h2 {
+        color: white;
+        margin-left: 24px !important;
+        
+    }
+}
+
 .photos-container {
     //margin-top: 120px;
     background: $colorDark;
@@ -369,6 +377,23 @@ body {
         transition: 300ms;
         border-radius: 6px;
     }
+
+    .inner-window-settings {
+        background: $colorText;
+        //max-width: 90%;
+        width: 80%;
+        height: 700px;
+        //max-height: 800px;
+        //min-height: 500px;
+        position: absolute;
+        margin: auto;
+        top: 0px;
+        right: 0px;
+        bottom: 0px;
+        left: 0px;
+        transition: 300ms;
+        border-radius: 6px;
+    }
 }
 
 .window-section-inactive {
@@ -394,6 +419,24 @@ body {
         //max-width: 90%;
         width: fit-content;
         height: max-content;
+        //max-height: 800px;
+        //min-height: 500px;
+        position: absolute;
+        margin: auto;
+        top: 0px;
+        right: 0px;
+        bottom: 0px;
+        left: 0px;
+        transition: 300ms;
+        border-radius: 6px;
+    }
+
+    .inner-window-settings {
+        transform: scale(0.9);
+        background: $colorText;
+        //max-width: 90%;
+        width: 80%;
+        height: 700px;
         //max-height: 800px;
         //min-height: 500px;
         position: absolute;

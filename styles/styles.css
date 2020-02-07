@@ -298,6 +298,11 @@ body .credit {
   background: #44454b;
 }
 
+.photo-upload-inner h2 {
+  color: white;
+  margin-left: 24px !important;
+}
+
 .photos-container {
   background: #131417;
   color: #eee;
@@ -386,6 +391,21 @@ body .credit {
   border-radius: 6px;
 }
 
+.window-section-active .inner-window-settings {
+  background: #555;
+  width: 80%;
+  height: 700px;
+  position: absolute;
+  margin: auto;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  -webkit-transition: 300ms;
+  transition: 300ms;
+  border-radius: 6px;
+}
+
 .window-section-inactive {
   opacity: 0;
   width: 100%;
@@ -413,6 +433,23 @@ body .credit {
   height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
+  position: absolute;
+  margin: auto;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  -webkit-transition: 300ms;
+  transition: 300ms;
+  border-radius: 6px;
+}
+
+.window-section-inactive .inner-window-settings {
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+  background: #555;
+  width: 80%;
+  height: 700px;
   position: absolute;
   margin: auto;
   top: 0px;

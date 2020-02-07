@@ -41,7 +41,7 @@
             </div>
 
             <div id="film-window" v-bind:class="[ filmWindowActive ? 'window-section-active' : 'window-section-inactive' ]">
-                <div class="inner-window">
+                <div class="inner-window-settings">
                     <div class="film-upload-container">
                         
                         <div class="general-section film-upload-section">
@@ -109,8 +109,8 @@
             </div>
 
             <div id="photo-window" v-bind:class="[ photoWindowActive ? 'window-section-active' : 'window-section-inactive' ]">
-                <div class="inner-window">
-                    <div class="upload-section screengrabs-section film-upload-section">
+                <div class="inner-window-settings">
+                    <div class="photo-upload-inner">
                         <h2>Upload photos (PNG, GIF, JPG, JPEG)</h2>
                         <div class="photo-upload-inner">
 
@@ -120,7 +120,7 @@
             </div>
 
             <div id="settings-window" v-bind:class="[ settingsWindowActive ? 'window-section-active' : 'window-section-inactive' ]">
-                <div class="inner-window">
+                <div class="inner-window-settings">
 
                 </div>
             </div>

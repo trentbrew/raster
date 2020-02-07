@@ -59,6 +59,7 @@ new Vue({
             filmWindowActive: false,
             photoWindowActive: false,
             settingsWindowActive: false,
+            photos: [],
             auth: '',
             item: {
                 title: "",
