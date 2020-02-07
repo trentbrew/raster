@@ -187,6 +187,27 @@
 
                 <div class="section-right">
                     <h2>Films</h2>
+                    <ul class="list-group reel-container">
+                        <li class="list-group-item project-item" id="vid-reel">
+                            <button style="float: right" @click="remove(reel)" class="badge">Remove</button>
+                            <div class="vid-section">
+                                <video controls autoplay muted>
+                                    <source :src="items[2].finalFilm" type="video/mp4" />
+                                </video>
+                                <div class="vid-text">
+                                    <h1>{{ reel.title }}</h1>
+                                    <strong><p style="opacity:0.5">{{ reel.genre }}</p></strong>
+                                    <p class="summary">{{ reel.summary }}</p>
+                                </div>
+                            </div>
+                            <br>
+                            <ul style="display: inline-flex; list-style: none; padding: 0px" class="images">
+                                <li v-for="(p, index) in items[2].screenGrabs">
+                                    <img :src="p" />
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
                     <ul class="list-group">
                         <li class="list-group-item project-item" v-for="(i, index) in items" :id="'vid' + index">
                             <button style="float: right" @click="remove(i)" class="badge">Remove</button>

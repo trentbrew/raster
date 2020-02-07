@@ -521,8 +521,26 @@ body {
     }
 }
 
+#vid-reel {
+    margin-top: 0px;
+    background:rgba(white,0.04);
+    //border: $colorLight solid 2px;
+
+    img {
+        margin-bottom: 0px;
+    }
+
+    .badge {
+        background: rgba(white,0.04);
+
+        &:hover {
+            background: $colorLink;
+        }
+    }
+}
+
 #vid0 {
-    margin-top: 20px;
+    //margin-top: 20px;
 }
 
 input[type="text"] {
@@ -672,7 +690,7 @@ h2 {
     background: $colorGreen;
     border-radius: 0px 6px 6px 0px;
     //color: white;
-    height: 60px;
+    height: 36px;
     color: white;
     border: solid 2px $colorGreen;
     border-radius: 0px 0px 6px 6px;
@@ -723,10 +741,20 @@ progress[value] {
     }
 }*/
 
+.reel-container {
+    //background: black;
+    margin-top: 18px;
+
+    ul {
+        list-style: none !important;
+    }
+}
+
 .project-item {
     background: $colorDark;
     padding: 30px;
-    margin: 30px 30px 30px 0px;
+    margin: 30px;
+    margin-left: 0px;
     border-radius: 6px;
 
     .item-header {
@@ -736,7 +764,7 @@ progress[value] {
     }
 
     h1 {
-        margin-bottom: 8px;
+        margin-bottom: 0px;
     }
 
     .vid-section {

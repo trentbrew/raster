@@ -61,6 +61,21 @@ new Vue({
             settingsWindowActive: false,
             photos: [],
             auth: '',
+            reel: {
+                title: "Film Reel",
+                genre: "Compilation",
+                summary: "This will be shown on the landing page of the site.",
+                finalFilm: "",
+                credits: [
+                    {
+                        role: "Director of Photography",
+                        name: "Nihal Dantluri"
+                    }
+                ],
+                screenGrabs: [
+                    ""
+                ]
+            },
             item: {
                 title: "",
                 genre: "",

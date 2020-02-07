@@ -508,8 +508,21 @@ body .credit {
   background: #66BB6A;
 }
 
-#vid0 {
-  margin-top: 20px;
+#vid-reel {
+  margin-top: 0px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+#vid-reel img {
+  margin-bottom: 0px;
+}
+
+#vid-reel .badge {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+#vid-reel .badge:hover {
+  background: #ff7065;
 }
 
 input[type="text"] {
@@ -639,7 +652,7 @@ h2 {
   width: 100%;
   background: #66BB6A;
   border-radius: 0px 6px 6px 0px;
-  height: 60px;
+  height: 36px;
   color: white;
   border: solid 2px #66BB6A;
   border-radius: 0px 0px 6px 6px;
@@ -675,10 +688,19 @@ progress {
         margin-top: 6px;
     }
 }*/
+.reel-container {
+  margin-top: 18px;
+}
+
+.reel-container ul {
+  list-style: none !important;
+}
+
 .project-item {
   background: #131417;
   padding: 30px;
-  margin: 30px 30px 30px 0px;
+  margin: 30px;
+  margin-left: 0px;
   border-radius: 6px;
 }
 
@@ -689,7 +711,7 @@ progress {
 }
 
 .project-item h1 {
-  margin-bottom: 8px;
+  margin-bottom: 0px;
 }
 
 .project-item .vid-section {
