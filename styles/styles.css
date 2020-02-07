@@ -343,15 +343,16 @@ body .credit {
   height: max-content;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 1fr 1fr 1fr;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 12px;
 }
 
 .photos-container .grid-container .photo {
   background: black;
   width: 100%;
-  height: 112px;
+  height: 150px;
+  border-radius: 6px;
 }
 
 .section-left {
@@ -413,7 +414,7 @@ body .credit {
 }
 
 .window-section-active .inner-window-settings {
-  background: #212225;
+  background: rgba(255, 255, 255, 0.05);
   width: 75%;
   height: -webkit-fit-content;
   height: -moz-fit-content;
@@ -538,7 +539,7 @@ input[type="text"] {
 }
 
 .general-section, .credits-section, .final-film-section, .screengrabs-section {
-  background: #131417;
+  background: rgba(255, 255, 255, 0.1) !important;
   border-radius: 6px;
   margin: 12px 0px 12px 0px;
   padding-left: 24px;
@@ -733,7 +734,7 @@ progress {
 }
 
 .project-item .images {
-  margin-left: -12px;
+  margin-left: -16px;
 }
 
 .project-item span {
