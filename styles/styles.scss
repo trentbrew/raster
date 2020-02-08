@@ -57,6 +57,7 @@ body {
 
 .nav-trans {
     background: transparent;
+    box-shadow: none !important;
 }
 
 .navbar {
@@ -68,7 +69,7 @@ body {
     //justify-content: center;
     width: 100%;
     height: 60px;
-    //box-shadow: 0px 10px 10px 10px black inset;
+    box-shadow: 0px 5px 24px -6px rgba(0,0,0,0.4);
     transition: 300ms;
 
     h3 {
@@ -367,12 +368,12 @@ body {
 }
 
 .content-blur-active {
-    transition: 300ms;
+    transition: 200ms;
     filter: blur(36px) brightness(0.7);
 }
 
 .content-blur-inactive {
-    transition: 300ms;
+    transition: 200ms;
     filter: blur(0px);
 }
 
@@ -423,7 +424,7 @@ body {
         right: 0px;
         bottom: 0px;
         left: 0px;
-        transition: 300ms;
+        transition: 200ms;
         border-radius: 6px;
         padding:12px;
         //padding-bottom: 70px;
@@ -494,7 +495,7 @@ body {
         right: 0px;
         bottom: 0px;
         left: 0px;
-        transition: 300ms;
+        transition: 200ms;
         border-radius: 6px;
         padding:12px;
         //padding-bottom: 70px;
@@ -525,6 +526,7 @@ body {
 #vid-reel {
     margin-top: 0px;
     background:rgba(white,0.04);
+    padding-bottom: 24px;
     //border: $colorLight solid 2px;
 
     img {
@@ -532,10 +534,13 @@ body {
     }
 
     .badge {
-        background: rgba(white,0.04);
+        background: transparent;
+        border-color: white;
+        color: white;
 
         &:hover {
-            background: $colorLink;
+            background: white;
+            color: black;
         }
     }
 }
@@ -799,6 +804,7 @@ progress[value] {
 
 .summary {
     max-width: 512px;
+    font-weight: normal;
 }
 
 .veil {

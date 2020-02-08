@@ -10,6 +10,7 @@
         <!--font-->
         <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Hind+Siliguri|Nunito|Roboto+Condensed|Yantramanav&display=swap" rel="stylesheet">
+        <link rel="icon" type="image/svg" href="res/videocam-24px.svg">
         <!--firebase auth-->
         <!--link type="text/css" rel="stylesheet" href="bower_components/firebaseui/dist/firebaseui.css" /-->
     </head>
@@ -36,7 +37,7 @@
                 <div class="nav-text">
                     <ul>
                         <li @click="toggleSettings()" class="nav-item" id="nav-item-settings" v-bind:class="[ settingsWindowActive ? 'nav-active' : 'nav-inactive' ]"><div class="nav-icon" id="nav-icon-settings"></div>Settings</li>
-                        <a class="live-site-button" href="https://tbrew1023.github.io/Nihal-Public" target="_blank"><li><span>View live site</span></li></a>
+                        <a class="live-site-button" href="https://tbrew1023.github.io/Nihal-Public" target="_blank"><li><span>View Live Site</span></li></a>
                     </ul>
                 </div>
             </div>
@@ -81,7 +82,7 @@
                         </div>
     
                         <div class="upload-section screengrabs-section film-upload-section">
-                            <h2>Upload screengrabs (PNG, GIF, JPG, JPEG)</h2>
+                            <h2>Upload <strong>5</strong> screengrabs (PNG, GIF, JPG, JPEG)</h2>
                             <div class="film-inner">
                                 <ul>
                                     <li v-for="(s, index) in item.screenGrabs">
@@ -177,23 +178,16 @@
                     <h2>Films</h2>
                     <ul class="list-group reel-container">
                         <li class="list-group-item project-item" id="vid-reel">
-                            <button style="float: right" @click="remove(reel)" class="badge">Remove</button>
+                            <button style="float: right" @click="toggleFilm" class="badge reel-badge">Replace</button>
                             <div class="vid-section">
                                 <video controls autoplay muted>
                                     <source :src="items[1].finalFilm" type="video/mp4" />
                                 </video>
                                 <div class="vid-text">
-                                    <h1>{{ reel.title }}</h1>
-                                    <strong><p style="opacity:0.5">{{ reel.genre }}</p></strong>
-                                    <p class="summary">{{ reel.summary }}</p>
+                                    <h1>Film Reel</h1>
+                                    <p class="summary" style="opacity: 0.5">Shown on the landing page of the site.</p>
                                 </div>
                             </div>
-                            <br>
-                            <ul style="display: inline-flex; list-style: none; padding: 0px" class="images">
-                                <li v-for="(p, index) in items[1].screenGrabs">
-                                    <img :src="p" />
-                                </li>
-                            </ul>
                         </li>
                     </ul>
                     <ul class="list-group">

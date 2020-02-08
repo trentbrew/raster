@@ -48,22 +48,12 @@ new Vue({
             filmWindowActive: false,
             photoWindowActive: false,
             settingsWindowActive: false,
-            photos: [],
             auth: '',
+            photo: {
+                src: ""
+            },
             reel: {
-                title: "Film Reel",
-                genre: "Compilation",
-                summary: "This will be shown on the landing page of the site.",
-                finalFilm: "",
-                credits: [
-                    {
-                        role: "Director of Photography",
-                        name: "Nihal Dantluri"
-                    }
-                ],
-                screenGrabs: [
-                    ""
-                ]
+                finalFilm: ""
             },
             item: {
                 title: "",
@@ -135,27 +125,13 @@ new Vue({
         remove(e) {
             console.log(e.screenGrabs);
 
-            if(confirm("Are you sure you want to delete this project?")) {
-                //deleting item from database
-                this.$firestore.items.doc(e['.key']).delete().then(
-                    function() {
-                        //refresh page
-                        alert("Project successfully deleted");
-                        document.location.reload();
-                    }
-                )
-            }
-            else {
-                alert("Project was not deleted");
-            }
-
             //deleting screenGrab directory in storage
 
             if(confirm("Are you sure you want to delete " + e.title + "?")) {
                 //deleting item from database
                 this.$firestore.items.doc(e['.key']).delete().then(
                     function() {
-                        alert("Project sucsessfully deleted");
+                        alert("Project deleted");
                         //refresh page
                         document.location.reload();       
                     }
