@@ -6,8 +6,6 @@ const lazy = '0106';
 console.log(document.body.style.opacity = 1);
 
 if(prompt('Enter pin:') == lazy) {
-
-
     var config = {
         apiKey: "AIzaSyCHpz4ty7srkDV3AiUDZJLFEOfYGLMpqUM",
         authDomain: "nihal-819a6.firebaseapp.com",
@@ -114,6 +112,20 @@ new Vue({
         remove(e) {
             console.log(e.screenGrabs);
 
+            if(confirm("Are you sure you want to delete this project?")) {
+                //deleting item from database
+                this.$firestore.items.doc(e['.key']).delete().then(
+                    function() {
+                        //refresh page
+                        alert("Project successfully deleted");
+                        document.location.reload();
+                    }
+                )
+            }
+            else {
+                alert("Project was not deleted");
+            }
+
             //deleting screenGrab directory in storage
 
 
@@ -127,14 +139,6 @@ new Vue({
                     console.error("Image not deleted successfully");
                 });
             }*/
-
-            //deleting item from database
-            this.$firestore.items.doc(e['.key']).delete().then(
-                function() {
-                    //refresh page
-                    document.location.reload();       
-                }
-            )
         },
         newCredit() {
             this.item.credits.push(
