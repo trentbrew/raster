@@ -31,7 +31,7 @@
                     <ul>
                         <li @click="toggleHome()" class="nav-item" v-bind:class="[ homeActive ? 'nav-active' : 'nav-inactive' ]"><div class="nav-icon" id="nav-icon-home"></div><span>Dashboard</span></li>
                         <li @click="togglePhoto()" class="nav-item" v-bind:class="[ photoWindowActive ? 'nav-active' : 'nav-inactive' ]"><div class="nav-icon" id="nav-icon-photo"></div><span>Add Photos</span></li>
-                        <li @click="toggleFilm()" class="nav-item" v-bind:class="[ filmWindowActive ? 'nav-active' : 'nav-inactive' ]"><div class="nav-icon" id="nav-icon-film"></div><span>Add Film</span></li>
+                        <li @click="toggleFilm()" class="nav-item" v-bind:class="[ filmWindowActive || reelWindowActive ? 'nav-active' : 'nav-inactive' ]"><div class="nav-icon" id="nav-icon-film"></div><span>Add Film</span></li>
                     </ul>
                 </div>
                 <div class="nav-text">
@@ -105,7 +105,31 @@
                             </div>
                         </div>
                     </div>
-                    <button class="btn btn-primary" @click="add()">Add to portfolio</button>
+                    <div class="window-options">
+                        <button class="btn btn-primary" @click="add()">Add to portfolio</button>
+                        <button class="btn btn-primary btn-cancel" @click="toggleHome()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="reel-window" v-bind:class="[ reelWindowActive ? 'window-section-active' : 'window-section-inactive' ]">
+                <div class="inner-window-settings">
+                    <div class="film-upload-container">
+                        <div class="upload-section final-film-section film-upload-section">
+                            <h2>Upload Reel (mp4)</h2>
+                            <div class="film-inner">
+                                <ul>
+                                    <progress style="transition: 200ms" value="0" max="100" id="uploader">0%
+                                    </progress>
+                                    <input @change="handleReelUpload" type="file" value="upload" class="fileButton" id="fileButtonFilm" />
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="window-options">
+                        <button class="btn btn-primary" @click="addReel()">Add to portfolio</button>
+                        <button class="btn btn-primary btn-cancel" @click="toggleHome()">Cancel</button>
+                    </div>
                 </div>
             </div>
 
@@ -126,7 +150,7 @@
                 </div>
             </div>
 
-            <div class="content" v-bind:class="[ filmWindowActive || settingsWindowActive || photoWindowActive ? 'content-blur-active' : 'content-blur-inactive' ]">
+            <div class="content" v-bind:class="[ filmWindowActive || settingsWindowActive || photoWindowActive || reelWindowActive ? 'content-blur-active' : 'content-blur-inactive' ]">
                 <div class="section-left">
                     <h2>Photos</h2>
                     <div class="photos-container">
@@ -178,14 +202,15 @@
                     <h2>Films</h2>
                     <ul class="list-group reel-container">
                         <li class="list-group-item project-item" id="vid-reel">
-                            <button style="float: right" @click="toggleFilm" class="badge reel-badge">Replace</button>
+                            <button style="float: right" @click="toggleReel()" class="badge reel-badge">Replace</button>
                             <div class="vid-section">
                                 <video controls autoplay muted>
-                                    <source :src="items[1].finalFilm" type="video/mp4" />
+                                    <source :src="filmReel[1].finalFilm" type="video/mp4" />
                                 </video>
                                 <div class="vid-text">
                                     <h1>Film Reel</h1>
-                                    <p class="summary" style="opacity: 0.5">Shown on the landing page of the site.</p>
+                                    <strong><p style="opacity:0.5">Compilation</p></strong>
+                                    <p class="summary">Shown on the landing page of the site.</p>
                                 </div>
                             </div>
                         </li>

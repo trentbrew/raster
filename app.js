@@ -39,12 +39,14 @@ new Vue({
     el: "#app",
     firestore() {
         return {
+            filmReel: firebase.firestore().collection("filmReel"),
             items: firebase.firestore().collection("portfolioItems")
         }
     },
     data(){
         return {
             homeActive: true,
+            reelWindowActive: false,
             filmWindowActive: false,
             photoWindowActive: false,
             settingsWindowActive: false,
@@ -115,6 +117,19 @@ new Vue({
                 this.item.screenGrabs = [
                     ""
                 ]
+
+                //refresh page
+                setTimeout(function() {
+                    document.location.reload();
+                });
+            })
+        },
+        addReel() {
+            console.log('clicked')
+            console.log(this.items)
+            this.$firestore.filmReel.add(this.reel).then(()=>{
+
+                this.reel.finalFilm = ""
 
                 //refresh page
                 setTimeout(function() {
@@ -275,7 +290,7 @@ new Vue({
                     uploader.value = percentage;
 
                     if(percentage == 100) {
-                        uploader.style.background = "#66BB6A";
+                        //uploader.style.background = "#66BB6A";
                     }
                 },
                 function error(err) {
@@ -296,11 +311,54 @@ new Vue({
             )
         },
 
+        handleReelUpload(e) {
+            console.log("...handling reel upload for ");
+
+            var parentObj = this;
+
+            var file = e.target.files[0];
+
+            var filmPath = "Reel/" + file.name;
+
+            //create a storage ref
+            var storageRef = firebase.storage().ref(filmPath);
+
+            //upload file
+            var task = storageRef.put(file);
+
+            //update progress bar
+            task.on('state_changed', 
+            
+                function progress(snapshot) {
+                    var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    uploader.value = percentage;
+
+                    if(percentage == 100) {
+                        //uploader.style.background = "#66BB6A";
+                    }
+                },
+                function error(err) {
+                    
+                },
+                function complete() {
+                    //console.log(storageRef.child(imgPath).getDownloadURL().getResults());
+
+                    task.snapshot.ref.getDownloadURL().then(
+                        function(downloadURL) {
+                            console.log('File available at: ' + downloadURL)
+                            parentObj.reel.finalFilm = downloadURL + ""
+                        }
+                    )
+                }
+            )
+        },
+
         toggleHome() {
             //alert('Home');
             this.filmWindowActive = false;
             this.photoWindowActive = false;
             this.settingsWindowActive = false;
+            this.reelWindowActive = false;
             this.homeActive = true;
         },
         toggleFilm() {
@@ -315,6 +373,21 @@ new Vue({
             this.filmWindowActive = !this.filmWindowActive;
             this.settingsWindowActive = false;
             this.photoWindowActive = false;
+            this.reelWindowActive = false;
+        },
+        toggleReel() {
+            //alert('Film section');
+            if(this.reelWindowActive) {
+                this.homeActive = true;
+                console.log('home? ' + this.homeActive);
+            }
+            else {
+                this.homeActive = false;
+            }
+            this.reelWindowActive = !this.reelWindowActive;
+            this.settingsWindowActive = false;
+            this.photoWindowActive = false;
+            this.filmWindowActive = false;
         },
         togglePhoto() {
             //alert('Photo section');
@@ -327,6 +400,7 @@ new Vue({
             this.photoWindowActive = !this.photoWindowActive;
             this.settingsWindowActive = false;
             this.filmWindowActive = false;
+            this.reelWindowActive = false;
         },
         toggleSettings() {
             //alert('Settings section');
@@ -339,6 +413,7 @@ new Vue({
             this.settingsWindowActive = !this.settingsWindowActive;
             this.photoWindowActive = false;
             this.filmWindowActive = false;
+            this.reelWindowActive = false;
         }
     }
 })

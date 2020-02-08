@@ -252,7 +252,7 @@ body {
     //margin-top: 60px;
     width: 100%;
     //height: 700px;
-    padding-bottom: 70px;
+    //padding-bottom: 36px;
 
     display: inline-flex;
 
@@ -414,7 +414,7 @@ body {
     .inner-window-settings {
         background: rgba(white, 0.05);
         //max-width: 90%;
-        width: 75%;
+        width: fit-content;
         height: fit-content;
         //max-height: 800px;
         //min-height: 500px;
@@ -427,6 +427,7 @@ body {
         transition: 200ms;
         border-radius: 6px;
         padding:12px;
+        display:flex;
         //padding-bottom: 70px;
     }
 }
@@ -485,7 +486,7 @@ body {
         transform: scale(0.9);
         background: #212225;
         //max-width: 90%;
-        width: 75%;
+        width: fit-content;
         height: fit-content;
         //max-height: 800px;
         //min-height: 500px;
@@ -498,6 +499,7 @@ body {
         transition: 200ms;
         border-radius: 6px;
         padding:12px;
+        display:flex;
         //padding-bottom: 70px;
     }
 }
@@ -686,24 +688,43 @@ h2 {
     }
 }
 
-.btn-primary {
-    position: absolute;
-    bottom: 0px;
-    margin: auto;
-    left: 0px;
-    right: 0px;
+.window-options {
+    //position: absolute;
+    display: inline-flex;
+    //background: red;
+    justify-content: center;
+    align-items: center;
+    padding: 18px 30px 30px 30px;
     width: 100%;
+}
+
+.btn-primary {
+    //width: 150px;
     background: $colorGreen;
-    border-radius: 0px 6px 6px 0px;
-    //color: white;
-    height: 36px;
+    border-radius: 6;
     color: white;
+    height: 36px;
+    //color: $colorGreen;
     border: solid 2px $colorGreen;
-    border-radius: 0px 0px 6px 6px;
+    //border-radius: 6px;
     font-size: 14px;
+    font-weight: bold;
+    margin: 0px 12px 0px 0px;
 
     &:hover {
-        filter: brightness(0.8);
+        filter: brightness(0.6);
+    }
+}
+
+.btn-cancel {
+    //position: absolute;
+    background: transparent;
+    color: white;
+    border-color: transparent;
+    //width: 150px;
+
+    &:hover {
+        background: transparent;
     }
 }
 

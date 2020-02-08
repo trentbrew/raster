@@ -260,7 +260,6 @@ body .credit {
 .film-upload-container {
   border-radius: 12px;
   width: 100%;
-  padding-bottom: 70px;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -419,7 +418,9 @@ body .credit {
 
 .window-section-active .inner-window-settings {
   background: rgba(255, 255, 255, 0.05);
-  width: 75%;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
@@ -433,6 +434,9 @@ body .credit {
   transition: 200ms;
   border-radius: 6px;
   padding: 12px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .submit-area {
@@ -489,7 +493,9 @@ body .credit {
   -webkit-transform: scale(0.9);
           transform: scale(0.9);
   background: #212225;
-  width: 75%;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
@@ -503,6 +509,9 @@ body .credit {
   transition: 200ms;
   border-radius: 6px;
   padding: 12px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 #photo-window .inner-window {
@@ -652,25 +661,44 @@ h2 {
   margin-bottom: 0px;
 }
 
-.btn-primary {
-  position: absolute;
-  bottom: 0px;
-  margin: auto;
-  left: 0px;
-  right: 0px;
+.window-options {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 18px 30px 30px 30px;
   width: 100%;
+}
+
+.btn-primary {
   background: #66BB6A;
-  border-radius: 0px 6px 6px 0px;
-  height: 36px;
+  border-radius: 6;
   color: white;
+  height: 36px;
   border: solid 2px #66BB6A;
-  border-radius: 0px 0px 6px 6px;
   font-size: 14px;
+  font-weight: bold;
+  margin: 0px 12px 0px 0px;
 }
 
 .btn-primary:hover {
-  -webkit-filter: brightness(0.8);
-          filter: brightness(0.8);
+  -webkit-filter: brightness(0.6);
+          filter: brightness(0.6);
+}
+
+.btn-cancel {
+  background: transparent;
+  color: white;
+  border-color: transparent;
+}
+
+.btn-cancel:hover {
+  background: transparent;
 }
 
 .left-label {
