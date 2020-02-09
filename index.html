@@ -135,11 +135,19 @@
 
             <div id="photo-window" v-bind:class="[ photoWindowActive ? 'window-section-active' : 'window-section-inactive' ]">
                 <div class="inner-window-settings">
-                    <div class="photo-upload-inner">
-                        <h2>Upload photos (PNG, GIF, JPG, JPEG)</h2>
-                        <div class="photo-upload-inner">
-
+                    <div class="film-upload-container">
+                        <div class="upload-section final-film-section film-upload-section">
+                            <h2>Upload Photos (PNG, GIF, JPG, JPEG)</h2>
+                            <div class="film-inner">
+                                <ul>
+                                    <input @change="handlePhotoUpload" type="file" value="upload" class="fileButton" id="fileButtonFilm" />
+                                </ul>
+                            </div>
                         </div>
+                    </div>
+                    <div class="window-options">
+                        <button class="btn btn-primary" @click="addReel()">Add to portfolio</button>
+                        <button class="btn btn-primary btn-cancel" @click="toggleHome()">Cancel</button>
                     </div>
                 </div>
             </div>

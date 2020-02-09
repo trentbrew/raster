@@ -594,6 +594,7 @@ input[type="text"] {
 .fileButton {
   font-size: 12px;
   cursor: pointer;
+  margin-bottom: 12px;
 }
 
 .fileButton:hover::before {

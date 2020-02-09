@@ -223,7 +223,7 @@ new Vue({
             )
 
         },
-        /*handlePhotoUpload(e) {
+        handlePhotoUpload(e) {
             console.log("...handling photo upload");
 
             var parentObj = this;
@@ -266,7 +266,7 @@ new Vue({
             
             )
 
-        },*/
+        },
         handleFilmUpload(e) {
             console.log("...handling film upload for " + this.item.title);
 
