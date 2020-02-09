@@ -39,6 +39,7 @@ new Vue({
     el: "#app",
     firestore() {
         return {
+            photos: firebase.firestore().collection("photos"),
             filmReel: firebase.firestore().collection("filmReel"),
             items: firebase.firestore().collection("portfolioItems")
         }
@@ -51,9 +52,9 @@ new Vue({
             photoWindowActive: false,
             settingsWindowActive: false,
             auth: '',
-            photo: {
-                src: ""
-            },
+            photo: [
+                
+            ],
             reel: {
                 finalFilm: ""
             },
@@ -230,7 +231,7 @@ new Vue({
 
             var file = e.target.files[0];
 
-            var imgPath = this.item.title + "/" + file.name;
+            var imgPath = "Photos/" + file.name;
 
             //create a storage ref
             var storageRef = firebase.storage().ref(imgPath);
@@ -254,10 +255,9 @@ new Vue({
                     task.snapshot.ref.getDownloadURL().then(
                         function(downloadURL) {
                             console.log('File available at: ' + downloadURL)
-                            parentObj.item.screenGrabs.push(
+                            parentObj.photo.push(
                                 downloadURL + ""
                             );
-                            console.log('screenGrabs' + parentObj.item.screenGrabs);
                         }
                     )
 
