@@ -343,7 +343,7 @@ body {
         width: 100%;
         height: max-content;
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
         grid-gap: 18px;
 
         .photo-delete {
@@ -355,15 +355,15 @@ body {
             background: rgba(black, 0.8);
             text-align: center;
             font-weight:bold;
-            line-height: 112px;
+            line-height: 148px;
             color: $colorLink;
         }
 
         .photo {
             background: black;
             width: 100%;
-            height: 112px;
-            border-radius: 6px;
+            height: 148px;
+            border-radius: 3px;
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
@@ -378,17 +378,21 @@ body {
     }
 }
 
-.section-left {
+.section-photos {
     margin: 36px 30px 30px 30px;
     padding-top: 12px;
 }
 
-.section-right {
+.section-content {
     //background: $colorMain;
     width: 100%;
     padding-top: 48px;
     //padding: 30px;
     //margin-left: 560px;
+
+    h2 {
+        margin-left: 32px;
+    }
 }
 
 .content-blur-active {
@@ -780,6 +784,10 @@ progress {
     //border-radius: 24px;
 }
 
+.uploadDone {
+    background: green;
+}
+
 progress[value] {
     //background-color: $colorYellow;
 }
@@ -812,7 +820,8 @@ progress[value] {
     background: $colorDark;
     padding: 30px;
     margin: 30px;
-    margin-left: 0px;
+    //margin-left: 0px;
+    margin-right: 0px;
     border-radius: 6px;
 
     p {

@@ -52,6 +52,10 @@ new Vue({
             photoWindowActive: false,
             settingsWindowActive: false,
             auth: '',
+            uploadProgress: 0,
+            progressBuffer: [0,0],
+            //avgProgress: 0,
+            uploadDone: false,
             photoCount: 1,
             photo: {
                 src: "",
@@ -280,8 +284,29 @@ new Vue({
                 task[i].on('state_changed', 
                 
                     function progress(snapshot) {
-                        //var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                    //uploader.value = percentage;
+
+                        var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+
+                        var avgProgress;
+
+                        parentObj.progressBuffer[1] = percentage;
+
+                        if((i > 0)) {
+                            avgProgress = parentObj.progressBuffer[1] - parentObj.progressBuffer[0];
+                        }
+
+                        //when done, turn green
+                        if (percentage == 100) {
+                            parentObj.uploadDone = true;
+                        }
+
+                        parentObj.uploadProgress = percentage;
+
+                        parentObj.progressBuffer[0] = percentage;
+
+                        //uploader.value = percentage;
+
+                        console.log(percentage);
                     },
                     function error(err) {
                         
@@ -402,6 +427,8 @@ new Vue({
             this.reelWindowActive = false;
             this.homeActive = true;
             this.photoCount = 1;
+            this.uploadDone = false;
+            this.uploadProgress = 0;
         },
         toggleFilm() {
             //alert('Film section');

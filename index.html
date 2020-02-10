@@ -30,8 +30,8 @@
                 <div class="nav-center">
                     <ul>
                         <li @click="toggleHome()" class="nav-item" v-bind:class="[ homeActive ? 'nav-active' : 'nav-inactive' ]"><div class="nav-icon" id="nav-icon-home"></div><span>Dashboard</span></li>
-                        <li @click="togglePhoto()" class="nav-item" v-bind:class="[ photoWindowActive ? 'nav-active' : 'nav-inactive' ]"><div class="nav-icon" id="nav-icon-photo"></div><span>Add Photos</span></li>
                         <li @click="toggleFilm()" class="nav-item" v-bind:class="[ filmWindowActive || reelWindowActive ? 'nav-active' : 'nav-inactive' ]"><div class="nav-icon" id="nav-icon-film"></div><span>Add Film</span></li>
+                        <li @click="togglePhoto()" class="nav-item" v-bind:class="[ photoWindowActive ? 'nav-active' : 'nav-inactive' ]"><div class="nav-icon" id="nav-icon-photo"></div><span>Add Photos</span></li>
                     </ul>
                 </div>
                 <div class="nav-text">
@@ -105,6 +105,7 @@
                             </div>
                         </div>
                     </div>
+                    <br>
                     <div class="window-options">
                         <button class="btn btn-primary" @click="add()">Add to portfolio</button>
                         <button class="btn btn-primary btn-cancel" @click="toggleHome()">Cancel</button>
@@ -119,13 +120,14 @@
                             <h2>Upload Reel (mp4)</h2>
                             <div class="film-inner">
                                 <ul>
-                                    <progress style="transition: 200ms" value="0" max="100" id="uploader">0%
+                                    <progress style="transition: 200ms" :value="uploadProgress" max="100" id="uploader">0%
                                     </progress>
                                     <input @change="handleReelUpload" type="file" value="upload" class="fileButton" id="fileButtonFilm" />
                                 </ul>
                             </div>
                         </div>
                     </div>
+                    <br>
                     <div class="window-options">
                         <button class="btn btn-primary" @click="addReel()">Add to portfolio</button>
                         <button class="btn btn-primary btn-cancel" @click="toggleHome()">Cancel</button>
@@ -141,6 +143,7 @@
                             <div class="film-inner photo-inner">
                                 <ul>
                                     <li v-for="(p, index) in photoCount">
+                                        <progress style="transition: 200ms" :value="uploadProgress" max="100" id="uploader" v-bind:class="[ uploadDone ? 'uploadDone' : '' ]">0%</progress>
                                         <input @change="handlePhotoUpload" type="file" value="upload" class="fileButton" id="fileButtonPhotos" multiple/>
                                     </li>
                                     <button class="btn" @click="photoCount++">Add another photo</button>
@@ -148,6 +151,7 @@
                             </div>
                         </div>
                     </div>
+                    <br>
                     <div class="window-options">
                         <button class="btn btn-primary" @click="toggleHome()">Done</button>
                     </div>
@@ -161,7 +165,50 @@
             </div>
 
             <div class="content" v-bind:class="[ filmWindowActive || settingsWindowActive || photoWindowActive || reelWindowActive ? 'content-blur-active' : 'content-blur-inactive' ]">
-                <div class="section-left">
+                <div class="section-content">
+                        <h2>Films</h2>
+                        <ul class="list-group reel-container">
+                            <li class="list-group-item project-item" id="vid-reel">
+                                <button style="float: right" @click="toggleReel()" class="badge reel-badge">Replace</button>
+                                <div class="vid-section">
+                                    <video controls autoplay muted>
+                                        <source :src="filmReel[1].finalFilm" type="video/mp4" />
+                                    </video>
+                                    <div class="vid-text">
+                                        <h1>Film Reel</h1>
+                                        <strong><p style="opacity:0.5">Compilation</p></strong>
+                                        <p class="summary">Shown on the landing page of the site.</p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="list-group">
+                            <li class="list-group-item project-item" v-for="(i, index) in items" :id="'vid' + index">
+                                <button style="float: right" @click="remove(i)" class="badge">Remove</button>
+                                <div class="vid-section">
+                                    
+                                    <video controls autoplay muted>
+                                        <source :src="i.finalFilm" type="video/mp4" />
+                                    </video>
+                                    <div class="vid-text">
+                                        <h1>{{i.title}}</h1>
+                                        <strong><p style="opacity:0.5">{{i.genre}}</p></strong>
+                                        <p class="summary">{{i.summary}}</p>
+                                    </div>
+                                </div>
+                                <br>
+                                <ul style="display: inline-flex; list-style: none; padding: 0px" class="images">
+                                    <li v-for="(p, index) in i.screenGrabs">
+                                        <img :src="p" />
+                                    </li>
+                                </ul>
+                                <br>
+                                <p class="credit" style="display: inline-flex" v-for="(c, index) in i.credits"><span>{{c.role}}</span>&nbsp;<strong>{{c.name}}</strong>&nbsp;</p>
+                            </li>
+                        </ul>
+                </div>
+                
+                <div class="section-photos">
                     <h2>Photos</h2>
                     <div class="photos-container">
 
@@ -174,49 +221,6 @@
                         <h3 style="margin-left: 24px;font-weight: normal; font-size: 14px; opacity: 0.3; color: white" v-if="photos.length == 0">No photos uploaded.</h3>
 
                     </div>
-                </div>
-
-                <div class="section-right">
-                    <h2>Films</h2>
-                    <ul class="list-group reel-container">
-                        <li class="list-group-item project-item" id="vid-reel">
-                            <button style="float: right" @click="toggleReel()" class="badge reel-badge">Replace</button>
-                            <div class="vid-section">
-                                <video controls autoplay muted>
-                                    <source :src="filmReel[1].finalFilm" type="video/mp4" />
-                                </video>
-                                <div class="vid-text">
-                                    <h1>Film Reel</h1>
-                                    <strong><p style="opacity:0.5">Compilation</p></strong>
-                                    <p class="summary">Shown on the landing page of the site.</p>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                    <ul class="list-group">
-                        <li class="list-group-item project-item" v-for="(i, index) in items" :id="'vid' + index">
-                            <button style="float: right" @click="remove(i)" class="badge">Remove</button>
-                            <div class="vid-section">
-                                
-                                <video controls autoplay muted>
-                                    <source :src="i.finalFilm" type="video/mp4" />
-                                </video>
-                                <div class="vid-text">
-                                    <h1>{{i.title}}</h1>
-                                    <strong><p style="opacity:0.5">{{i.genre}}</p></strong>
-                                    <p class="summary">{{i.summary}}</p>
-                                </div>
-                            </div>
-                            <br>
-                            <ul style="display: inline-flex; list-style: none; padding: 0px" class="images">
-                                <li v-for="(p, index) in i.screenGrabs">
-                                    <img :src="p" />
-                                </li>
-                            </ul>
-                            <br>
-                            <p class="credit" style="display: inline-flex" v-for="(c, index) in i.credits"><span>{{c.role}}</span>&nbsp;<strong>{{c.name}}</strong>&nbsp;</p>
-                        </li>
-                    </ul>
                 </div>
             </div>
         

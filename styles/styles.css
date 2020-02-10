@@ -346,8 +346,8 @@ body .credit {
   height: max-content;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 1fr 1fr 1fr;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 18px;
 }
 
@@ -361,15 +361,15 @@ body .credit {
   background: rgba(0, 0, 0, 0.8);
   text-align: center;
   font-weight: bold;
-  line-height: 112px;
+  line-height: 148px;
   color: #ff7065;
 }
 
 .photos-container .grid-container .photo {
   background: black;
   width: 100%;
-  height: 112px;
-  border-radius: 6px;
+  height: 148px;
+  border-radius: 3px;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -380,14 +380,18 @@ body .credit {
   opacity: 1;
 }
 
-.section-left {
+.section-photos {
   margin: 36px 30px 30px 30px;
   padding-top: 12px;
 }
 
-.section-right {
+.section-content {
   width: 100%;
   padding-top: 48px;
+}
+
+.section-content h2 {
+  margin-left: 32px;
 }
 
 .content-blur-active {
@@ -738,6 +742,10 @@ progress {
   margin-bottom: 12px;
 }
 
+.uploadDone {
+  background: green;
+}
+
 /*.general-section {
     //background: $colorDark;
 
@@ -764,7 +772,7 @@ progress {
   background: #131417;
   padding: 30px;
   margin: 30px;
-  margin-left: 0px;
+  margin-right: 0px;
   border-radius: 6px;
 }
 
