@@ -52,9 +52,11 @@ new Vue({
             photoWindowActive: false,
             settingsWindowActive: false,
             auth: '',
-            photo: [
-                
-            ],
+            photoCount: 1,
+            photo: {
+                src: "",
+                timestamp: ""
+            },
             reel: {
                 finalFilm: ""
             },
@@ -71,7 +73,8 @@ new Vue({
                 ],
                 screenGrabs: [
                     ""
-                ]
+                ],
+                timestamp: ""
             }
         }
     },
@@ -95,6 +98,8 @@ new Vue({
             //signInSuccessUrl: 
             // Other config options...
         });*/
+
+        this.$firestore.photos.orderBy("timestamp")
     },
 
     created: function() {
@@ -117,7 +122,8 @@ new Vue({
                 ],
                 this.item.screenGrabs = [
                     ""
-                ]
+                ],
+                this.item.timestamp = Date.now()
 
                 //refresh page
                 setTimeout(function() {
@@ -136,6 +142,17 @@ new Vue({
                 setTimeout(function() {
                     document.location.reload();
                 });
+            })
+        },
+        addPhoto() {
+            console.log('adding new photo');
+            this.$firestore.photos.add(this.photo).then(()=>{
+
+                this.photo = {
+                    src: "",
+                    timestamp: ""
+                }
+
             })
         },
         remove(e) {
@@ -157,17 +174,42 @@ new Vue({
                 //alert("Project was not deleted");
             }
 
+            
 
-            /* ---------- TODO ---------- */
+        /* ---------- TODO ---------- */
 
 
-            /*for(let i = 0; i < e.screenGrabs.length; i++) {
-                firebase.storage().ref().child(e.imgPaths[i]).delete().then(function() {
-                    console.log("Image deleted successfully");
-                }).catch(function(error) {
-                    console.error("Image not deleted successfully");
-                });
-            }*/
+        /*for(let i = 0; i < e.screenGrabs.length; i++) {
+            firebase.storage().ref().child(e.imgPaths[i]).delete().then(function() {
+                console.log("Image deleted successfully");
+            }).catch(function(error) {
+                console.error("Image not deleted successfully");
+            });
+        }*/
+
+        },
+        removePhoto(e) {
+    
+            //deleting screenGrab directory in storage
+
+            console.log("target object: " + e.target);
+
+            if(confirm("Are you sure you want to delete this photo?")) {
+                //deleting item from database
+                this.$firestore.photos.doc(e['.key']).delete().then(
+                    function() {
+                        //alert("Photo deleted");     
+                    }
+                )
+            }
+            else {
+                //alert("Photo was not deleted");
+            }
+
+            //---------- TODO ----------
+
+            //recursively remove files from storage
+
         },
         newCredit() {
             this.item.credits.push(
@@ -228,44 +270,43 @@ new Vue({
             console.log("...handling photo upload");
 
             var parentObj = this;
+            var task = [];
 
-            var file = e.target.files[0];
-
-            var imgPath = "Photos/" + file.name;
-
-            //create a storage ref
-            var storageRef = firebase.storage().ref(imgPath);
-
-            //upload file
-            var task = storageRef.put(file);
-
-            //update progress bar
-            task.on('state_changed', 
+            for(let i = 0; i < e.target.files.length; i++) {
+                //uploads and all that jazz
+                task.push(firebase.storage().ref("Photos/" + e.target.files[i].name).put(e.target.files[i]));
             
-                function progress(snapshot) {
-                    //var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                   //uploader.value = percentage;
-                },
-                function error(err) {
-                    
-                },
-                function complete() {
-                    //console.log(storageRef.child(imgPath).getDownloadURL().getResults());
+                //update progress bar
+                task[i].on('state_changed', 
+                
+                    function progress(snapshot) {
+                        //var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    //uploader.value = percentage;
+                    },
+                    function error(err) {
+                        
+                    },
+                    function complete() {
+                        //console.log(storageRef.child(imgPath).getDownloadURL().getResults());
 
-                    task.snapshot.ref.getDownloadURL().then(
-                        function(downloadURL) {
-                            console.log('File available at: ' + downloadURL)
-                            parentObj.photo.push(
-                                downloadURL + ""
-                            );
-                        }
-                    )
-
-                    //console.log("screenGrabs: " + parentObj.item.screenGrabs);
-                }
-            
-            )
-
+                        task[i].snapshot.ref.getDownloadURL().then(
+                            function(downloadURL) {
+                                console.log('File available at: ' + downloadURL)
+                                
+                                parentObj.photo = {
+                                    src: downloadURL + "",
+                                    timestamp: Date.now()
+                                }
+                                console.log(parentObj.photo);
+                                //parentObj.photoCount++;
+                                //console.log(parentObj.photo);
+                                parentObj.addPhoto();
+                            }
+                        )
+                        //console.log("screenGrabs: " + parentObj.item.screenGrabs);
+                    }
+                )
+            }
         },
         handleFilmUpload(e) {
             console.log("...handling film upload for " + this.item.title);
@@ -360,6 +401,7 @@ new Vue({
             this.settingsWindowActive = false;
             this.reelWindowActive = false;
             this.homeActive = true;
+            this.photoCount = 1;
         },
         toggleFilm() {
             //alert('Film section');

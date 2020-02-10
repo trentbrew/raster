@@ -318,6 +318,7 @@ body {
     
 }
 
+
 .photo-upload-inner {
     h2 {
         color: white;
@@ -343,13 +344,36 @@ body {
         height: max-content;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
-        grid-gap: 12px;
+        grid-gap: 18px;
+
+        .photo-delete {
+            opacity: 0;
+            transition: 200ms;
+            background: 100%;
+            height: 100%;
+            margin: 0px;
+            background: rgba(black, 0.8);
+            text-align: center;
+            font-weight:bold;
+            line-height: 112px;
+            color: $colorLink;
+        }
 
         .photo {
             background: black;
             width: 100%;
             height: 112px;
             border-radius: 6px;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            cursor: pointer;
+
+            &:hover {
+                .photo-delete {
+                    opacity: 1;
+                }
+            }
         }
     }
 }
@@ -611,7 +635,7 @@ input[type="text"] {
 .fileButton {
     font-size: 12px;
     cursor: pointer;
-    margin-bottom: 12px;
+    margin-top: 6px;
 
     &:hover {
         &::before {
@@ -736,6 +760,12 @@ input[type="file"] {
 
 #fileButton:focus {
     
+}
+
+#fileButtonPhotos::before {
+    //background: red;
+
+    content: 'Choose files';
 }
 
 .left-label {

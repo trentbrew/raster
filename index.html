@@ -138,16 +138,18 @@
                     <div class="film-upload-container">
                         <div class="upload-section final-film-section film-upload-section">
                             <h2>Upload Photos (PNG, GIF, JPG, JPEG)</h2>
-                            <div class="film-inner">
+                            <div class="film-inner photo-inner">
                                 <ul>
-                                    <input @change="handlePhotoUpload" type="file" value="upload" class="fileButton" id="fileButtonFilm" />
+                                    <li v-for="(p, index) in photoCount">
+                                        <input @change="handlePhotoUpload" type="file" value="upload" class="fileButton" id="fileButtonPhotos" multiple/>
+                                    </li>
+                                    <button class="btn" @click="photoCount++">Add another photo</button>
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <div class="window-options">
-                        <button class="btn btn-primary" @click="addReel()">Add to portfolio</button>
-                        <button class="btn btn-primary btn-cancel" @click="toggleHome()">Cancel</button>
+                        <button class="btn btn-primary" @click="toggleHome()">Done</button>
                     </div>
                 </div>
             </div>
@@ -164,44 +166,12 @@
                     <div class="photos-container">
 
                         <div class="grid-container">
-                            <!--img v-for="(i, index) in photos" src="i.src" alt="i.caption"></img-->
-
-                            <div class="photo"><img src="" alt=""></div>
-                            <div class="photo"><img src="" alt=""></div>
-                            <div class="photo"><img src="" alt=""></div>
-                            <div class="photo"><img src="" alt=""></div>
-                            <div class="photo"><img src="" alt=""></div>
-                            <div class="photo"><img src="" alt=""></div>
-                            <div class="photo"><img src="" alt=""></div>
-                            <div class="photo"><img src="" alt=""></div>
-                            <div class="photo"><img src="" alt=""></div>
-                            <div class="photo"><img src="" alt=""></div>
-                            <div class="photo"><img src="" alt=""></div>
-                            <div class="photo"><img src="" alt=""></div>
-                            <div class="photo"><img src="" alt=""></div>
-                            <div class="photo"><img src="" alt=""></div>
-                            <div class="photo"><img src="" alt=""></div>
-                            <div class="photo"><img src="" alt=""></div>
-                            <div class="photo"><img src="" alt=""></div>
-                            <div class="photo"><img src="" alt=""></div>
-                            <div class="photo"><img src="" alt=""></div>
-                            <div class="photo"><img src="" alt=""></div>
-                            <div class="photo"><img src="" alt=""></div>
-                            <div class="photo"><img src="" alt=""></div>
-                            <div class="photo"><img src="" alt=""></div>
-                            <div class="photo"><img src="" alt=""></div>
-                            <div class="photo"><img src="" alt=""></div>
-                            <div class="photo"><img src="" alt=""></div>
-                            <div class="photo"><img src="" alt=""></div>
-                            <div class="photo"><img src="" alt=""></div>
-                            <div class="photo"><img src="" alt=""></div>
-                            <div class="photo"><img src="" alt=""></div>
-                            <div class="photo"><img src="" alt=""></div>
-                            <div class="photo"><img src="" alt=""></div>
-                            <div class="photo"><img src="" alt=""></div>
-                            <div class="photo"><img src="" alt=""></div>
-
+                            <div class="photo" @click="removePhoto(p)" v-for="(p, index) in photos" v-bind:style="{ backgroundImage: 'url(' + p.src + ')' }">
+                                <div class="photo-delete">Remove</div>
+                            </div>
                         </div>
+
+                        <h3 style="margin-left: 24px;font-weight: normal; font-size: 14px; opacity: 0.3; color: white" v-if="photos.length == 0">No photos uploaded.</h3>
 
                     </div>
                 </div>
