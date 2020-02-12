@@ -36,7 +36,7 @@
                 </div>
                 <div class="nav-text">
                     <ul>
-                        <li @click="toggleSettings()" class="nav-item" id="nav-item-settings" v-bind:class="[ settingsWindowActive ? 'nav-active' : 'nav-inactive' ]"><div class="nav-icon" id="nav-icon-settings"></div>Settings</li>
+                        <li @click="toggleSettings()" class="nav-item" id="nav-item-settings" v-bind:class="[ settingsWindowActive ? 'nav-active' : 'nav-inactive' ]"><div class="nav-icon" id="nav-icon-settings"></div>Profile</li>
                         <a class="live-site-button" href="https://tbrew1023.github.io/Nihal-Public" target="_blank"><li><span>View Live Site</span></li></a>
                     </ul>
                 </div>
@@ -63,8 +63,6 @@
                                 </div>
                             </div>
                         </div>
-    
-                        
     
                         <div class="credits-section film-upload-section">
                             <h2>Credits</h2>
@@ -98,8 +96,7 @@
                             <h2>Upload final film (mp4)</h2>
                             <div class="film-inner">
                                 <ul>
-                                    <progress style="transition: 200ms" value="0" max="100" id="uploader">0%
-                                    </progress>
+                                    <progress style="transition: 200ms" :value="uploadProgress" max="100" id="uploader" v-bind:class="[ uploadDone ? 'uploadDone' : '' ]">0%</progress>
                                     <input @change="handleFilmUpload" type="file" value="upload" class="fileButton" id="fileButtonFilm" />
                                 </ul>
                             </div>
@@ -107,7 +104,7 @@
                     </div>
                     <br>
                     <div class="window-options">
-                        <button class="btn btn-primary" @click="add()">Add to portfolio</button>
+                        <button class="btn btn-primary" @click="add()">Add to Portfolio</button>
                         <button class="btn btn-primary btn-cancel" @click="toggleHome()">Cancel</button>
                     </div>
                 </div>
@@ -120,8 +117,7 @@
                             <h2>Upload Reel (mp4)</h2>
                             <div class="film-inner">
                                 <ul>
-                                    <progress style="transition: 200ms" :value="uploadProgress" max="100" id="uploader">0%
-                                    </progress>
+                                    <progress style="transition: 200ms" :value="uploadProgress" max="100" id="uploader" v-bind:class="[ uploadDone ? 'uploadDone' : '' ]">0%</progress>
                                     <input @change="handleReelUpload" type="file" value="upload" class="fileButton" id="fileButtonFilm" />
                                 </ul>
                             </div>
@@ -159,8 +155,19 @@
             </div>
 
             <div id="settings-window" v-bind:class="[ settingsWindowActive ? 'window-section-active' : 'window-section-inactive' ]">
-                <div class="inner-window-settings">
-
+                <div class="inner-window-settings settings-container">
+                    <div class="profile-upload" v-bind:style="{ backgroundImage: 'url(' + bio[0].photo + ')' }">
+                        <input @change="handleProfileUpload" type="file" value="upload" class="profileImgUpload" id="fileButtonFilm" />
+                        <div class="replace-veil"><span>Replace</span></div>
+                    </div>
+                    <label>New Bio</label>
+                    <br>
+                    <textarea v-model="newBio.text"></textarea>
+                    <br>
+                    <div class="window-options">
+                        <button class="btn btn-primary" @click="addBio()">Update Profile</button>
+                        <button class="btn btn-primary btn-cancel" @click="toggleHome()">Cancel</button>
+                    </div>
                 </div>
             </div>
 
@@ -171,8 +178,8 @@
                             <li class="list-group-item project-item" id="vid-reel">
                                 <button style="float: right" @click="toggleReel()" class="badge reel-badge">Replace</button>
                                 <div class="vid-section">
-                                    <video controls autoplay muted>
-                                        <source :src="filmReel[1].finalFilm" type="video/mp4" />
+                                    <video controls muted>
+                                        <source :src="filmReel[0].finalFilm" type="video/mp4" />
                                     </video>
                                     <div class="vid-text">
                                         <h1>Film Reel</h1>
@@ -213,9 +220,9 @@
                     <div class="photos-container">
 
                         <div class="grid-container">
-                            <div class="photo" @click="removePhoto(p)" v-for="(p, index) in photos" v-bind:style="{ backgroundImage: 'url(' + p.src + ')' }">
+                            <!--div class="photo" @click="removePhoto(p)" v-for="(p, index) in photos" v-bind:style="{ backgroundImage: 'url(' + p.src + ')' }">
                                 <div class="photo-delete">Remove</div>
-                            </div>
+                            </div-->
                         </div>
 
                         <h3 style="margin-left: 24px;font-weight: normal; font-size: 14px; opacity: 0.3; color: white" v-if="photos.length == 0">No photos uploaded.</h3>

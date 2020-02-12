@@ -1,7 +1,7 @@
 // Change the configurations.  
 
 //lazy login
-const lazy = '0106';
+var lazy = '0106';
 
 console.log(document.body.style.opacity = 1);
 
@@ -32,6 +32,8 @@ const firestore = firebase.firestore();
 const settings = {/* your settings... */ timestampsInSnapshots: true};
 firestore.settings(settings);
 
+firebase.firestore().collection("bio").orderBy("timestamp");
+
 // Initialize the FirebaseUI Widget using Firebase.
 //var ui = new firebaseui.auth.AuthUI(firebase.auth());
 
@@ -39,6 +41,7 @@ new Vue({
     el: "#app",
     firestore() {
         return {
+            bio: firebase.firestore().collection("bio"),
             photos: firebase.firestore().collection("photos"),
             filmReel: firebase.firestore().collection("filmReel"),
             items: firebase.firestore().collection("portfolioItems")
@@ -54,6 +57,11 @@ new Vue({
             auth: '',
             uploadProgress: 0,
             progressBuffer: [0,0],
+            newBio: {
+                timestamp: "",
+                photo: "",
+                text: ""
+            },
             //avgProgress: 0,
             uploadDone: false,
             photoCount: 1,
@@ -103,7 +111,8 @@ new Vue({
             // Other config options...
         });*/
 
-        this.$firestore.photos.orderBy("timestamp")
+        this.$firestore.photos.orderBy("timestamp");
+
     },
 
     created: function() {
@@ -136,9 +145,8 @@ new Vue({
             })
         },
         addReel() {
-            console.log('clicked')
             console.log(this.items)
-            this.$firestore.filmReel.add(this.reel).then(()=>{
+            this.$firestore.filmReel.doc("reel").set(this.reel).then(()=>{
 
                 this.reel.finalFilm = ""
 
@@ -149,7 +157,6 @@ new Vue({
             })
         },
         addPhoto() {
-            console.log('adding new photo');
             this.$firestore.photos.add(this.photo).then(()=>{
 
                 this.photo = {
@@ -157,6 +164,16 @@ new Vue({
                     timestamp: ""
                 }
 
+            })
+        },
+        addBio() {
+            console.log('adding new bio');
+
+            this.newBio.timestamp = Date.now();
+
+            this.$firestore.bio.doc("bio").set(this.newBio).then(()=>{
+                alert("Profile updated");
+                this.toggleHome();
             })
         },
         remove(e) {
@@ -354,9 +371,12 @@ new Vue({
                 function progress(snapshot) {
                     var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                     uploader.value = percentage;
+                    
+                    parentObj.uploadProgress = percentage;
 
                     if(percentage == 100) {
                         //uploader.style.background = "#66BB6A";
+                        parentObj.uploadDone = true;
                     }
                 },
                 function error(err) {
@@ -397,6 +417,51 @@ new Vue({
             
                 function progress(snapshot) {
                     var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    //uploader.value = percentage;
+
+                    parentObj.uploadProgress = percentage;
+
+                    if(percentage == 100) {
+                        //uploader.style.background = "#66BB6A";
+                        parentObj.uploadDone = true;
+                    }
+                },
+                function error(err) {
+                    
+                },
+                function complete() {
+                    //console.log(storageRef.child(imgPath).getDownloadURL().getResults());
+
+                    task.snapshot.ref.getDownloadURL().then(
+                        function(downloadURL) {
+                            console.log('File available at: ' + downloadURL)
+                            parentObj.reel.finalFilm = downloadURL + ""
+                        }
+                    )
+                }
+            )
+        },
+
+        handleProfileUpload(e) {
+            console.log("...handling profile upload");
+
+            var parentObj = this;
+
+            var file = e.target.files[0];
+
+            var path = "Profile/" + file.name;
+
+            //create a storage ref
+            var storageRef = firebase.storage().ref(path);
+
+            //upload file
+            var task = storageRef.put(file);
+
+            //update progress bar
+            task.on('state_changed', 
+            
+                function progress(snapshot) {
+                    var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                     uploader.value = percentage;
 
                     if(percentage == 100) {
@@ -411,8 +476,9 @@ new Vue({
 
                     task.snapshot.ref.getDownloadURL().then(
                         function(downloadURL) {
-                            console.log('File available at: ' + downloadURL)
-                            parentObj.reel.finalFilm = downloadURL + ""
+                            console.log('File available at: ' + downloadURL);
+                            parentObj.newBio.photo = downloadURL + "";
+                            e.target.parentElement.style.backgroundImage = "url(" + downloadURL + ")";
                         }
                     )
                 }
