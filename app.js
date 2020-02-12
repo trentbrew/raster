@@ -54,6 +54,7 @@ new Vue({
             filmWindowActive: false,
             photoWindowActive: false,
             settingsWindowActive: false,
+            showPhotos: false,
             auth: '',
             uploadProgress: 0,
             progressBuffer: [0,0],
@@ -117,8 +118,18 @@ new Vue({
 
     created: function() {
         console.log('after authentication');
+        
+        this.setBio();
+
+        //this.newBio.text = firebase.firestore().bio.doc("bio").text;
     },
     methods: {
+        setBio() {
+            this.$firestore.bio.doc("bio").get().then((doc)=>{
+                this.newBio.text = doc.data().text;
+                this.newBio.photo = doc.data().photo;
+            });
+        },
         add() {
             console.log('clicked')
             console.log(this.items)
@@ -495,6 +506,7 @@ new Vue({
             this.photoCount = 1;
             this.uploadDone = false;
             this.uploadProgress = 0;
+            this.item.credits = [""];
         },
         toggleFilm() {
             //alert('Film section');
