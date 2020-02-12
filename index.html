@@ -219,7 +219,7 @@
                 </div>
                 
                 <div class="section-photos">
-                    <h2>Photos</h2>
+                    <h2 class="photo-header" @click="showPhotos = !showPhotos">Photos</h2>
                     <div class="photos-container">
 
                         <div class="grid-container">
@@ -228,7 +228,7 @@
                             </div>
                         </div>
 
-                        <h3 style="margin-left: 24px;font-weight: normal; font-size: 14px; opacity: 0.3; color: white" v-if="photos.length == 0">No photos uploaded.</h3>
+                        <h3 style="margin-left: 24px;font-weight: normal; font-size: 14px; opacity: 0.3; color: white" v-if="photos.length == 0 || !showPhotos">No photos uploaded.</h3>
 
                     </div>
                 </div>
