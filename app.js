@@ -54,7 +54,7 @@ new Vue({
             filmWindowActive: false,
             photoWindowActive: false,
             settingsWindowActive: false,
-            showPhotos: false,
+            showPhotos: true,
             auth: '',
             uploadProgress: 0,
             progressBuffer: [0,0],
@@ -68,6 +68,7 @@ new Vue({
             photoCount: 1,
             photo: {
                 src: "",
+                srcSmall: "",
                 timestamp: ""
             },
             reel: {
@@ -305,13 +306,12 @@ new Vue({
             var task = [];
 
             for(let i = 0; i < e.target.files.length; i++) {
-                //uploads and all that jazz
+                //push file into storage
                 task.push(firebase.storage().ref("Photos/" + e.target.files[i].name).put(e.target.files[i]));
             
-                //update progress bar
-                task[i].on('state_changed', 
-                
-                    function progress(snapshot) {
+                //update progress bar and handle onComplete
+                task[i].on('state_changed', function progress(snapshot) {
+
 
                         var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
 
@@ -495,7 +495,12 @@ new Vue({
                 }
             )
         },
+        //----------COMPRESSION METHODS----------
+        iamgeCompression() {
 
+        },
+
+        //----------END OF COMPRESSION METHODS----------
         toggleHome() {
             //alert('Home');
             this.filmWindowActive = false;
