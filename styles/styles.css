@@ -698,14 +698,23 @@ input[type="text"] {
   display: flex;
 }
 
+.edit::before {
+  content: 'o boy';
+  background: red;
+  width: 700px;
+  height: 700px;
+  position: absolute;
+  top: 0px;
+}
+
 .edit-title {
   font-size: 32px;
   width: 100% !important;
   border: 2px solid transparent !important;
   background: #131417 !important;
   padding-left: 12px;
-  -webkit-transition: 200ms;
-  transition: 200ms;
+  -webkit-transition: 100ms;
+  transition: 100ms;
 }
 
 .edit-title:hover {
@@ -719,8 +728,8 @@ input[type="text"] {
   background: #131417 !important;
   padding-left: 6px;
   color: rgba(255, 255, 255, 0.5) !important;
-  -webkit-transition: 200ms;
-  transition: 200ms;
+  -webkit-transition: 100ms;
+  transition: 100ms;
 }
 
 .edit-genre:hover {
@@ -738,13 +747,33 @@ input[type="text"] {
   height: 100px;
   margin-top: 6px;
   resize: none;
-  -webkit-transition: 200ms;
-  transition: 200ms;
+  -webkit-transition: 100ms;
+  transition: 100ms;
+  line-height: 1.5;
 }
 
 .edit-summary:hover {
   border: 2px solid white !important;
   resize: auto;
+}
+
+.update-inactive {
+  opacity: 0.3;
+  pointer-events: none;
+  margin-right: 18px;
+  border-color: white !important;
+  color: white !important;
+}
+
+.update-active {
+  opacity: 1;
+  margin-right: 18px;
+  border-color: white !important;
+  color: white !important;
+}
+
+.update-active:hover {
+  background: white !important;
 }
 
 .general-section, .credits-section, .final-film-section, .screengrabs-section {
@@ -983,6 +1012,10 @@ progress {
   display: inline-flex;
 }
 
+.project-item .vid-section .vid-text {
+  max-width: 500px;
+}
+
 .project-item video {
   border-radius: 6px;
   margin-right: 30px;
@@ -1004,7 +1037,6 @@ progress {
 }
 
 .summary {
-  max-width: 512px;
   font-weight: normal;
 }
 

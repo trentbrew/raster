@@ -705,7 +705,13 @@ input[type="text"] {
     //line-height: 30px;
 }
 
-.edit::after {
+.edit::before {
+    content: 'o boy';
+    background: red;
+    width: 700px;
+    height: 700px;
+    position: absolute;
+    top: 0px;
 
 }
 
@@ -716,7 +722,7 @@ input[type="text"] {
     border: 2px solid transparent !important;
     background: $colorDark !important;
     padding-left: 12px;
-    transition: 200ms;
+    transition: 100ms;
 
     &:hover {
         border: 2px solid white !important;
@@ -732,7 +738,7 @@ input[type="text"] {
     background: $colorDark !important;
     padding-left: 6px;
     color: rgba(#fff, 0.5) !important;
-    transition: 200ms;
+    transition: 100ms;
 
     &:hover {
         border: 2px solid white !important;
@@ -752,7 +758,8 @@ input[type="text"] {
     height: 100px;
     margin-top: 6px;
     resize: none;
-    transition: 200ms;
+    transition: 100ms;
+    line-height: 1.5;
 
     &:hover {
         border: 2px solid white !important;
@@ -760,6 +767,30 @@ input[type="text"] {
         //background:black !important;
     }
 }
+
+
+//---------- UPDATE STUFF ----------
+
+.update-inactive {
+    opacity: 0.3;
+    pointer-events: none;
+    margin-right: 18px;
+    border-color: white !important;
+    color: white !important;
+}
+
+.update-active {
+    opacity: 1;
+    margin-right: 18px;
+    border-color: white !important;
+    color: white !important;
+
+    &:hover {
+        background: white !important;
+    }
+}
+
+//---------- GENERAL JAZZ ----------
 
 .general-section, .credits-section, .final-film-section, .screengrabs-section {
     background: rgba(white, 0.1) !important;
@@ -1037,6 +1068,10 @@ progress[value] {
 
     .vid-section {
         display: inline-flex;
+
+        .vid-text {
+            max-width: 500px;
+        }
     }
 
     video {
@@ -1061,7 +1096,7 @@ progress[value] {
 }
 
 .summary {
-    max-width: 512px;
+    //max-width: 512px;
     font-weight: normal;
 }
 

@@ -194,18 +194,18 @@
                         </ul>
                         <ul class="list-group">
                             <li class="list-group-item project-item" v-for="(i, index) in items" :id="'vid' + index">
+
                                 <button style="float: right" @click="remove(i)" class="badge">Remove</button>
+                                <button style="float: right" @click="updateProject(i)" class="badge" v-bind:class="( updateActive ? 'reel-badge update-active' : 'update-inactive' )">Update</button>
                                 <div class="vid-section">
                                     
-                                    <video controls autoplay muted>
+                                    <video controls muted>
                                         <source :src="i.finalFilm" type="video/mp4" />
                                     </video>
                                     <div class="vid-text">
-                                        <div class="input-container">
-                                            <input type="text" class="edit-title edit" v-model="stagedItems[index].title"></input>
-                                        </div>
-                                        <input type="text" class="edit-genre edit" v-model="stagedItems[index].genre"></input>
-                                        <textarea v-model="stagedItems[index].summary" class="summary edit-summary edit"></textarea>
+                                        <input type="text" class="edit-title edit" v-model="stagedItems[index].title" @change="showUpdate"></input>
+                                        <input type="text" class="edit-genre edit" v-model="stagedItems[index].genre" onchange="showUpdate"></input>
+                                        <textarea v-model="stagedItems[index].summary" class="summary edit-summary edit" onchange="showUpdate"></textarea>
                                     </div>
                                 </div>
                                 <br>

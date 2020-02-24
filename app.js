@@ -55,6 +55,7 @@ new Vue({
             photoWindowActive: false,
             settingsWindowActive: false,
             showPhotos: false,
+            updateActive: false,
             auth: '',
             uploadProgress: 0,
             progressBuffer: [0,0],
@@ -204,8 +205,13 @@ new Vue({
                 this.toggleHome();
             })
         },
-        updateProject() {
-            console.log("updated project");
+        showUpdate() {
+            console.log("READY TO UPDATE");
+
+            this.updateActive = !this.updateActive;
+        },
+        updateProject(e) {
+            console.log("updated " + this.e.title);
         },
         remove(e) {
             console.log(e.screenGrabs);
