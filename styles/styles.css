@@ -335,7 +335,6 @@ body .credit {
   color: #eee;
   margin-top: 20px;
   border-radius: 6px;
-  width: 480px;
   padding: 30px;
 }
 
@@ -346,8 +345,8 @@ body .credit {
   height: max-content;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 1fr 1fr 1fr;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 18px;
 }
 
@@ -361,24 +360,36 @@ body .credit {
   background: rgba(0, 0, 0, 0.6);
   text-align: center;
   font-weight: bold;
-  line-height: 100px;
+  line-height: 150px;
   color: #ff7065;
+  z-index: 6;
 }
 
 .photos-container .grid-container .photo {
-  background: black;
+  background: rgba(0, 0, 0, 0.6);
   /* PUT LOADER HERE */
-  width: 100%;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   border-radius: 3px;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   cursor: pointer;
+  z-index: 5;
+}
+
+.photos-container .grid-container .photo img {
+  position: absolute;
+  z-index: -1;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 3px;
+  height: 150px;
 }
 
 .photos-container .grid-container .photo:hover .photo-delete {
-  opacity: 1;
+  opacity: 1 !important;
+  z-index: 10;
 }
 
 .section-photos {
@@ -513,7 +524,20 @@ body .credit {
   width: 150px;
   height: 150px;
   margin-top: -150px;
-  z-index: -1;
+  z-index: -2;
+}
+
+.photo-load-veil-small {
+  position: absolute;
+  background: transparent;
+  pointer-events: none;
+  width: 150px;
+  height: 150px;
+  margin-top: -150px;
+  z-index: -2;
+  opacity: 0.2;
+  -webkit-transform: scale(0.6);
+          transform: scale(0.6);
 }
 
 .lds-ring {
@@ -536,7 +560,7 @@ body .credit {
   width: 64px;
   height: 64px;
   margin: 8px;
-  border: 8px solid #fff;
+  border: 4px solid #fff;
   border-radius: 50%;
   -webkit-animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
           animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
