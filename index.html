@@ -201,9 +201,11 @@
                                         <source :src="i.finalFilm" type="video/mp4" />
                                     </video>
                                     <div class="vid-text">
-                                        <h1>{{i.title}}</h1>
-                                        <strong><p style="opacity:0.5">{{i.genre}}</p></strong>
-                                        <p class="summary">{{i.summary}}</p>
+                                        <div class="input-container">
+                                            <input type="text" class="edit-title edit" v-model="stagedItems[index].title"></input>
+                                        </div>
+                                        <input type="text" class="edit-genre edit" v-model="stagedItems[index].genre"></input>
+                                        <textarea v-model="stagedItems[index].summary" class="summary edit-summary edit"></textarea>
                                     </div>
                                 </div>
                                 <br>

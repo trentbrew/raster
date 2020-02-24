@@ -335,7 +335,7 @@ body {
     //padding: 0px;
     border-radius: 6px;
     //height: 700px;
-    //width: 480px;
+    min-width: 360px;
     padding: 30px;
 
     .grid-container {
@@ -413,7 +413,7 @@ body {
 
 .content-blur-active {
     transition: 200ms;
-    filter: blur(36px) brightness(0.7);
+    filter: blur(24px) brightness(0.7);
 }
 
 .content-blur-inactive {
@@ -693,8 +693,72 @@ input[type="text"] {
     margin-bottom: 6px;
     margin-top: 6px;
     color: white;
-    transition: 200ms;
+    //transition: 200ms;
     width: 90px;
+}
+
+//---------- project update stuff ----------
+
+.input-container {
+    //background: red;
+    display: flex;
+    //line-height: 30px;
+}
+
+.edit::after {
+
+}
+
+.edit-title {
+    font-size: 32px;
+    //border-radius: 6px;
+    width: 100% !important;
+    border: 2px solid transparent !important;
+    background: $colorDark !important;
+    padding-left: 12px;
+    transition: 200ms;
+
+    &:hover {
+        border: 2px solid white !important;
+        //background:black !important;
+    }
+}
+
+.edit-genre {
+    font-size: 16px;
+    //border-radius: 6px;
+    width: 100% !important;
+    border: 2px solid transparent !important;
+    background: $colorDark !important;
+    padding-left: 6px;
+    color: rgba(#fff, 0.5) !important;
+    transition: 200ms;
+
+    &:hover {
+        border: 2px solid white !important;
+        //background:black !important;
+    }
+}
+
+.edit-summary {
+    font-size: 16px;
+    //border-radius: 6px;
+    width: 100% !important;
+    border: 2px solid transparent !important;
+    background: $colorDark !important;
+    padding-left: 6px;
+    color: white;
+    font-family: inherit;
+    height: 100px;
+    margin-top: 6px;
+    resize: none;
+    transition: 200ms;
+
+    &:hover {
+        border: 2px solid white !important;
+        resize: auto;
+        //background:black !important;
+    }
 }
 
 .general-section, .credits-section, .final-film-section, .screengrabs-section {

@@ -5,7 +5,7 @@ var lazy = '0106';
 
 console.log(document.body.style.opacity = 1);
 
-if(prompt('Enter pin:') == lazy) {
+if(/*prompt('Enter pin:') == lazy*/true) {
     var config = {
         apiKey: "AIzaSyCHpz4ty7srkDV3AiUDZJLFEOfYGLMpqUM",
         authDomain: "nihal-819a6.firebaseapp.com",
@@ -54,7 +54,7 @@ new Vue({
             filmWindowActive: false,
             photoWindowActive: false,
             settingsWindowActive: false,
-            showPhotos: true,
+            showPhotos: false,
             auth: '',
             uploadProgress: 0,
             progressBuffer: [0,0],
@@ -63,6 +63,7 @@ new Vue({
                 photo: "",
                 text: ""
             },
+            stagedItems: [], //array of staged objects
             //avgProgress: 0,
             uploadDone: false,
             photoCount: 1,
@@ -121,6 +122,7 @@ new Vue({
         console.log('after authentication');
         
         this.setBio();
+        this.setItems();
 
         //this.newBio.text = firebase.firestore().bio.doc("bio").text;
     },
@@ -129,6 +131,20 @@ new Vue({
             this.$firestore.bio.doc("bio").get().then((doc)=>{
                 this.newBio.text = doc.data().text;
                 this.newBio.photo = doc.data().photo;
+            });
+        },
+        setItems() {
+            this.$firestore.items.get().then((collection) => {
+                //console.log(collection.docs);
+                for(let i = 0; i < collection.docs.length; i++) {
+                    //console.log(collection.docs[i].data().title);
+                
+                    //----- adding in dynamic data for project update forms -----
+
+                    this.stagedItems.push(collection.docs[i].data());
+                }
+
+                console.log(this.stagedItems[0].title.length);
             });
         },
         add() {
@@ -187,6 +203,9 @@ new Vue({
                 alert("Profile updated");
                 this.toggleHome();
             })
+        },
+        updateProject() {
+            console.log("updated project");
         },
         remove(e) {
             console.log(e.screenGrabs);
