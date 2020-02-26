@@ -5,7 +5,7 @@ var lazy = '0106';
 
 console.log(document.body.style.opacity = 1);
 
-if(/*prompt('Enter pin:') == lazy*/true) {
+if(prompt('Enter pin:') == lazy) {
     var config = {
         apiKey: "AIzaSyCHpz4ty7srkDV3AiUDZJLFEOfYGLMpqUM",
         authDomain: "nihal-819a6.firebaseapp.com",
@@ -143,6 +143,7 @@ new Vue({
                     //----- adding in dynamic data for project update forms -----
 
                     this.stagedItems.push(collection.docs[i].data());
+                    //this.updateActive[i].push();
                 }
 
                 console.log(this.stagedItems[0].title.length);
@@ -208,7 +209,7 @@ new Vue({
         showUpdate() {
             console.log("READY TO UPDATE");
 
-            this.updateActive = !this.updateActive;
+            this.updateActive = true;
         },
         updateProject(e) {
             console.log("updated " + this.e.title);

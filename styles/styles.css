@@ -698,67 +698,83 @@ input[type="text"] {
   display: flex;
 }
 
-.edit::before {
-  content: 'o boy';
+.update-form-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-radius: 3px;
+  -webkit-transition: 200ms;
+  transition: 200ms;
+  margin-bottom: 12px;
+}
+
+.update-form-container:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.update-form-container:hover .edit-icon {
+  width: 24px;
+  height: 24px;
+  opacity: 1;
+  -webkit-transform: scale(1) translate(-14px, -10px);
+          transform: scale(1) translate(-14px, -10px);
+}
+
+.update-form-container input:focus {
   background: red;
-  width: 700px;
-  height: 700px;
-  position: absolute;
-  top: 0px;
+}
+
+.edit {
+  border-radius: 0px 3px 3px 3px;
+  background: transparent !important;
+  margin: 0px !important;
+  -webkit-transition: 200ms;
+  transition: 200ms;
+  width: 100% !important;
+  padding: 6px 12px 6px 12px !important;
+}
+
+.edit-icon {
+  background: white;
+  border-radius: 30px;
+  width: 24px;
+  height: 24px;
+  -webkit-transition: 200ms;
+  transition: 200ms;
+  opacity: 0;
+  margin-right: -24px;
+  background-image: url("../res/create-24px.svg");
+  background-size: 80%;
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-transform: scale(0.7) translate(-18px, -10px);
+          transform: scale(0.7) translate(-18px, -10px);
 }
 
 .edit-title {
   font-size: 32px;
-  width: 100% !important;
-  border: 2px solid transparent !important;
-  background: #131417 !important;
   padding-left: 12px;
-  -webkit-transition: 100ms;
-  transition: 100ms;
-}
-
-.edit-title:hover {
-  border: 2px solid white !important;
 }
 
 .edit-genre {
   font-size: 16px;
-  width: 100% !important;
-  border: 2px solid transparent !important;
-  background: #131417 !important;
-  padding-left: 6px;
   color: rgba(255, 255, 255, 0.5) !important;
-  -webkit-transition: 100ms;
-  transition: 100ms;
-}
-
-.edit-genre:hover {
-  border: 2px solid white !important;
 }
 
 .edit-summary {
   font-size: 16px;
-  width: 100% !important;
-  border: 2px solid transparent !important;
-  background: #131417 !important;
-  padding-left: 6px;
   color: white;
   font-family: inherit;
   height: 100px;
   margin-top: 6px;
   resize: none;
-  -webkit-transition: 100ms;
-  transition: 100ms;
   line-height: 1.5;
-}
-
-.edit-summary:hover {
-  border: 2px solid white !important;
-  resize: auto;
+  border: none;
+  padding-right: 32px !important;
 }
 
 .update-inactive {
-  opacity: 0.3;
+  opacity: 0.2;
   pointer-events: none;
   margin-right: 18px;
   border-color: white !important;
@@ -774,6 +790,7 @@ input[type="text"] {
 
 .update-active:hover {
   background: white !important;
+  color: black;
 }
 
 .general-section, .credits-section, .final-film-section, .screengrabs-section {
@@ -1013,7 +1030,7 @@ progress {
 }
 
 .project-item .vid-section .vid-text {
-  max-width: 500px;
+  max-width: 640px;
 }
 
 .project-item video {

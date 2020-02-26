@@ -699,84 +699,96 @@ input[type="text"] {
 
 //---------- project update stuff ----------
 
+$iconDims: 24px;
+
 .input-container {
     //background: red;
     display: flex;
     //line-height: 30px;
 }
 
-.edit::before {
-    content: 'o boy';
-    background: red;
-    width: 700px;
-    height: 700px;
-    position: absolute;
-    top: 0px;
+.update-form-container {
+    display: flex;
+    border-radius: 3px;
+    transition: 200ms;
+    margin-bottom: 12px;
+    //width: calc(100% + 28px) !important;
+    //align-items: center;
+    //background:blue;
 
+    &:hover {
+        background: rgba(white, 0.1);
+        .edit-icon {
+            width: $iconDims;
+            height: $iconDims;
+            //margin-left: 12px;
+            opacity: 1;
+            transform: scale(1) translate(-14px, -10px);
+        }
+    }
+
+    input:focus {
+        background: red;
+    }
+}
+
+.edit {
+    border-radius: 0px 3px 3px 3px;
+    background: transparent !important;
+    margin: 0px !important;
+    transition: 200ms;
+    width: 100% !important;
+    padding: 6px 12px 6px 12px !important;
+}
+
+.edit-icon {
+    background: white;
+    border-radius: 30px;
+    width: $iconDims;
+    height: $iconDims;
+    transition:200ms;
+    opacity: 0;
+    //transform: translateX(24px);
+    margin-right: -$iconDims;
+    background-image: url("../res/create-24px.svg");
+    background-size: 80%;
+    background-position: center;
+    background-repeat: no-repeat;
+    transform: scale(0.7) translate(-18px, -10px);
 }
 
 .edit-title {
     font-size: 32px;
-    //border-radius: 6px;
-    width: 100% !important;
-    border: 2px solid transparent !important;
-    background: $colorDark !important;
     padding-left: 12px;
-    transition: 100ms;
-
-    &:hover {
-        border: 2px solid white !important;
-        //background:black !important;
-    }
 }
 
 .edit-genre {
     font-size: 16px;
-    //border-radius: 6px;
-    width: 100% !important;
-    border: 2px solid transparent !important;
-    background: $colorDark !important;
-    padding-left: 6px;
     color: rgba(#fff, 0.5) !important;
-    transition: 100ms;
-
-    &:hover {
-        border: 2px solid white !important;
-        //background:black !important;
-    }
 }
 
 .edit-summary {
     font-size: 16px;
-    //border-radius: 6px;
-    width: 100% !important;
-    border: 2px solid transparent !important;
-    background: $colorDark !important;
-    padding-left: 6px;
     color: white;
     font-family: inherit;
     height: 100px;
     margin-top: 6px;
     resize: none;
-    transition: 100ms;
     line-height: 1.5;
-
-    &:hover {
-        border: 2px solid white !important;
-        resize: auto;
-        //background:black !important;
-    }
+    border: none;
+    padding-right: 32px !important;
 }
 
 
 //---------- UPDATE STUFF ----------
 
 .update-inactive {
-    opacity: 0.3;
+    opacity: 0.2;
     pointer-events: none;
     margin-right: 18px;
     border-color: white !important;
     color: white !important;
+    //transform: scale(0.7);
 }
 
 .update-active {
@@ -787,6 +799,7 @@ input[type="text"] {
 
     &:hover {
         background: white !important;
+        color: black;
     }
 }
 
@@ -1070,7 +1083,7 @@ progress[value] {
         display: inline-flex;
 
         .vid-text {
-            max-width: 500px;
+            max-width: 640px;
         }
     }
 

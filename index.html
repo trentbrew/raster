@@ -196,16 +196,28 @@
                             <li class="list-group-item project-item" v-for="(i, index) in items" :id="'vid' + index">
 
                                 <button style="float: right" @click="remove(i)" class="badge">Remove</button>
-                                <button style="float: right" @click="updateProject(i)" class="badge" v-bind:class="( updateActive ? 'reel-badge update-active' : 'update-inactive' )">Update</button>
+                                <button style="float: right" :id="'update' + index" @click="updateProject()" class="badge" v-bind:class="( updateActive ? 'reel-badge update-active' : 'update-inactive' )">Save Changes</button>
                                 <div class="vid-section">
                                     
                                     <video controls muted>
                                         <source :src="i.finalFilm" type="video/mp4" />
                                     </video>
                                     <div class="vid-text">
-                                        <input type="text" class="edit-title edit" v-model="stagedItems[index].title" @change="showUpdate"></input>
-                                        <input type="text" class="edit-genre edit" v-model="stagedItems[index].genre" onchange="showUpdate"></input>
-                                        <textarea v-model="stagedItems[index].summary" class="summary edit-summary edit" onchange="showUpdate"></textarea>
+
+                                        <div class="update-form-container">
+                                            <input type="text" class="edit-title edit" v-model="stagedItems[index].title" @keydown="showUpdate(index)"></input>
+                                            <div class="edit-icon"></div>
+                                        </div>
+
+                                        <div class="update-form-container">
+                                            <input type="text" class="edit-genre edit" v-model="stagedItems[index].genre" onchange="showUpdate"></input>
+                                            <div class="edit-icon"></div>
+                                        </div>
+
+                                        <div class="update-form-container">
+                                            <textarea v-model="stagedItems[index].summary" class="summary edit-summary edit" onchange="showUpdate"></textarea>
+                                            <div class="edit-icon"></div>
+                                        </div>
                                     </div>
                                 </div>
                                 <br>
