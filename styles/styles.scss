@@ -335,7 +335,7 @@ body {
     //padding: 0px;
     border-radius: 6px;
     //height: 700px;
-    width: 480px;
+    min-width: 360px;
     padding: 30px;
 
     .grid-container {
@@ -355,24 +355,35 @@ body {
             background: rgba(black, 0.6);
             text-align: center;
             font-weight:bold;
-            line-height: 148px;
+            line-height: 150px;
             color: $colorLink;
+            z-index:6;
         }
 
         .photo {
-            background:black;
+            background:rgba(0,0,0,0.6);
             /* PUT LOADER HERE */
-            width: 100%;
-            height: 148px;
+            width: 150px;
+            height: 150px;
             border-radius: 3px;
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
             cursor: pointer;
+            z-index: 5;
+
+            img {
+                position: absolute;
+                z-index: -1;
+                object-fit: cover;
+                border-radius: 3px;
+                height: 150px;
+            }
 
             &:hover {
                 .photo-delete {
-                    opacity: 1;
+                    opacity: 1 !important;
+                    z-index: 10;
                 }
             }
         }
@@ -402,7 +413,7 @@ body {
 
 .content-blur-active {
     transition: 200ms;
-    filter: blur(36px) brightness(0.7);
+    filter: blur(24px) brightness(0.7);
 }
 
 .content-blur-inactive {
@@ -527,7 +538,19 @@ body {
     width: 150px;
     height:150px;
     margin-top:-150px;
-    z-index: -1;
+    z-index: -2;
+}
+
+.photo-load-veil-small {
+    position: absolute;
+    background: transparent;
+    pointer-events: none;
+    width: 150px;
+    height:150px;
+    margin-top:-150px;
+    z-index: -2;
+    opacity: 0.2;
+    transform: scale(0.6);
 }
 
 // ---------- loader for photos ----------
@@ -550,7 +573,7 @@ body {
     width: 64px;
     height: 64px;
     margin: 8px;
-    border: 8px solid #fff;
+    border: 4px solid #fff;
     border-radius: 50%;
     animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
     border-color: #fff transparent transparent transparent;
@@ -670,9 +693,104 @@ input[type="text"] {
     margin-bottom: 6px;
     margin-top: 6px;
     color: white;
-    transition: 200ms;
+    //transition: 200ms;
     width: 90px;
 }
+
+//---------- project update stuff ----------
+
+.input-container {
+    //background: red;
+    display: flex;
+    //line-height: 30px;
+}
+
+.edit::before {
+    content: 'o boy';
+    background: red;
+    width: 700px;
+    height: 700px;
+    position: absolute;
+    top: 0px;
+
+}
+
+.edit-title {
+    font-size: 32px;
+    //border-radius: 6px;
+    width: 100% !important;
+    border: 2px solid transparent !important;
+    background: $colorDark !important;
+    padding-left: 12px;
+    transition: 100ms;
+
+    &:hover {
+        border: 2px solid white !important;
+        //background:black !important;
+    }
+}
+
+.edit-genre {
+    font-size: 16px;
+    //border-radius: 6px;
+    width: 100% !important;
+    border: 2px solid transparent !important;
+    background: $colorDark !important;
+    padding-left: 6px;
+    color: rgba(#fff, 0.5) !important;
+    transition: 100ms;
+
+    &:hover {
+        border: 2px solid white !important;
+        //background:black !important;
+    }
+}
+
+.edit-summary {
+    font-size: 16px;
+    //border-radius: 6px;
+    width: 100% !important;
+    border: 2px solid transparent !important;
+    background: $colorDark !important;
+    padding-left: 6px;
+    color: white;
+    font-family: inherit;
+    height: 100px;
+    margin-top: 6px;
+    resize: none;
+    transition: 100ms;
+    line-height: 1.5;
+
+    &:hover {
+        border: 2px solid white !important;
+        resize: auto;
+        //background:black !important;
+    }
+}
+
+
+//---------- UPDATE STUFF ----------
+
+.update-inactive {
+    opacity: 0.3;
+    pointer-events: none;
+    margin-right: 18px;
+    border-color: white !important;
+    color: white !important;
+}
+
+.update-active {
+    opacity: 1;
+    margin-right: 18px;
+    border-color: white !important;
+    color: white !important;
+
+    &:hover {
+        background: white !important;
+    }
+}
+
+//---------- GENERAL JAZZ ----------
 
 .general-section, .credits-section, .final-film-section, .screengrabs-section {
     background: rgba(white, 0.1) !important;
@@ -950,6 +1068,10 @@ progress[value] {
 
     .vid-section {
         display: inline-flex;
+
+        .vid-text {
+            max-width: 500px;
+        }
     }
 
     video {
@@ -974,7 +1096,7 @@ progress[value] {
 }
 
 .summary {
-    max-width: 512px;
+    //max-width: 512px;
     font-weight: normal;
 }
 
