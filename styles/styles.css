@@ -709,7 +709,7 @@ input[type="text"] {
 }
 
 .update-form-container:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: #43454a !important;
 }
 
 .update-form-container:hover .edit-icon {
@@ -720,8 +720,21 @@ input[type="text"] {
           transform: scale(1) translate(-14px, -10px);
 }
 
-.update-form-container input:focus {
-  background: red;
+.update-form-container .edit:focus {
+  background: #43454a !important;
+  color: white !important;
+}
+
+.update-form-container-active {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.update-form-container-active .edit-icon {
+  width: 24px;
+  height: 24px;
+  opacity: 1;
+  -webkit-transform: scale(1) translate(-14px, -10px);
+          transform: scale(1) translate(-14px, -10px);
 }
 
 .edit {
@@ -747,8 +760,8 @@ input[type="text"] {
   background-size: 80%;
   background-position: center;
   background-repeat: no-repeat;
-  -webkit-transform: scale(0.7) translate(-18px, -10px);
-          transform: scale(0.7) translate(-18px, -10px);
+  -webkit-transform: scale(0.5) translate(-24px, -18px);
+          transform: scale(0.5) translate(-24px, -18px);
 }
 
 .edit-title {
@@ -774,23 +787,25 @@ input[type="text"] {
 }
 
 .update-inactive {
-  opacity: 0.2;
+  opacity: 0;
   pointer-events: none;
   margin-right: 18px;
-  border-color: white !important;
-  color: white !important;
+  border-color: #66BB6A !important;
+  color: #66BB6A !important;
+  -webkit-transform: transformY(12px);
+          transform: transformY(12px);
 }
 
 .update-active {
   opacity: 1;
   margin-right: 18px;
-  border-color: white !important;
-  color: white !important;
+  border-color: #66BB6A !important;
+  color: #66BB6A !important;
 }
 
 .update-active:hover {
-  background: white !important;
-  color: black;
+  background: #66BB6A !important;
+  color: white !important;
 }
 
 .general-section, .credits-section, .final-film-section, .screengrabs-section {

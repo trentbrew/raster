@@ -2,6 +2,7 @@ $colorText: #555;
 $colorMain: #212225;
 $colorDark: #131417;
 $colorLight: rgba(white, 0.3);
+$colorLighter: #43454a;
 $colorLink: #ff7065;
 $colorWhite: #eee;
 $colorGreen: #66BB6A;
@@ -717,7 +718,7 @@ $iconDims: 24px;
     //background:blue;
 
     &:hover {
-        background: rgba(white, 0.1);
+        background: $colorLighter !important;
         .edit-icon {
             width: $iconDims;
             height: $iconDims;
@@ -727,8 +728,20 @@ $iconDims: 24px;
         }
     }
 
-    input:focus {
-        background: red;
+    .edit:focus {
+        background: $colorLighter !important;
+        color: white !important;
+    }
+}
+
+.update-form-container-active {
+    background: rgba(white, 0.2);
+    .edit-icon {
+        width: $iconDims;
+        height: $iconDims;
+        //margin-left: 12px;
+        opacity: 1;
+        transform: scale(1) translate(-14px, -10px);
     }
 }
 
@@ -754,7 +767,7 @@ $iconDims: 24px;
     background-size: 80%;
     background-position: center;
     background-repeat: no-repeat;
-    transform: scale(0.7) translate(-18px, -10px);
+    transform: scale(0.5) translate(-24px, -18px);
 }
 
 .edit-title {
@@ -783,23 +796,23 @@ $iconDims: 24px;
 //---------- UPDATE STUFF ----------
 
 .update-inactive {
-    opacity: 0.2;
+    opacity: 0;
     pointer-events: none;
     margin-right: 18px;
-    border-color: white !important;
-    color: white !important;
-    //transform: scale(0.7);
+    border-color: $colorGreen !important;
+    color: $colorGreen !important;
+    transform: transformY(12px);
 }
 
 .update-active {
     opacity: 1;
     margin-right: 18px;
-    border-color: white !important;
-    color: white !important;
+    border-color: $colorGreen !important;
+    color: $colorGreen !important;
 
     &:hover {
-        background: white !important;
-        color: black;
+        background: $colorGreen !important;
+        color: white !important;
     }
 }
 

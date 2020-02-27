@@ -146,7 +146,7 @@ new Vue({
                     //this.updateActive[i].push();
                 }
 
-                console.log(this.stagedItems[0].title.length);
+                console.log("ITEMS: " + this.stagedItems);
             });
         },
         add() {
@@ -206,10 +206,11 @@ new Vue({
                 this.toggleHome();
             })
         },
-        showUpdate() {
-            console.log("READY TO UPDATE");
-
+        stageUpdate(index, i) {
             this.updateActive = true;
+            //console.log("READY TO UPDATE");
+            //console.log(i);
+            console.log(this.stagedItems[index].title);
         },
         updateProject(e) {
             console.log("updated " + this.e.title);
