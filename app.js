@@ -5,7 +5,7 @@ var lazy = '0106';
 
 console.log(document.body.style.opacity = 1);
 
-if(prompt('Enter pin:') == lazy) {
+if(/*prompt('Enter pin:') == lazy*/ true) {
     var config = {
         apiKey: "AIzaSyCHpz4ty7srkDV3AiUDZJLFEOfYGLMpqUM",
         authDomain: "nihal-819a6.firebaseapp.com",
@@ -54,7 +54,7 @@ new Vue({
             filmWindowActive: false,
             photoWindowActive: false,
             settingsWindowActive: false,
-            showPhotos: false,
+            showPhotos: true,
             updateActive: false,
             auth: '',
             uploadProgress: 0,
@@ -115,7 +115,7 @@ new Vue({
             // Other config options...
         });*/
 
-        this.$firestore.photos.orderBy("timestamp");
+        //this.$firestore.photos.orderBy("timestamp");
 
     },
 
@@ -206,14 +206,15 @@ new Vue({
                 this.toggleHome();
             })
         },
-        stageUpdate(index, i) {
+        stageUpdate(index, e) {
             this.updateActive = true;
             //console.log("READY TO UPDATE");
             //console.log(i);
             console.log(this.stagedItems[index].title);
         },
-        updateProject(e) {
-            console.log("updated " + this.e.title);
+        updateProject(index, e) {
+            console.log("updated " + e.title + " to " + this.stagedItems[index].title);
+            document.location.reload();
         },
         remove(e) {
             console.log(e.screenGrabs);

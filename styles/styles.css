@@ -353,12 +353,10 @@ body .credit {
 
 .photos-container .grid-container .photo-delete {
   opacity: 0;
-  -webkit-transition: 200ms;
-  transition: 200ms;
   background: 100%;
   height: 100%;
   margin: 0px;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.7);
   text-align: center;
   font-weight: bold;
   line-height: 150px;
@@ -703,13 +701,12 @@ input[type="text"] {
   display: -ms-flexbox;
   display: flex;
   border-radius: 3px;
-  -webkit-transition: 200ms;
-  transition: 200ms;
   margin-bottom: 12px;
+  border: 2px transparent solid;
 }
 
 .update-form-container:hover {
-  background: #43454a !important;
+  border: 2px white solid;
 }
 
 .update-form-container:hover .edit-icon {
@@ -721,28 +718,14 @@ input[type="text"] {
 }
 
 .update-form-container .edit:focus {
-  background: #43454a !important;
+  background: #212225 !important;
   color: white !important;
-}
-
-.update-form-container-active {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.update-form-container-active .edit-icon {
-  width: 24px;
-  height: 24px;
-  opacity: 1;
-  -webkit-transform: scale(1) translate(-14px, -10px);
-          transform: scale(1) translate(-14px, -10px);
 }
 
 .edit {
   border-radius: 0px 3px 3px 3px;
   background: transparent !important;
   margin: 0px !important;
-  -webkit-transition: 200ms;
-  transition: 200ms;
   width: 100% !important;
   padding: 6px 12px 6px 12px !important;
 }
@@ -752,8 +735,6 @@ input[type="text"] {
   border-radius: 30px;
   width: 24px;
   height: 24px;
-  -webkit-transition: 200ms;
-  transition: 200ms;
   opacity: 0;
   margin-right: -24px;
   background-image: url("../res/create-24px.svg");
@@ -888,8 +869,8 @@ button {
   border: 2px #66BB6A solid;
   padding: 3px 6px 3px 6px;
   cursor: pointer;
-  -webkit-transition: 200ms;
-  transition: 200ms;
+  -webkit-transition: 150ms;
+  transition: 150ms;
   margin-top: 18px;
   font-size: 12px;
 }
