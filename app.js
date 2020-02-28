@@ -143,6 +143,7 @@ new Vue({
                     //----- adding in dynamic data for project update forms -----
 
                     this.stagedItems.push(collection.docs[i].data());
+                    //this.updateActive.push(collection.docs[i].data().title);
                     //this.updateActive[i].push();
                 }
 
@@ -207,14 +208,19 @@ new Vue({
             })
         },
         stageUpdate(index, e) {
-            this.updateActive = true;
+            //this.updateActive = true;
             //console.log("READY TO UPDATE");
             //console.log(i);
-            console.log(this.stagedItems[index].title);
+            //console.log(this.stagedItems[index].title);
+
+            
+
+            console.log(document.getElementById("update" + index));
         },
         updateProject(index, e) {
             console.log("updated " + e.title + " to " + this.stagedItems[index].title);
-            document.location.reload();
+            //console.log(this.updateActive);
+            //document.location.reload();
         },
         remove(e) {
             console.log(e.screenGrabs);

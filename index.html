@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
-        <title>Nihal.tv Site Editor</title>
+        <title>Sitemind | Nihal.tv</title>
         <!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"-->
 
         <link rel="stylesheet" href="styles/styles.css">
@@ -185,7 +185,7 @@
                                         <source :src="filmReel[0].finalFilm" type="video/mp4" />
                                     </video>
                                     <div class="vid-text">
-                                        <h1>Film Reel</h1>
+                                        <h1 style="font-weight: normal">Film Reel</h1>
                                         <strong><p style="opacity:0.5">Compilation</p></strong>
                                         <p class="summary">Shown on the landing page of the site.</p>
                                     </div>
@@ -203,17 +203,17 @@
                                         <source :src="i.finalFilm" type="video/mp4" />
                                     </video>
                                     <div class="vid-text">
-
+                                        <!--title-->
                                         <div class="update-form-container">
-                                            <input type="text" class="edit-title edit" v-model="stagedItems[index].title" @keydown="stageUpdate(index, i)"></input>
+                                            <input type="text" class="edit-title edit" v-model="stagedItems[index].title" @keydown="stageUpdate"></input>
                                             <div class="edit-icon"></div>
                                         </div>
-
+                                        <!--genre-->
                                         <div class="update-form-container">
                                             <input type="text" class="edit-genre edit" v-model="stagedItems[index].genre" @keydown="stageUpdate(index, i)"></input>
                                             <div class="edit-icon"></div>
                                         </div>
-
+                                        <!--summary-->
                                         <div class="update-form-container">
                                             <textarea v-model="stagedItems[index].summary" class="summary edit-summary edit" @keydown="stageUpdate(index, i)"></textarea>
                                             <div class="edit-icon"></div>
@@ -221,12 +221,17 @@
                                     </div>
                                 </div>
                                 <br>
+                                <!--screengrabs-->
                                 <ul style="display: inline-flex; list-style: none; padding: 0px" class="images">
                                     <li v-for="(p, index) in i.screenGrabs">
                                         <img :src="p" />
                                     </li>
+                                    <li class="screengrabs-button-container">
+                                        <div @click="togglePhoto()" class="screengrabs-button"><span style="opacity:1"><strong>+</strong><br>Add Screengrabs</span></div>
+                                    </li>
                                 </ul>
                                 <br>
+                                <!--credits-->
                                 <p class="credit" style="display: inline-flex" v-for="(c, index) in i.credits"><span>{{c.role}}</span>&nbsp;<strong>{{c.name}}</strong>&nbsp;</p>
                             </li>
                         </ul>
