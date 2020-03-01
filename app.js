@@ -54,8 +54,10 @@ new Vue({
             filmWindowActive: false,
             photoWindowActive: false,
             settingsWindowActive: false,
+            screengrabWindowActive: false,
             showPhotos: true,
             updateActive: false,
+            focus: 0,
             auth: '',
             uploadProgress: 0,
             progressBuffer: [0,0],
@@ -293,10 +295,70 @@ new Vue({
                 }
             );
         },
-        newScreenGrab() {
-            //console.log("pushed new screengrab")
+        handleNewScreenGrab(e) {
+            console.log("...handling screengrab upload for " + e.target.id);
+
+            //console.log(e.target.id.substring(10));
+
+            var parentObj = this;
+            var task = [];
+
+            for(let i = 0; i < e.target.files.length; i++) {
+                //push file into storage
+                task.push(firebase.storage().ref(parentObj.stagedItems[e.target.id.substring(10)].title + "/" + e.target.files[i].name).put(e.target.files[i]));
+            
+                //update progress bar and handle onComplete
+                task[i].on('state_changed', function progress(snapshot) {
+                        var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+
+                        var avgProgress;
+
+                        parentObj.progressBuffer[1] = percentage;
+
+                        if((i > 0)) {
+                            avgProgress = parentObj.progressBuffer[1] - parentObj.progressBuffer[0];
+                        }
+
+                        //when done, turn green
+                        if (percentage == 100) {
+                            parentObj.uploadDone = true;
+                        }
+
+                        parentObj.uploadProgress = percentage;
+
+                        parentObj.progressBuffer[0] = percentage;
+
+                        //uploader.value = percentage;
+
+                        console.log(percentage);
+                    },
+                    function error(err) {
+                        
+                    },
+                    function complete() {
+                        //console.log(storageRef.child(imgPath).getDownloadURL().getResults());
+
+                        task[i].snapshot.ref.getDownloadURL().then(
+                            function(downloadURL) {
+                                console.log('File available at: ' + downloadURL)
+                                
+                                parentObj.stagedItems[e.target.id.substring(10)].screenGrabs.push(downloadURL + "");
+
+                                console.log(parentObj.stagedItems[e.target.id.substring(10)].screenGrabs);
+                                //parentObj.photoCount++;
+                                //console.log(parentObj.photo);
+                            }
+                        )
+                        //console.log("screenGrabs: " + parentObj.item.screenGrabs);
+
+                        document.getElementById("update" + e.target.id.substring(10)).style.opacity = 1;
+                        document.getElementById("update" + e.target.id.substring(10)).style.pointerEvents = "all";
+
+                    }
+                )
+            }
         },
-        handleUpload(e) {
+        handleScreengrabUpload(e) {
             console.log("...handling screengrab upload for " + this.item.title);
 
             var parentObj = this;
@@ -548,6 +610,7 @@ new Vue({
             this.photoWindowActive = false;
             this.settingsWindowActive = false;
             this.reelWindowActive = false;
+            this.screengrabWindowActive = false;
             this.homeActive = true;
             this.photoCount = 1;
             this.uploadDone = false;
@@ -567,6 +630,7 @@ new Vue({
             this.settingsWindowActive = false;
             this.photoWindowActive = false;
             this.reelWindowActive = false;
+            this.screengrabWindowActive = false;
         },
         toggleReel() {
             //alert('Film section');
@@ -581,6 +645,7 @@ new Vue({
             this.settingsWindowActive = false;
             this.photoWindowActive = false;
             this.filmWindowActive = false;
+            this.screengrabWindowActive = false;
         },
         togglePhoto() {
             //alert('Photo section');
@@ -594,6 +659,7 @@ new Vue({
             this.settingsWindowActive = false;
             this.filmWindowActive = false;
             this.reelWindowActive = false;
+            this.screengrabWindowActive = false;
         },
         toggleSettings() {
             //alert('Settings section');
@@ -607,6 +673,25 @@ new Vue({
             this.photoWindowActive = false;
             this.filmWindowActive = false;
             this.reelWindowActive = false;
+            this.screengrabWindowActive = false;
+        },
+        toggleScreengrab(index) {
+            //alert('Settings section');
+            if(this.screengrabWindowActive) {
+                this.homeActive = true;
+            }
+            else {
+                this.homeActive = false;
+            }
+            this.screengrabWindowActive = !this.screengrabWindowActive;
+            this.photoWindowActive = false;
+            this.filmWindowActive = false;
+            this.reelWindowActive = false;
+            this.settingsWindowActive = false;
+
+            console.log(this.stagedItems[index].screenGrabs);
+
+            this.focus = index;
         }
     }
 })

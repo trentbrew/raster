@@ -85,7 +85,7 @@
                                 <ul>
                                     <li v-for="(s, index) in item.screenGrabs">
                                         <!--progress value="0" max="100" id="uploader">0%</progress-->
-                                        <input @change="handleUpload" type="file" value="upload" class="fileButton" id="fileButton" />
+                                        <input @change="handleScreengrabUpload" type="file" value="upload" class="fileButton" id="fileButton" />
                                     </li>
                                     <!--button class="btn btn-primary" @click="newScreenGrab()">Add another screengrab</button-->
                                 </ul>
@@ -174,7 +174,30 @@
                 </div>
             </div>
 
-            <div class="content" v-bind:class="[ filmWindowActive || settingsWindowActive || photoWindowActive || reelWindowActive ? 'content-blur-active' : 'content-blur-inactive' ]">
+            <div id="screengrab-window" v-bind:class="[ screengrabWindowActive ? 'window-section-active' : 'window-section-inactive' ]">
+                <div class="inner-window-settings">
+                    <div class="film-upload-container">
+                        <div class="upload-section final-film-section film-upload-section">
+                            <h2>Upload Screengrabs (PNG, GIF, JPG, JPEG)</h2>
+                            <div class="film-inner photo-inner">
+                                <ul>
+                                    <li v-for="(p, index) in photoCount">
+                                        <progress style="transition: 200ms" :value="uploadProgress" max="100" id="uploader" v-bind:class="[ uploadDone ? 'uploadDone' : '' ]">0%</progress>
+                                        <input @change="handleNewScreenGrab" type="file" value="upload" class="fileButton fileButtonPhotos" :id="'fileButton' + focus" multiple/>
+                                    </li>
+                                    <button class="btn" @click="photoCount++">Add another image</button>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="window-options">
+                        <button class="btn btn-primary" @click="toggleHome()">Done</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content" v-bind:class="[ filmWindowActive || settingsWindowActive || photoWindowActive || reelWindowActive || screengrabWindowActive ? 'content-blur-active' : 'content-blur-inactive' ]">
                 <div class="section-films">
                         <h2>Films</h2>
                         <ul class="list-group reel-container">
@@ -222,17 +245,20 @@
                                 </div>
                                 <br>
                                 <!--screengrabs-->
-                                <ul style="display: inline-flex; list-style: none; padding: 0px" class="images">
-                                    <li v-for="(p, index) in i.screenGrabs">
+                                <ul class="images">
+                                    <li v-for="(p, index) in stagedItems[index].screenGrabs" class="screengrab-container">
+                                        <div class="screengrab-delete-veil"><span>Remove</span></div>
                                         <img :src="p" />
                                     </li>
                                     <li class="screengrabs-button-container">
-                                        <div @click="togglePhoto()" class="screengrabs-button"><span style="opacity:1"><strong>+</strong><br>Add Screengrabs</span></div>
+                                        <div @click="toggleScreengrab(index)" class="screengrabs-button"><span style="opacity:1"><strong>+</strong><br>Add Screengrabs</span></div>
                                     </li>
                                 </ul>
                                 <br>
                                 <!--credits-->
-                                <p class="credit" style="display: inline-flex" v-for="(c, index) in i.credits"><span>{{c.role}}</span>&nbsp;<strong>{{c.name}}</strong>&nbsp;</p>
+                                <div class="credits-container">
+                                    <p class="credit" style="display: inline-flex" v-for="(c, index) in i.credits"><span>{{c.role}}</span>&nbsp;<strong>{{c.name}}</strong>&nbsp;</p>
+                                </div>
                             </li>
                         </ul>
                 </div>
