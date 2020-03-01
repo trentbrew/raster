@@ -354,12 +354,12 @@ body .credit {
 
 .photos-container .grid-container .photo-delete {
   opacity: 0;
-  -webkit-transition: 150ms;
-  transition: 150ms;
+  -webkit-transition: 100ms;
+  transition: 100ms;
   background: 100%;
   height: 100%;
   margin: 0px;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.8);
   text-align: center;
   font-weight: bold;
   line-height: 150px;
@@ -624,8 +624,6 @@ body .credit {
   margin-right: auto;
   margin-bottom: 36px;
   border-radius: 6px;
-  -webkit-transition: 150ms;
-  transition: 150ms;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -659,13 +657,13 @@ body .credit {
 }
 
 .replace-veil {
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.8);
   color: white;
   line-height: 150px;
   text-align: center;
   opacity: 0;
-  -webkit-transition: 200ms;
-  transition: 200ms;
+  -webkit-transition: 100ms;
+  transition: 100ms;
   pointer-events: none;
   margin-top: -150px;
 }
@@ -786,8 +784,11 @@ input[type="text"] {
   margin-right: 18px;
   border-color: #66BB6A !important;
   color: #66BB6A !important;
-  -webkit-transform: transformY(12px);
-          transform: transformY(12px);
+}
+
+.update-inactive:hover {
+  background: #66BB6A !important;
+  color: white !important;
 }
 
 .update-active {

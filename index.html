@@ -196,7 +196,7 @@
                             <li class="list-group-item project-item" v-for="(i, index) in items" :id="'vid' + index">
 
                                 <button style="float: right" @click="remove(i)" class="badge">Remove</button>
-                                <button style="float: right" :id="'update' + index" @click="updateProject(index, i)" class="badge" v-bind:class="( updateActive ? 'reel-badge update-active' : 'update-inactive' )">Save Changes</button>
+                                <button style="float: right" :id="'update' + index" @click="handleUpdate(index, i)" class="badge" v-bind:class="( updateActive ? 'reel-badge update-active' : 'update-inactive' )">Save Changes</button>
                                 <div class="vid-section">
                                     
                                     <video controls muted>
@@ -205,7 +205,7 @@
                                     <div class="vid-text">
                                         <!--title-->
                                         <div class="update-form-container">
-                                            <input type="text" class="edit-title edit" v-model="stagedItems[index].title" @keydown="stageUpdate"></input>
+                                            <input type="text" class="edit-title edit" v-model="stagedItems[index].title" @keydown="stageUpdate(index, i)"></input>
                                             <div class="edit-icon"></div>
                                         </div>
                                         <!--genre-->

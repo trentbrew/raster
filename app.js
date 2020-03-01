@@ -213,14 +213,21 @@ new Vue({
             //console.log(i);
             //console.log(this.stagedItems[index].title);
 
-            
-
-            console.log(document.getElementById("update" + index));
+            document.getElementById("update" + index).style.opacity = 1;
+            document.getElementById("update" + index).style.pointerEvents = "all";
         },
-        updateProject(index, e) {
-            console.log("updated " + e.title + " to " + this.stagedItems[index].title);
-            //console.log(this.updateActive);
-            //document.location.reload();
+        handleUpdate(index, e) {
+            //console.log("updated " + e.title + " to " + this.stagedItems[index].title);
+
+            this.$firestore.items.doc(e[".key"]).set(this.stagedItems[index]).then(()=>{
+
+                //alert("Changes Saved");
+
+                //refresh page
+                setTimeout(function() {
+                    document.location.reload();
+                });
+            })
         },
         remove(e) {
             console.log(e.screenGrabs);
@@ -534,7 +541,7 @@ new Vue({
 
         },
 
-        //----------END OF COMPRESSION METHODS----------
+        //----------NAVIGATION----------
         toggleHome() {
             //alert('Home');
             this.filmWindowActive = false;
