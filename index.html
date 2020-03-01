@@ -218,7 +218,7 @@
                         <ul class="list-group">
                             <li class="list-group-item project-item" v-for="(i, index) in items" :id="'vid' + index">
 
-                                <button style="float: right" @click="remove(i)" class="badge">Remove</button>
+                                <button style="float: right" @click="removeProject(i)" class="badge">Remove</button>
                                 <button style="float: right" :id="'update' + index" @click="handleUpdate(index, i)" class="badge" v-bind:class="( updateActive ? 'reel-badge update-active' : 'update-inactive' )">Save Changes</button>
                                 <div class="vid-section">
                                     
@@ -246,8 +246,8 @@
                                 <br>
                                 <!--screengrabs-->
                                 <ul class="images">
-                                    <li v-for="(p, index) in stagedItems[index].screenGrabs" class="screengrab-container">
-                                        <div class="screengrab-delete-veil"><span>Remove</span></div>
+                                    <li v-for="(p, photoIndex) in stagedItems[index].screenGrabs" class="screengrab-container">
+                                        <div @click="handleRemoveScreengrab(index, photoIndex)" class="screengrab-delete-veil"><span>Remove</span></div>
                                         <img :src="p" />
                                     </li>
                                     <li class="screengrabs-button-container">

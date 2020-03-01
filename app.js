@@ -231,7 +231,7 @@ new Vue({
                 });
             })
         },
-        remove(e) {
+        removeProject(e) {
             console.log(e.screenGrabs);
 
             //deleting screenGrab directory in storage
@@ -357,6 +357,23 @@ new Vue({
                     }
                 )
             }
+        },
+        handleRemoveScreengrab(index, photoIndex) {
+            console.log("current proj: " + index);
+            console.log("Removing image " + photoIndex + " from " + this.stagedItems[index].title);
+            console.log("image key: " + this.items[index][".key"]);
+
+            if(confirm("Are you sure you want to delete this screengrab?")) {
+                //deleting item from database
+                this.stagedItems[index].screenGrabs.splice(photoIndex,1);
+
+                document.getElementById("update" + index).style.opacity = 1;
+                document.getElementById("update" + index).style.pointerEvents = "all";
+            }
+            else {
+                //alert("Photo was not deleted");
+            }
+
         },
         handleScreengrabUpload(e) {
             console.log("...handling screengrab upload for " + this.item.title);
