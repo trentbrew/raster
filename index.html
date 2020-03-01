@@ -244,7 +244,7 @@
                         <div class="grid-container">
                             <div v-if="showPhotos" class="photo" @click="removePhoto(p)" v-for="(p, index) in photos">
                                 <img :src="p.src" alt="" width="150" height="150"/>
-                                <div class="photo-delete">Remove</div>
+                                <div class="photo-delete"><span>Remove</span></div>
                                 <div class="photo-load-veil-small">
                                     <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
                                 </div>

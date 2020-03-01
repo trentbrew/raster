@@ -41,6 +41,7 @@ body {
         padding: 3px 6px 3px 6px;
         color: $colorGreen;
         font-weight: bold;
+        border-radius: 6px;
     }
 
     &:hover {
@@ -349,7 +350,7 @@ body {
 
         .photo-delete {
             opacity: 0;
-            //transition: 100ms;
+            transition: 150ms;
             background: 100%;
             height: 100%;
             margin: 0px;
@@ -359,6 +360,11 @@ body {
             line-height: 150px;
             color: $colorLink;
             z-index:6;
+
+            span {
+                transition: 150ms;
+                //transform: translateY(-64px);
+            }
         }
 
         .photo {
@@ -366,7 +372,7 @@ body {
             /* PUT LOADER HERE */
             width: 150px;
             height: 150px;
-            border-radius: 3px;
+            border-radius: 6px;
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
@@ -377,7 +383,7 @@ body {
                 position: absolute;
                 z-index: -1;
                 object-fit: cover;
-                border-radius: 3px;
+                border-radius: 6px;
                 height: 150px;
             }
 
@@ -385,6 +391,11 @@ body {
                 .photo-delete {
                     opacity: 1 !important;
                     z-index: 10;
+                    
+                    span {
+                        transition: 150ms;
+                        //transform: translateY(0px);
+                    }
                 }
             }
         }
@@ -601,14 +612,13 @@ body {
 
 .profile-upload {
     background: $colorLight;
-
     width: 150px;
     height: 150px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 36px;
-    //border-radius: 6px;
-    transition: 200ms;
+    border-radius: 6px;
+    transition: 150ms;
     background-position: center;
     background-size:cover;
     background-repeat: no-repeat;
@@ -636,6 +646,7 @@ body {
     textarea {
         background:rgba(255, 255, 255, 0.1);
         border: none;
+        border-radius: 6px;
         width: 400px;
         height: 200px;
         padding:12px;
@@ -710,7 +721,7 @@ $iconDims: 24px;
 
 .update-form-container {
     display: flex;
-    border-radius: 3px;
+    border-radius: 6px;
     //transition: 100ms;
     margin-bottom: 12px;
     border: 2px transparent solid;
@@ -726,7 +737,7 @@ $iconDims: 24px;
             height: $iconDims;
             //margin-left: 12px;
             opacity: 1;
-            transform: scale(1) translate(-14px, -10px);
+            transform: scale(1) translate(-12px, -10px);
         }
     }
 
@@ -760,7 +771,7 @@ $iconDims: 24px;
     background-size: 80%;
     background-position: center;
     background-repeat: no-repeat;
-    transform: scale(0.5) translate(-24px, -18px);
+    //transform: scale(0.5) translate(-20px, -18px);
 }
 
 .edit-title {
@@ -963,6 +974,7 @@ button {
     border: 2px $colorLink solid;
     color: $colorLink;
     font-weight: bold;
+    border-radius: 6px;
     font-size: 14px !important;
 
     &:hover {
@@ -1010,7 +1022,7 @@ h2 {
 .btn-primary {
     //width: 150px;
     background: $colorGreen;
-    border-radius: 6;
+    border-radius: 6px;
     color: white;
     height: 36px;
     //color: $colorGreen;
