@@ -287,6 +287,18 @@ body {
                 margin: 0px;
                 padding: 0px;
             }
+
+            textarea {
+                width: 95%;
+                max-width: 260px;
+                max-height: 200px;
+                height: 80px;
+                margin-top: 6px;
+                background: rgba(white, 0.1);
+                border: none;
+                color: white;
+                padding: 3px 6px 3px 6px;
+            }
         }
 
          h2 {
@@ -559,6 +571,9 @@ $imageDims: 100px;
     height:150px;
     margin-top:-150px;
     z-index: -2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .photo-load-veil-small {
@@ -848,7 +863,7 @@ $iconDims: 24px;
     justify-content: center;
     align-items: center;
     margin-left: 0px;
-    margin-top: -12px;
+    //margin-top: -12px;
 }
 
 .screengrabs-button {
@@ -866,7 +881,7 @@ $iconDims: 24px;
     font-size: 12px;
     cursor: pointer;
     transition: 100ms;
-    margin-top: -6px;
+    margin: 0px 18px 16px 0px;
 
     strong {
         font-size: 18px;
@@ -1158,6 +1173,10 @@ progress[value] {
     ul {
         list-style: none !important;
     }
+
+    video {
+        margin-bottom: 0px !important;
+    }
 }
 
 .project-item {
@@ -1167,6 +1186,20 @@ progress[value] {
     //margin-left: 0px;
     margin-right: 0px;
     border-radius: 6px;
+
+    input[type="number"] {
+        margin-bottom: 12px;
+        width: 36px;
+        background: rgba(white, 0.1);
+        color: white;
+        border:none;
+        padding: 3px 6px 3px 6px;
+        border-radius: 6px;
+    }
+
+    input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+    }
 
     p {
         margin-top: 8px;
@@ -1193,14 +1226,15 @@ progress[value] {
     video {
         border-radius: 6px;
         margin-right: 30px;
-        margin-bottom: 30px;
+        margin-bottom: 18px;
         width: 400px;
+        height: 225px;
     }
 
     //screengrabs
 
     img {
-        margin: 0px 18px 8px 0px;
+        margin: 0px 18px 12px 0px;
         border-radius: 6px;
         width: 160px;
     }

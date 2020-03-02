@@ -303,6 +303,18 @@ body .credit {
   padding: 0px;
 }
 
+.film-upload-container .film-upload-section .film-inner textarea {
+  width: 95%;
+  max-width: 260px;
+  max-height: 200px;
+  height: 80px;
+  margin-top: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  padding: 3px 6px 3px 6px;
+}
+
 .film-upload-container .film-upload-section h2 {
   background: rgba(255, 255, 255, 0.1);
   font-size: 12px;
@@ -542,6 +554,15 @@ body .credit {
   height: 150px;
   margin-top: -150px;
   z-index: -2;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .photo-load-veil-small {
@@ -831,7 +852,6 @@ input[type="text"] {
       -ms-flex-align: center;
           align-items: center;
   margin-left: 0px;
-  margin-top: -12px;
 }
 
 .screengrabs-button {
@@ -854,7 +874,7 @@ input[type="text"] {
   cursor: pointer;
   -webkit-transition: 100ms;
   transition: 100ms;
-  margin-top: -6px;
+  margin: 0px 18px 16px 0px;
 }
 
 .screengrabs-button strong {
@@ -1103,12 +1123,30 @@ progress {
   list-style: none !important;
 }
 
+.reel-container video {
+  margin-bottom: 0px !important;
+}
+
 .project-item {
   background: #131417;
   padding: 30px;
   margin: 30px;
   margin-right: 0px;
   border-radius: 6px;
+}
+
+.project-item input[type="number"] {
+  margin-bottom: 12px;
+  width: 36px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: none;
+  padding: 3px 6px 3px 6px;
+  border-radius: 6px;
+}
+
+.project-item input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
 }
 
 .project-item p {
@@ -1138,12 +1176,13 @@ progress {
 .project-item video {
   border-radius: 6px;
   margin-right: 30px;
-  margin-bottom: 30px;
+  margin-bottom: 18px;
   width: 400px;
+  height: 225px;
 }
 
 .project-item img {
-  margin: 0px 18px 8px 0px;
+  margin: 0px 18px 12px 0px;
   border-radius: 6px;
   width: 160px;
 }

@@ -51,15 +51,15 @@
                             <div class="film-inner">
                                 <div class="inner-inputs">
                                     <label>Project Title</label>
-                                    <input class="form-control" type="text" v-model="item.title" v-on:keyup.enter="add()">
+                                    <input class="form-control" type="text" v-model="item.title" v-on:keyup.enter=""></input>
                                     <br>
                         
                                     <label>Genre</label>
-                                    <input class="form-control" type="text" v-model="item.genre" v-on:keyup.enter="add()">
+                                    <input class="form-control" type="text" v-model="item.genre" v-on:keyup.enter=""></input>
                                     <br>
                         
                                     <label>Summary</label>
-                                    <input class="form-control" type="text" v-model="item.summary" v-on:keyup.enter="add()">
+                                    <textarea style="resize: none" class="form-control" type="text" v-model="item.summary" v-on:keyup.enter=""></textarea>
                                 </div>
                             </div>
                         </div>
@@ -70,30 +70,30 @@
                                 <ul>
                                     <li v-for="(c, index) in item.credits">
                                         <label class="left-label">Role</label>
-                                        <input class="form-control" type="text" v-model="item.credits[index].role" v-on:keyup.enter="add()">
+                                        <input class="form-control" type="text" v-model="item.credits[index].role" v-on:keyup.enter="newCredit()">
                                         <label>Name</label>
-                                        <input class="form-control" type="text" v-model="item.credits[index].name" v-on:keyup.enter="add()">
+                                        <input class="form-control" type="text" v-model="item.credits[index].name" v-on:keyup.enter="newCredit()">
                                     </li>
-                                    <button class="btn" @click="newCredit()">Add another credit</button>
+                                    <button class="btn" @click="newCredit()">Add Another Credit</button>
                                 </ul>
                             </div>
                         </div>
     
                         <div class="upload-section screengrabs-section film-upload-section">
-                            <h2>Upload <strong>5</strong> screengrabs (PNG, GIF, JPG, JPEG)</h2>
+                            <h2>Upload Screengrabs (PNG, GIF, JPG, JPEG)</h2>
                             <div class="film-inner">
                                 <ul>
-                                    <li v-for="(s, index) in item.screenGrabs">
-                                        <!--progress value="0" max="100" id="uploader">0%</progress-->
-                                        <input @change="handleScreengrabUpload" type="file" value="upload" class="fileButton" id="fileButton" />
+                                    <li v-for="(p, index) in photoCount">
+                                        <progress style="transition: 200ms" :value="screengrabUploadProgress" max="100" id="uploader" v-bind:class="[ uploadDone ? 'uploadDone' : '' ]">0%</progress>
+                                        <input @change="handleScreengrabUpload" type="file" value="upload" class="fileButton fileButtonPhotos" :id="'fileButton' + focus" multiple/>
                                     </li>
-                                    <!--button class="btn btn-primary" @click="newScreenGrab()">Add another screengrab</button-->
+                                    <button class="btn" @click="photoCount++">Add Another Screengrab</button>
                                 </ul>
                             </div>
                         </div>
     
                         <div class="upload-section final-film-section film-upload-section">
-                            <h2>Upload final film (mp4)</h2>
+                            <h2>Upload Final Film (MP4)</h2>
                             <div class="film-inner">
                                 <ul>
                                     <progress style="transition: 200ms" :value="uploadProgress" max="100" id="uploader" v-bind:class="[ uploadDone ? 'uploadDone' : '' ]">0%</progress>
@@ -125,7 +125,7 @@
                     </div>
                     <br>
                     <div class="window-options">
-                        <button class="btn btn-primary" @click="addReel()">Add to portfolio</button>
+                        <button class="btn btn-primary" @click="addReel()">Add to Portfolio</button>
                         <button class="btn btn-primary btn-cancel" @click="toggleHome()">Cancel</button>
                     </div>
                 </div>
@@ -142,7 +142,7 @@
                                         <progress style="transition: 200ms" :value="uploadProgress" max="100" id="uploader" v-bind:class="[ uploadDone ? 'uploadDone' : '' ]">0%</progress>
                                         <input @change="handlePhotoUpload" type="file" value="upload" class="fileButton" id="fileButtonPhotos" multiple/>
                                     </li>
-                                    <button class="btn" @click="photoCount++">Add another photo</button>
+                                    <button class="btn" @click="photoCount++">Add Another Photo</button>
                                 </ul>
                             </div>
                         </div>
@@ -185,7 +185,7 @@
                                         <progress style="transition: 200ms" :value="uploadProgress" max="100" id="uploader" v-bind:class="[ uploadDone ? 'uploadDone' : '' ]">0%</progress>
                                         <input @change="handleNewScreenGrab" type="file" value="upload" class="fileButton fileButtonPhotos" :id="'fileButton' + focus" multiple/>
                                     </li>
-                                    <button class="btn" @click="photoCount++">Add another image</button>
+                                    <button class="btn" @click="photoCount++">Add Another Screengrab</button>
                                 </ul>
                             </div>
                         </div>
@@ -204,7 +204,7 @@
                             <li class="list-group-item project-item" id="vid-reel">
                                 <button style="float: right" @click="toggleReel()" class="badge reel-badge">Replace</button>
                                 <div class="vid-section">
-                                    <video controls muted>
+                                    <video class="reel-video" controls muted autoplay>
                                         <source :src="filmReel[0].finalFilm" type="video/mp4" />
                                     </video>
                                     <div class="vid-text">
@@ -221,27 +221,35 @@
                                 <button style="float: right" @click="removeProject(i)" class="badge">Remove</button>
                                 <button style="float: right" :id="'update' + index" @click="handleUpdate(index, i)" class="badge" v-bind:class="( updateActive ? 'reel-badge update-active' : 'update-inactive' )">Save Changes</button>
                                 <div class="vid-section">
-                                    
-                                    <video controls muted>
-                                        <source :src="i.finalFilm" type="video/mp4" />
-                                    </video>
+                                    <div class="video-container">
+                                        <video controls muted autoplay>
+                                            <source :src="i.finalFilm  + '#t=' + i.startTime" type="video/mp4" />
+                                        </video>
+                                    </div>
                                     <div class="vid-text">
                                         <!--title-->
                                         <div class="update-form-container">
-                                            <input type="text" class="edit-title edit" v-model="stagedItems[index].title" @keydown="stageUpdate(index, i)"></input>
+                                            <input type="text" class="edit-title edit" v-model="stagedItems[index].title" @input="stageUpdate(index, i)"></input>
                                             <div class="edit-icon"></div>
                                         </div>
                                         <!--genre-->
                                         <div class="update-form-container">
-                                            <input type="text" class="edit-genre edit" v-model="stagedItems[index].genre" @keydown="stageUpdate(index, i)"></input>
+                                            <input type="text" class="edit-genre edit" v-model="stagedItems[index].genre" @input="stageUpdate(index, i)"></input>
                                             <div class="edit-icon"></div>
                                         </div>
                                         <!--summary-->
                                         <div class="update-form-container">
-                                            <textarea v-model="stagedItems[index].summary" class="summary edit-summary edit" @keydown="stageUpdate(index, i)"></textarea>
+                                            <textarea v-model="stagedItems[index].summary" class="summary edit-summary edit" @input="stageUpdate(index, i)"></textarea>
                                             <div class="edit-icon"></div>
                                         </div>
                                     </div>
+                                </div>
+                                
+                                <br>
+                                <!--start time-->
+                                <div v-if="i.finalFilm" class="start-time-container">
+                                    <label style="font-size: 14px">Start Time (Seconds)</label>
+                                    <input type="number" class="edit-start-time" v-model="stagedItems[index].startTime" @input="stageUpdate(index, i)"></input>    
                                 </div>
                                 <br>
                                 <!--screengrabs-->

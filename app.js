@@ -5,7 +5,7 @@ var lazy = '0106';
 
 console.log(document.body.style.opacity = 1);
 
-if(/*prompt('Enter pin:') == lazy*/ true) {
+if(prompt('Enter pin:') == lazy) {
     var config = {
         apiKey: "AIzaSyCHpz4ty7srkDV3AiUDZJLFEOfYGLMpqUM",
         authDomain: "nihal-819a6.firebaseapp.com",
@@ -55,11 +55,12 @@ new Vue({
             photoWindowActive: false,
             settingsWindowActive: false,
             screengrabWindowActive: false,
-            showPhotos: true,
+            showPhotos: false,
             updateActive: false,
             focus: 0,
             auth: '',
             uploadProgress: 0,
+            screengrabUploadProgress: 0,
             progressBuffer: [0,0],
             newBio: {
                 timestamp: "",
@@ -92,7 +93,8 @@ new Vue({
                 screenGrabs: [
                     ""
                 ],
-                timestamp: ""
+                timestamp: "",
+                startTime: 0
             }
         }
     },
@@ -240,7 +242,7 @@ new Vue({
                 //deleting item from database
                 this.$firestore.items.doc(e['.key']).delete().then(
                     function() {
-                        alert("Project deleted");
+                        //alert("Project deleted");
                         //refresh page
                         document.location.reload();       
                     }
@@ -379,44 +381,58 @@ new Vue({
             console.log("...handling screengrab upload for " + this.item.title);
 
             var parentObj = this;
+            var task = [];
 
-            var file = e.target.files[0];
-
-            var imgPath = this.item.title + "/" + file.name;
-
-            //create a storage ref
-            var storageRef = firebase.storage().ref(imgPath);
-
-            //upload file
-            var task = storageRef.put(file);
-
-            //update progress bar
-            task.on('state_changed', 
+            for(let i = 0; i < e.target.files.length; i++) {
+                //push file into storage
+                task.push(firebase.storage().ref(parentObj.item.title + "/" + e.target.files[i].name).put(e.target.files[i]));
             
-                function progress(snapshot) {
-                    //var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                   //uploader.value = percentage;
-                },
-                function error(err) {
-                    
-                },
-                function complete() {
-                    //console.log(storageRef.child(imgPath).getDownloadURL().getResults());
+                //update progress bar and handle onComplete
+                task[i].on('state_changed', function progress(snapshot) {
+                        var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
 
-                    task.snapshot.ref.getDownloadURL().then(
-                        function(downloadURL) {
-                            console.log('File available at: ' + downloadURL)
-                            parentObj.item.screenGrabs.push(
-                                downloadURL + ""
-                            );
-                            console.log('screenGrabs' + parentObj.item.screenGrabs);
+                        var avgProgress;
+
+                        parentObj.progressBuffer[1] = percentage;
+
+                        if((i > 0)) {
+                            avgProgress = parentObj.progressBuffer[1] - parentObj.progressBuffer[0];
                         }
-                    )
 
-                    //console.log("screenGrabs: " + parentObj.item.screenGrabs);
-                }
-            
-            )
+                        //when done, turn green
+                        if (percentage == 100) {
+                            parentObj.uploadDone = true;
+                        }
+
+                        parentObj.screengrabUploadProgress = percentage;
+
+                        parentObj.progressBuffer[0] = percentage;
+
+                        //uploader.value = percentage;
+
+                        console.log(percentage);
+                    },
+                    function error(err) {
+                        
+                    },
+                    function complete() {
+                        //console.log(storageRef.child(imgPath).getDownloadURL().getResults());
+
+                        task[i].snapshot.ref.getDownloadURL().then(
+                            function(downloadURL) {
+                                console.log('File available at: ' + downloadURL)
+                                
+                                parentObj.item.screenGrabs.push(downloadURL + "");
+
+                                console.log(parentObj.item.screenGrabs);
+                                //parentObj.photoCount++;
+                                //console.log(parentObj.photo);
+                            }
+                        )
+
+                    }
+                )
+            }
 
         },
         handlePhotoUpload(e) {
@@ -632,6 +648,7 @@ new Vue({
             this.photoCount = 1;
             this.uploadDone = false;
             this.uploadProgress = 0;
+            this.screengrabUploadProgress = 0;
             this.item.credits = [""];
         },
         toggleFilm() {
