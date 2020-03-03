@@ -222,9 +222,15 @@
                                 <button style="float: right" :id="'update' + index" @click="handleUpdate(index, i)" class="badge" v-bind:class="( updateActive ? 'reel-badge update-active' : 'update-inactive' )">Save Changes</button>
                                 <div class="vid-section">
                                     <div class="video-container">
-                                        <video controls muted autoplay>
+                                        <video v-if="i.finalFilm" controls muted autoplay>
                                             <source :src="i.finalFilm  + '#t=' + i.startTime" type="video/mp4" />
                                         </video>
+                                        <div v-if="!i.finalFilm" class="empty-video">
+                                            <div class="empty-video-inner">
+                                                <div class="empty-video-icon"></div>
+                                                <p>No Film Uploaded</p>
+                                            </div>    
+                                        </div>
                                     </div>
                                     <div class="vid-text">
                                         <!--title-->
