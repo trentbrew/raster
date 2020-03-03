@@ -55,7 +55,7 @@ new Vue({
             photoWindowActive: false,
             settingsWindowActive: false,
             screengrabWindowActive: false,
-            showPhotos: false,
+            showPhotos: true,
             updateActive: false,
             focus: 0,
             auth: '',
