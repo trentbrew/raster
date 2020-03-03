@@ -18,6 +18,15 @@ body .credit {
   font-size: 14px;
 }
 
+.auth {
+  position: fixed;
+  background: gray;
+  height: 100vh;
+  width: 100%;
+  z-index: 9999;
+  overflow: hidden;
+}
+
 .live-site-button {
   background: transparent;
   text-decoration: none;
