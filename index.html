@@ -218,7 +218,7 @@
                                         <source :src="filmReel[0].finalFilm" type="video/mp4" />
                                     </video>
                                     <div class="vid-text">
-                                        <h1 style="font-weight: normal">Film Reel</h1>
+                                        <h1>Film Reel</h1>
                                         <strong><p style="opacity:0.5">Compilation</p></strong>
                                         <p class="summary">Shown on the landing page of the site.</p>
                                     </div>
@@ -245,7 +245,7 @@
                                     <div class="vid-text">
                                         <!--title-->
                                         <div class="update-form-container">
-                                            <input type="text" class="edit-title edit" v-model="stagedItems[index].title" @input="stageUpdate(index, i)"></input>
+                                            <input style="font-weight: bold" type="text" class="edit-title edit" v-model="stagedItems[index].title" @input="stageUpdate(index, i)"></input>
                                             <div class="edit-icon"></div>
                                         </div>
                                         <!--genre-->

@@ -32,14 +32,13 @@ const firestore = firebase.firestore();
 const settings = {/* your settings... */ timestampsInSnapshots: true};
 firestore.settings(settings);
 
-firebase.firestore().collection("bio").orderBy("timestamp");
-
 // Initialize the FirebaseUI Widget using Firebase.
 //var ui = new firebaseui.auth.AuthUI(firebase.auth());
 
 new Vue({
     el: "#app",
     firestore() {
+        const userId = firebase.auth().currentUser.uid;
         return {
             bio: firebase.firestore().collection("bio"),
             photos: firebase.firestore().collection("photos"),
@@ -49,6 +48,14 @@ new Vue({
     },
     data(){
         return {
+            filmOrder: {
+                field: "",
+                order: ""
+            },
+            photoOrder: {
+                field: "",
+                order: ""
+            },
             homeActive: true,
             reelWindowActive: false,
             filmWindowActive: false,
