@@ -38,7 +38,7 @@ firestore.settings(settings);
 new Vue({
     el: "#app",
     firestore() {
-        const userId = firebase.auth().currentUser.uid;
+        //const userId = firebase.auth().currentUser.uid;
         return {
             bio: firebase.firestore().collection("bio"),
             photos: firebase.firestore().collection("photos"),
