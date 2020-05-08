@@ -372,8 +372,8 @@ body .credit {
   height: max-content;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 1fr 1fr 1fr;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 18px;
 }
 
@@ -1217,6 +1217,7 @@ progress {
 
 .project-item .vid-section .vid-text {
   max-width: 640px;
+  min-width: 500px;
 }
 
 .project-item video {

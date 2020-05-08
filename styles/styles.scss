@@ -374,7 +374,7 @@ $imageDims: 100px;
         width: 100%;
         height: max-content;
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
         grid-gap: 18px;
 
         .photo-delete {
@@ -1261,6 +1261,7 @@ progress[value] {
 
         .vid-text {
             max-width: 640px;
+            min-width: 500px;
         }
     }
 

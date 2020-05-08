@@ -14,9 +14,8 @@ if(prompt('Enter pin:') == lazy) {
         storageBucket: "nihal-819a6.appspot.com",
         messagingSenderId: "489064704671"
     }
-}
+} 
 else {
-
     var config = {}
     alert('Incorrect pin')
     document.location.reload()
@@ -80,7 +79,9 @@ new Vue({
             photoCount: 1,
             photo: {
                 src: "",
-                srcSmall: "",
+                tag: "",
+                thumbSrc100: "",
+                thumbSrc350: "",
                 timestamp: ""
             },
             reel: {
@@ -203,6 +204,9 @@ new Vue({
 
                 this.photo = {
                     src: "",
+                    tag: "",
+                    thumbSrc100: "",
+                    thumbSrc350: "",
                     timestamp: ""
                 }
 
@@ -488,14 +492,24 @@ new Vue({
                         task[i].snapshot.ref.getDownloadURL().then(
                             function(downloadURL) {
                                 console.log('File available at: ' + downloadURL)
+
+                                var fileName = downloadURL.slice(downloadURL.indexOf('%') + 3, downloadURL.indexOf('?'));
+                                var  fileSlice = fileName.slice(0, fileName.indexOf('.'));
+
+                                console.log('***File name: ' + fileName);
+                                console.log('***File slice: ' + fileSlice);
                                 
                                 parentObj.photo = {
                                     src: downloadURL + "",
+                                    tag: ":)",
+                                    thumbSrc100: "" + downloadURL.replace(fileSlice, "thumbnails%2F" + fileSlice + "_100x100"),
+                                    thumbSrc350: "" + downloadURL.replace(fileSlice, "thumbnails%2F" + fileSlice + "_350x350"),
                                     timestamp: Date.now()
                                 }
+
+                                console.log('Thumbnail available at: ' + parentObj.photo.thumbSrc100);
+
                                 console.log(parentObj.photo);
-                                //parentObj.photoCount++;
-                                //console.log(parentObj.photo);
                                 parentObj.addPhoto();
                             }
                         )
