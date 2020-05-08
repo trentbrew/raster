@@ -1243,7 +1243,7 @@ progress {
   padding: 0px;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  max-width: 1100px;
+  max-width: 1250px;
 }
 
 .project-item .images li:nth-child(1) {
