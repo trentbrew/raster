@@ -1,18 +1,12 @@
 // Change the configurations.  
 
-//lazy login
 var lazy = '0106';
 
 console.log(document.body.style.opacity = 1);
 
 if(prompt('Enter pin:') == lazy) {
     var config = {
-        apiKey: "AIzaSyCHpz4ty7srkDV3AiUDZJLFEOfYGLMpqUM",
-        authDomain: "nihal-819a6.firebaseapp.com",
-        databaseURL: "https://nihal-819a6.firebaseio.com",
-        projectId: "nihal-819a6",
-        storageBucket: "nihal-819a6.appspot.com",
-        messagingSenderId: "489064704671"
+        // firebase config
     }
 } 
 else {
